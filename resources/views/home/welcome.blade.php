@@ -2,7 +2,7 @@
 @section('title', 'Welcome')
 @section('top')
 <!-- START #fh5co-hero -->
-<aside id="fh5co-hero" style="background-image: url(images/hero4.jpg);">
+<aside id="fh5co-hero" style="background-image: url({{ asset('/').('public/images/hero4.jpg') }});">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -21,9 +21,10 @@
 <div class="container">
     <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center fh5co-lead-wrap">
-                <h2 class="fh5co-serif fh5co-lead">Cras <a href="#">rhoncus</a> scelerisque eros. Donec nec massa eu sapien condimentum aliquet ac in erat. Proin eleifend tortor eu arcu bibendum congue. </h2>
+                <h2 class="fh5co-serif fh5co-lead">&ldquo;How many <a href="javascript:void(0)">millionaires</a> do you know who have become wealthy by investing in savings accounts? I rest my case.&rdquo;</h2>
+                <p class="fh5co-testimonial-author"><cite>&mdash; Robert G. Allen</cite></p>
                 <div class="fh5co-spacer fh5co-spacer-sm"></div>
-                <p><a href="#" class="btn btn-outline btn-lg">Read More</a></p>
+                <p><a href="#" class="btn btn-outline btn-lg">Want To Invest With Us</a></p>
             </div>
         </div>
     </div>
@@ -31,30 +32,36 @@
         <div class="container">
             <!-- FEATURE -->
             <div class="row fh5co-feature-2">
-                <h2 class="fh5co-uppercase-heading-sm text-center">Theme Features</h2>
+                <h2 class="fh5co-uppercase-heading-sm text-center">Our Investment Schemes</h2>
                 <div class="fh5co-spacer fh5co-spacer-md"></div>
-                <div class="col-md-3 col-sm-6 fh5co-feature-item">
+                <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><i class="ti-gift"></i></span>
-                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Free HTML5 Template</h3>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Equity</h3>
                     <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt. </p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
-                <div class="col-md-3 col-sm-6 fh5co-feature-item">
+                <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><i class="ti-mobile"></i></span>
-                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Mobile First</h3>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Commodity</h3>
                     <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="clearfix visible-sm-block"></div>
-                <div class="col-md-3 col-sm-6 fh5co-feature-item">
+                <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><i class="ti-pie-chart"></i></span>
-                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Analytics</h3>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Mutual Fund</h3>
                     <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
-                <div class="col-md-3 col-sm-6 fh5co-feature-item">
+                <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><i class="ti-wallet"></i></span>
-                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Increase Income</h3>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Bonds</h3>
+                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
+                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                </div>
+                <div class="col-md-4 col-sm-6 fh5co-feature-item">
+                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-rocket"></i></span>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Wealth Insurance</h3>
                     <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
@@ -112,19 +119,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="fh5co-uppercase-heading-sm">Testimony</h2>
+                    <h2 class="fh5co-uppercase-heading-sm">What Successfull People Are Saying</h2>
                     <div class="owl-carousel-fullwidth fh5co-light-arrow owl-carousel-2">
                         <div class="item">
                             <blockquote>
-                                <p class="fh5co-serif">&ldquo;Design is not just what it looks like and feels like. Design is how it works.&rdquo;</p>
-                                <p class="fh5co-testimonial-author"><cite>&mdash; Steve Jobs</cite></p>
+                                <p class="fh5co-serif">&ldquo;An investment in knowledge pays the best interest.&rdquo;</p>
+                                <p class="fh5co-testimonial-author"><cite>&mdash; Benjamin Franklin</cite></p>
                             </blockquote>
                         </div>
                         <!-- END .item -->
                         <div class="item">
                             <blockquote>
-                                <p class="fh5co-serif">&ldquo;Design is not just what it looks like and feels like. Design is how it works.&rdquo;</p>
-                                <p class="fh5co-testimonial-author"><cite>&mdash; Steve Jobs</cite></p>
+                                <p class="fh5co-serif">&ldquo;I will tell you how to become rich. Close the doors. Be fearful when others are greedy. Be greedy when others are fearful.&rdquo;</p>
+                                <p class="fh5co-testimonial-author"><cite>&mdash; Warren Buffett</cite></p>
+                            </blockquote>
+                        </div>
+                        <!-- END .item -->
+                        <div class="item">
+                            <blockquote>
+                                <p class="fh5co-serif">&ldquo;The stock market is filled with individuals who know the price of everything, but the value of nothing.&rdquo;</p>
+                                <p class="fh5co-testimonial-author"><cite>&mdash; Phillip Fisher</cite></p>
+                            </blockquote>
+                        </div>
+                        <!-- END .item -->
+                        <div class="item">
+                            <blockquote>
+                                <p class="fh5co-serif">&ldquo;Invest in yourself. Your career is the engine of your wealth.&rdquo;</p>
+                                <p class="fh5co-testimonial-author"><cite>&mdash; Paul Clitheroe</cite></p>
+                            </blockquote>
+                        </div>
+                        <!-- END .item -->
+                        <div class="item">
+                            <blockquote>
+                                <p class="fh5co-serif">&ldquo;It's not how much money you make, but how much money you keep, how hard it works for you, and how many generations you keep it for.&rdquo;</p>
+                                <p class="fh5co-testimonial-author"><cite>&mdash; Robert Kiyosaki</cite></p>
                             </blockquote>
                         </div>
                         <!-- END .item -->
@@ -137,8 +165,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 text-center">
-                    <h2 class="fh5co-uppercase-heading-sm fh5co-no-margin-bottom">Subscribe Newsletter</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, assumenda.</p>
+                    <h2 class="fh5co-uppercase-heading-sm fh5co-no-margin-bottom">Stay With Latest Offers</h2>
+                    <p>Shoot Your Mail, We Will Send Latest Updates To You</p>
                     <div class="fh5co-spacer fh5co-spacer-xxs"></div>
                     <form method="post" action="#">
                         <div class="form-group">
