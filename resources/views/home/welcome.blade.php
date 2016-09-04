@@ -192,3 +192,10 @@
         </div>
     </section>
 @stop
+@section('foot')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#homeMenu').addClass('active');
+    });
+</script>
+@stop

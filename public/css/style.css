@@ -1830,3 +1830,9 @@ a > img.fh5co-align-center {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Contact form */
+/* line 1537, ../sass/style.scss */
+.contact-address p {
+  margin: 0;
+}

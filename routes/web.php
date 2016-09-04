@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@contact'));

@@ -55,7 +55,7 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active">
+							<li id="homeMenu">
 								<a href="{{ url('/') }}">Home</a>
 							</li>
 							<li>
@@ -77,7 +77,7 @@
 								</ul>
 							</li>
 							<li><a href="elements.html">Elements</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li id="contactMenu"><a href="{{ URL::route('contact') }}">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -116,5 +116,6 @@
 		<script src="{{ asset('/').('public/js/fastclick.js') }}"></script>
 		<!-- Main JS -->
 		<script src="{{ asset('/').('public/js/main.js') }}"></script>
+		@yield('foot')
 	</body>
 </html>
