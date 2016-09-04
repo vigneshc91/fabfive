@@ -1,20 +1,25 @@
+/* line 1, ../../sass/bootstrap/media.scss */
 .media {
   margin-top: 15px;
 }
+/* line 5, ../../sass/bootstrap/media.scss */
 .media:first-child {
   margin-top: 0;
 }
 
+/* line 10, ../../sass/bootstrap/media.scss */
 .media-right,
 .media > .pull-right {
   padding-left: 10px;
 }
 
+/* line 15, ../../sass/bootstrap/media.scss */
 .media-left,
 .media > .pull-left {
   padding-right: 10px;
 }
 
+/* line 20, ../../sass/bootstrap/media.scss */
 .media-left,
 .media-right,
 .media-body {
@@ -22,22 +27,24 @@
   vertical-align: top;
 }
 
+/* line 27, ../../sass/bootstrap/media.scss */
 .media-middle {
   vertical-align: middle;
 }
 
+/* line 31, ../../sass/bootstrap/media.scss */
 .media-bottom {
   vertical-align: bottom;
 }
 
+/* line 36, ../../sass/bootstrap/media.scss */
 .media-heading {
   margin-top: 0;
   margin-bottom: 5px;
 }
 
+/* line 44, ../../sass/bootstrap/media.scss */
 .media-list {
   padding-left: 0;
   list-style: none;
 }
-
-/*# sourceMappingURL=media.css.map */

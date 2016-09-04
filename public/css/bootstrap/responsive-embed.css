@@ -1,3 +1,4 @@
+/* line 5, ../../sass/bootstrap/responsive-embed.scss */
 .embed-responsive {
   position: relative;
   display: block;
@@ -5,6 +6,7 @@
   padding: 0;
   overflow: hidden;
 }
+/* line 12, ../../sass/bootstrap/responsive-embed.scss */
 .embed-responsive .embed-responsive-item,
 .embed-responsive iframe,
 .embed-responsive embed,
@@ -18,11 +20,11 @@
   width: 100%;
   border: 0;
 }
+/* line 27, ../../sass/bootstrap/responsive-embed.scss */
 .embed-responsive.embed-responsive-16by9 {
   padding-bottom: 56.25%;
 }
+/* line 32, ../../sass/bootstrap/responsive-embed.scss */
 .embed-responsive.embed-responsive-4by3 {
   padding-bottom: 75%;
 }
-
-/*# sourceMappingURL=responsive-embed.css.map */

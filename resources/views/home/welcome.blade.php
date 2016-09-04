@@ -2,7 +2,7 @@
 @section('title', 'Welcome')
 @section('top')
 <!-- START #fh5co-hero -->
-<aside id="fh5co-hero" style="background-image: url({{ asset('/').('public/images/hero4.jpg') }});">
+<aside id="fh5co-hero" style="background-image: url({{ asset('/').('public/images/sustainable-responsible-ethical-investments-1.png') }});">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -35,34 +35,34 @@
                 <h2 class="fh5co-uppercase-heading-sm text-center">Our Investment Schemes</h2>
                 <div class="fh5co-spacer fh5co-spacer-md"></div>
                 <div class="col-md-4 col-sm-6 fh5co-feature-item">
-                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-gift"></i></span>
+                    <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/equity.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Equity</h3>
-                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt. </p>
+                    <p class="text-center fh5co-feature-description">The value of an asset less the value of all liabilities on that asset.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="col-md-4 col-sm-6 fh5co-feature-item">
-                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-mobile"></i></span>
+                    <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/commodity.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Commodity</h3>
-                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
+                    <p class="text-center fh5co-feature-description">A raw material or primary agricultural product that can be bought and sold.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-md-4 col-sm-6 fh5co-feature-item">
-                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-pie-chart"></i></span>
+                    <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/mutual-fund.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Mutual Fund</h3>
-                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
+                    <p class="text-center fh5co-feature-description">An investment programme funded by shareholders that trades in diversified holdings.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
-                <div class="col-md-4 col-sm-6 fh5co-feature-item">
-                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-wallet"></i></span>
+                <div class="col-md-offset-2 col-sm-offset-0 col-md-4 col-sm-6 fh5co-feature-item">
+                    <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/Bonds.png') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Bonds</h3>
-                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
+                    <p class="text-center fh5co-feature-description">An investor loans money to an entity which borrows the funds for a defined period of time.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
-                <div class="col-md-4 col-sm-6 fh5co-feature-item">
-                    <span class="fh5co-feature-icon fh5co-circle"><i class="ti-rocket"></i></span>
+                <div class="col-md-offset-0 col-sm-offset-3 col-md-4 col-sm-6 fh5co-feature-item">
+                    <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/Compass-Wealth-Pic.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Wealth Insurance</h3>
-                    <p class="text-center fh5co-feature-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat aliquid placeat nobis veritatis neque earum possimus tempora sunt.</p>
+                    <p class="text-center fh5co-feature-description">A store of value, in a liquid form, for a potential financial emergency.</p>
                     <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
@@ -81,11 +81,17 @@
                                     <div class="col-md-9 col-md-offset-1 col-sm-9 col-sm-offset-1">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-img"> 
-                                                <img src="{{ asset('/').('public/images/macbook_1.png') }}" alt="Images" class="img-responsive">
+                                                <img src="{{ asset('/').('public/images/short-term-investment.jpg') }}" alt="Images" class="img-responsive">
                                             </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-text">
-                                                <h2>Saepe dolore natus corrupti <span class="fh5co-border"></span></h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe dolore natus, corrupti. Error nulla, quia nemo porro hic explicabo aliquid labore cumque in, nesciunt alias suscipit accusamus laborum ad tempora tempore</p>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-text fh5co-side-section fh5co-nav-links">
+                                                <h2>Short Term Investment <span class="fh5co-border"></span></h2>
+                                                <ul>
+                                                    <li><a href="javascript:void(0)"><strong>Higher Risk</strong></a></li>
+                                                    <li><a href="javascript:void(0)"><strong>Speculative</strong></a></li>
+                                                    <li><a href="javascript:void(0)"><strong>Usually Lump sum Investments</strong></a></li>
+                                                    <li><a href="javascript:void(0)"><strong>Impulsive</strong></a></li>
+                                                    <li><a href="javascript:void(0)"><strong>No Tax Benefits</strong></a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -98,11 +104,17 @@
                                 <div class="col-md-9 col-md-offset-1 col-sm-9 col-sm-offset-1">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-img"> 
-                                            <img src="{{ asset('/').('public/images/macbook_1.png') }}" alt="Images" class="img-responsive">
+                                            <img src="{{ asset('/').('public/images/long-term-investment.jpg') }}" alt="Images" class="img-responsive">
                                         </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-text">
-                                            <h2>Saepe dolore natus corrupti<span class="fh5co-border"></span></h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe dolore natus, corrupti. Error nulla, quia nemo porro hic explicabo aliquid labore cumque in, nesciunt alias suscipit accusamus laborum ad tempora tempore.</p>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-slide-text fh5co-side-section fh5co-nav-links">
+                                            <h2>Long Term Investment <span class="fh5co-border"></span></h2>
+                                            <ul>
+                                                <li><a href="javascript:void(0)"><strong>Less Risk</strong></a></li>
+                                                <li><a href="javascript:void(0)"><strong>Small And Steady Returns</strong></a></li>
+                                                <li><a href="javascript:void(0)"><strong>Benefits From Averaging</strong></a></li>
+                                                <li><a href="javascript:void(0)"><strong>Strategic</strong></a></li>
+                                                <li><a href="javascript:void(0)"><strong>Tax Benefits</strong></a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

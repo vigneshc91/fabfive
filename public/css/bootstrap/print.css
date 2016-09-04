@@ -1,5 +1,6 @@
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
+  /* line 9, ../../sass/bootstrap/print.scss */
   *,
   *:before,
   *:after {
@@ -9,43 +10,52 @@
     text-shadow: none !important;
   }
 
+  /* line 18, ../../sass/bootstrap/print.scss */
   a,
   a:visited {
     text-decoration: underline;
   }
 
+  /* line 23, ../../sass/bootstrap/print.scss */
   a[href]:after {
     content: " (" attr(href) ")";
   }
 
+  /* line 27, ../../sass/bootstrap/print.scss */
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
 
+  /* line 33, ../../sass/bootstrap/print.scss */
   a[href^="#"]:after,
   a[href^="javascript:"]:after {
     content: "";
   }
 
+  /* line 38, ../../sass/bootstrap/print.scss */
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
 
+  /* line 44, ../../sass/bootstrap/print.scss */
   thead {
     display: table-header-group;
   }
 
+  /* line 48, ../../sass/bootstrap/print.scss */
   tr,
   img {
     page-break-inside: avoid;
   }
 
+  /* line 53, ../../sass/bootstrap/print.scss */
   img {
     max-width: 100% !important;
   }
 
+  /* line 57, ../../sass/bootstrap/print.scss */
   p,
   h2,
   h3 {
@@ -53,40 +63,46 @@
     widows: 3;
   }
 
+  /* line 64, ../../sass/bootstrap/print.scss */
   h2,
   h3 {
     page-break-after: avoid;
   }
 
+  /* line 73, ../../sass/bootstrap/print.scss */
   select {
     background: #fff !important;
   }
 
+  /* line 78, ../../sass/bootstrap/print.scss */
   .navbar {
     display: none;
   }
 
+  /* line 83, ../../sass/bootstrap/print.scss */
   .btn > .caret,
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
   }
 
+  /* line 87, ../../sass/bootstrap/print.scss */
   .label {
     border: 1px solid #000;
   }
 
+  /* line 91, ../../sass/bootstrap/print.scss */
   .table {
     border-collapse: collapse !important;
   }
+  /* line 94, ../../sass/bootstrap/print.scss */
   .table td,
   .table th {
     background-color: #fff !important;
   }
 
+  /* line 100, ../../sass/bootstrap/print.scss */
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
 }
-
-/*# sourceMappingURL=print.css.map */

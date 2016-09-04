@@ -278,7 +278,7 @@ textarea {
 
 .sf-menu a {
 	// color: $brand-white;
-	color: rgba(255,255,255,.4);
+	color: rgba(41, 5, 5, 0.6);
 	padding: .75em 1em;
 	// padding: 10px 25px 60px;
 	text-transform: uppercase;
@@ -290,6 +290,7 @@ textarea {
 	zoom: 1; 
 	font-size: 13px;
 	border-bottom: none!important;
+	font-weight: bold;
 }
 .sf-menu li,
 .sf-menu ul li,
@@ -614,11 +615,12 @@ textarea {
 			vertical-align: middle;
 			text-align: center;
 			> h1 {
-				font-size: 40px;
+				font-size: 30px;
 				font-weight: normal;
 				line-height: 62px;
 				text-transform: uppercase;
 				letter-spacing:7px;
+				color: #460b0b;
 				@media screen and (max-width: $screen-sm) {
 					letter-spacing:4px;
 					font-size: 30px;
@@ -629,11 +631,12 @@ textarea {
 			> h2 {
 				// margin: 0;
 				letter-spacing: 4px;
-				font-size: 16px;
+				font-size: 40px;
 				text-transform: uppercase;
 				padding-bottom: 20px;
 				position: relative;
-				color: #fff;
+				color: #274e18;
+				font-weight: bold;
 				@media screen and (max-width: $screen-sm) {
 					letter-spacing:3px;
 				}
@@ -641,7 +644,7 @@ textarea {
 					position: absolute;
 					bottom: 0;
 					display: block;
-					background: rgba(255,255,255, .4);
+					background: rgba(43, 17, 12, 0.4);
 					width: 50px;
 					height: 3px;
 					left: 50%;
@@ -975,6 +978,9 @@ Components
 	
 	.fh5co-feature-item {
 		margin-bottom: 30px;
+		p {
+			font-size: 14px;
+		}
 	}
 	.fh5co-feature-title {
 		letter-spacing: 2px;
@@ -1004,6 +1010,10 @@ Components
 			display: table-cell;
 			vertical-align: middle;
 			font-size: 40px;
+		}
+		img {
+			width: 100px;
+			height: 100px;
 		}
 	}
 }
@@ -1114,7 +1124,7 @@ Components
 
 #fh5co-testimonial {
 	padding: 10em 0;
-	background: #000 url(../images/hero2.jpg) no-repeat center center;
+	background: #000 url(../images/success.jpg) no-repeat center center;
 	background-size: cover;
 	@media screen and (max-width: $screen-sm) {
 		padding: 3em 0;
@@ -1139,6 +1149,7 @@ Components
 	}
 	.fh5co-testimonial-author {
 		font-size: 18px;
+		font-weight: bold;
 	}
 	.fh5co-uppercase-heading-sm {
 		color: $brand-white;
