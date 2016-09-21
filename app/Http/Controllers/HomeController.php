@@ -9,10 +9,10 @@ use App\Http\Requests;
 class HomeController extends Controller
 {
     public function index(){
-        return view('/home/welcome');
+        return view('home.welcome');
     }
 
     public function contact(){
-        return view('/home/contact');
+        return view('home.contact');
     }
 }
