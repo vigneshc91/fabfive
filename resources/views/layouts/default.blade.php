@@ -58,25 +58,17 @@
 							<li id="homeMenu">
 								<a href="{{ url('/') }}">Home</a>
 							</li>
+							<li id="aboutUsMenu"><a href="{{ URL::route('aboutUs') }}">About US</a></li>
 							<li>
-								<a href="#" class="fh5co-sub-ddown">Dropdown</a>
+								<a href="#" class="fh5co-sub-ddown">Schemes</a>
 								 <ul class="fh5co-sub-menu">
-								 	<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								 	<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="#">HTML5</a></li>
-									<li>
-										<a href="#" class="fh5co-sub-ddown">JavaScript</a>
-										<ul class="fh5co-sub-menu">
-											<li><a href="#">jQuery</a></li>
-											<li><a href="#">Zipto</a></li>
-											<li><a href="#">Node.js</a></li>
-											<li><a href="#">AngularJS</a></li>
-										</ul>
-									</li>
-									<li><a href="#">CSS3</a></li> 
+								 	<li><a href="#">Equity</a></li>
+								 	<li><a href="#">Commodity</a></li>
+									<li><a href="#">Mutual Fund</a></li>
+									<li><a href="#">Bonds</a></li> 
+									<li><a href="#">Wealth Insurance</a></li> 
 								</ul>
 							</li>
-							<li><a href="elements.html">Elements</a></li>
 							<li id="contactMenu"><a href="{{ URL::route('contact') }}">Contact</a></li>
 						</ul>
 					</nav>
