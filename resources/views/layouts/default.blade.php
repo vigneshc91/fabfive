@@ -59,14 +59,14 @@
 								<a href="{{ url('/') }}">Home</a>
 							</li>
 							<li id="aboutUsMenu"><a href="{{ URL::route('aboutUs') }}">About US</a></li>
-							<li>
+							<li id="schemesMenu">
 								<a href="#" class="fh5co-sub-ddown">Schemes</a>
 								 <ul class="fh5co-sub-menu">
-								 	<li><a href="#">Equity</a></li>
-								 	<li><a href="#">Commodity</a></li>
-									<li><a href="#">Mutual Fund</a></li>
-									<li><a href="#">Bonds</a></li> 
-									<li><a href="#">Wealth Insurance</a></li> 
+								 	<li><a href="{{ URL::route('equity') }}">Equity</a></li>
+								 	<li><a href="{{ URL::route('commodity') }}">Commodity</a></li>
+									<li><a href="{{ URL::route('mutualFund') }}">Mutual Fund</a></li>
+									<li><a href="{{ URL::route('debtMarket') }}">Debt Market</a></li> 
+									<li><a href="{{ URL::route('wealthInsurance') }}">Wealth Insurance</a></li> 
 								</ul>
 							</li>
 							<li id="contactMenu"><a href="{{ URL::route('contact') }}">Contact</a></li>

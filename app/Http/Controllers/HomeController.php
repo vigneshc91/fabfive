@@ -19,4 +19,24 @@ class HomeController extends Controller
     public function aboutUs(){
         return view('home.aboutUs');
     }
+
+    public function equity(){
+        return view('home.equity');
+    }
+
+    public function commodity(){
+        return view('home.commodity');
+    }
+
+    public function debtMarket(){
+        return view('home.debtMarket');
+    }
+
+    public function mutualFund(){
+        return view('home.mutualFund');
+    }
+
+    public function wealthInsurance(){
+        return view('home.wealthInsurance');
+    }
 }

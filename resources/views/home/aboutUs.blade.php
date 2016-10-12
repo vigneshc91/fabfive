@@ -34,7 +34,7 @@
                 Smart Investments Makes Life Simple
             </h1>
             <h4 class="h5 fh5co-heading-sub">
-                Our Moto is to give awareness to all kinds of peoples about different types of financial investments and the importance of  investments to make their healthy financial life and their needs. 
+                Our Motto is to give awareness to all kinds of peoples about different types of financial investments and the importance of  investments to make their healthy financial life and their needs. 
             </h4>
         </div>
         
@@ -48,11 +48,11 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-xxs-12 fh5co-item-slide-text fh5co-side-section fh5co-nav-links text-center">
                                     <h2>Our Investment Schemes <span class="fh5co-border"></span></h2>
                                     <ul>
-                                        <li><a href="javascript:void(0)"><strong>Equity</strong></a></li>
-                                        <li><a href="javascript:void(0)"><strong>Commodity</strong></a></li>
-                                        <li><a href="javascript:void(0)"><strong>Mutual Fund</strong></a></li>
-                                        <li><a href="javascript:void(0)"><strong>Bonds</strong></a></li>
-                                        <li><a href="javascript:void(0)"><strong>Wealth Insurance</strong></a></li>
+                                        <li><a href="{{ URL::route('equity') }}"><strong>Equity</strong></a></li>
+                                        <li><a href="{{ URL::route('commodity') }}"><strong>Commodity</strong></a></li>
+                                        <li><a href="{{ URL::route('mutualFund') }}"><strong>Mutual Fund</strong></a></li>
+                                        <li><a href="{{ URL::route('debtMarket') }}"><strong>Debt Market</strong></a></li>
+                                        <li><a href="{{ URL::route('wealthInsurance') }}"><strong>Wealth Insurance</strong></a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -38,32 +38,32 @@
                     <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/equity.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Equity</h3>
                     <p class="text-center fh5co-feature-description">The value of an asset less the value of all liabilities on that asset.</p>
-                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                    <p class="text-center"><a href="{{ URL::route('equity') }}" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/commodity.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Commodity</h3>
                     <p class="text-center fh5co-feature-description">A raw material or primary agricultural product that can be bought and sold.</p>
-                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                    <p class="text-center"><a href="{{ URL::route('commodity') }}" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/mutual-fund.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Mutual Fund</h3>
                     <p class="text-center fh5co-feature-description">An investment programme funded by shareholders that trades in diversified holdings.</p>
-                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                    <p class="text-center"><a href="{{ URL::route('mutualFund') }}" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="col-md-offset-2 col-sm-offset-0 col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/Bonds.png') }}" alt="Images" class="img-circle"></span>
-                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Bonds</h3>
-                    <p class="text-center fh5co-feature-description">An investor loans money to an entity which borrows the funds for a defined period of time.</p>
-                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                    <h3 class="text-center fh5co-feature-title h4 text-uppercase">Debt Market</h3>
+                    <p class="text-center fh5co-feature-description">Fixed income securities can be issued by any entity public or private.</p>
+                    <p class="text-center"><a href="{{ URL::route('debtMarket') }}" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <div class="col-md-offset-0 col-sm-offset-3 col-md-4 col-sm-6 fh5co-feature-item">
                     <span class="fh5co-feature-icon fh5co-circle"><img src="{{ asset('/').('public/images/Compass-Wealth-Pic.jpg') }}" alt="Images" class="img-circle"></span>
                     <h3 class="text-center fh5co-feature-title h4 text-uppercase">Wealth Insurance</h3>
                     <p class="text-center fh5co-feature-description">A store of value, in a liquid form, for a potential financial emergency.</p>
-                    <p class="text-center"><a href="#" class="btn btn-primary btn-sm">Read more</a></p>
+                    <p class="text-center"><a href="{{ URL::route('wealthInsurance') }}" class="btn btn-primary btn-sm">Read more</a></p>
                 </div>
                 <!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
             </div>
