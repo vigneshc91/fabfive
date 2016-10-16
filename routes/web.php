@@ -26,3 +26,7 @@ Route::get('debtMarket', array('as' => 'debtMarket', 'uses' => 'HomeController@d
 Route::get('mutualFund', array('as' => 'mutualFund', 'uses' => 'HomeController@mutualFund'));
 
 Route::get('wealthInsurance', array('as' => 'wealthInsurance', 'uses' => 'HomeController@wealthInsurance'));
+
+// Apis for the superadmin
+
+Route::post('login', 'UserController@login');
