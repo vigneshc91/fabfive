@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -26,4 +26,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the address of the user.
+     */
+    public function address()
+    {
+        return $this->hasOne('App\Address');
+    }
+
+    /**
+     * Create Admin validation rule
+     */
+    public static $createAdminRule = array(
+        'first_name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'user_type' => 'required'
+    );
 }
