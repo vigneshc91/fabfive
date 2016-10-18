@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\Helper\UserStatus;
+use App\Helper\AppConstants;
 
 class UserManager {
 
@@ -14,7 +14,7 @@ class UserManager {
             $email = $input['email'];
             $password = bcrypt($input['password']);
 
-            $login = Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1]);
+            $login = Auth::attempt(['email' => $email, 'password' => $password, 'status' => AppConstants::userStatus['activated']]);
             
             return $login;
 

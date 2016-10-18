@@ -29,4 +29,4 @@ Route::get('wealthInsurance', array('as' => 'wealthInsurance', 'uses' => 'HomeCo
 
 // Apis for the superadmin
 
-Route::post('login', 'UserController@login');
+Route::post('user/login', 'UserController@login');
