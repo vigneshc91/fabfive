@@ -49,7 +49,6 @@ class User extends Authenticatable
     public static $createAdminRule = array(
         'first_name' => 'required',
         'email' => 'required',
-        'password' => 'required',
         'user_type' => 'required'
     );
 }

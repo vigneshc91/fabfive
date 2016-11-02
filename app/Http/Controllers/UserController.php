@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Helper\ServiceResponse;
 use App\Helper\SuccessConstants;
 use App\Helper\ErrorConstants;
+use App\Manager\SessionManager;
 use App\Manager\UserManager;
 use App\User;
 
@@ -18,6 +19,7 @@ class UserController extends Controller
 
     function __construct() {
         $this->userManager = new UserManager();
+        $this->sessionManager = new SessionManager();
     }
     
     public function login(Request $request) {
@@ -50,6 +52,24 @@ class UserController extends Controller
             $response->result = $e;
             return json_encode($response);
 
+        }
+    }
+
+   public function logout(){
+        $response = new ServiceResponse(); 
+        try {
+            
+            $this->userManager->logout();
+            
+            $response->status = true;
+            $response->result = SuccessConstants::LOGOUT_SUCCESS;
+            return json_encode($response);
+
+
+        } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
         }
     }
     

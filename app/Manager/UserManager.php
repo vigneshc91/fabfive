@@ -5,6 +5,7 @@ namespace App\Manager;
 use Illuminate\Support\Facades\Auth;
 
 use App\Helper\AppConstants;
+use App\User;
 
 class UserManager {
 
@@ -19,6 +20,16 @@ class UserManager {
             return $login;
 
         } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function logout(){
+        try{
+
+            return Auth::logout();
+
+        } catch(Exception $e) {
             throw $e;
         }
     }
