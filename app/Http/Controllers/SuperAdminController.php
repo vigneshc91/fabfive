@@ -45,7 +45,7 @@ class SuperAdminController extends Controller
                 return json_encode($response);
             }
 
-            $this->userManager->createAdmin($input);
+            $this->userManager->createAdmin($user, $input);
 
 
         } catch(Exception $e){

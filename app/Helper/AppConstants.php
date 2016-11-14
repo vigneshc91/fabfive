@@ -25,4 +25,9 @@ class AppConstants {
         "female" => 2,
         "others" => 3
     );
+
+    const SUPER_ADMIN_FIRST_NAME = "Super";
+    const SUPER_ADMIN_LAST_NAME = "Admin";
+    const SUPER_ADMIN_EMAIL = "support@fabfive.in";
+    const SUPER_ADMIN_PASSWORD = "admin123";
 }
