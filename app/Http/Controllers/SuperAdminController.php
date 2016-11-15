@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests;
 use App\Helper\ServiceResponse;
@@ -17,6 +19,7 @@ class SuperAdminController extends Controller
 {
     
     function __construct(){
+        $this->sessionManager = new SessionManager();
         $this->superAdminManager = new SuperAdminManager();
     }
 
@@ -30,7 +33,7 @@ class SuperAdminController extends Controller
                 $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
                 return json_encode($response);
             }
-            if($user->user_type != AppConstants::userType['superAdmin'] || $user->user_type != AppConstants::userType['admin']){
+            if($user->user_type != AppConstants::userType['superAdmin'] && $user->user_type != AppConstants::userType['admin']){
                 $response->status = false;
                 $response->result = ErrorConstants::NO_PRIVILEGE;
                 return json_encode($response);
@@ -45,7 +48,16 @@ class SuperAdminController extends Controller
                 return json_encode($response);
             }
 
-            $this->userManager->createAdmin($user, $input);
+            
+            if($this->superAdminManager->createUser($user, $input)){
+                $response->status = true;
+                $response->result = SuccessConstants::USER_CREATED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::USER_CREATION_FAILED;
+                return json_encode($response);
+            }
 
 
         } catch(Exception $e){

@@ -2,6 +2,8 @@
 
 namespace App\Manager;
 
+use Illuminate\Support\Facades\Mail;
+
 use App\Helper\AppConstants;
 use App\Helper\SuccessConstants;
 use App\Helper\ErrorConstants;

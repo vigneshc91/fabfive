@@ -16,11 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->date('date_of_birth')->nullable();
-            $table->integer('gender');
+            $table->integer('gender')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('profile_pic')->nullable();
             $table->integer('user_type');
@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('verification_token')->nullable();
             $table->string('reset_token')->nullable();
-            $table->integer('reset_status');
+            $table->integer('reset_status')->nullable();
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Constants\AppConstants;
+use App\Helper\AppConstants;
 use App\User;
 
 class CreateSuperAdminSeeder extends Seeder
@@ -23,7 +23,7 @@ class CreateSuperAdminSeeder extends Seeder
                 'email' => AppConstants::SUPER_ADMIN_EMAIL,
                 'password' => bcrypt(AppConstants::SUPER_ADMIN_PASSWORD),
                 'user_type' => AppConstants::userType['superAdmin'],
-                'status' => AppConstants::userStatus['approved']
+                'status' => AppConstants::userStatus['activated']
             ]);
         }
 

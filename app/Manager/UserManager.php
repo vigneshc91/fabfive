@@ -13,7 +13,7 @@ class UserManager {
         try {
             
             $email = $input['email'];
-            $password = bcrypt($input['password']);
+            $password = $input['password'];
 
             $login = Auth::attempt(['email' => $email, 'password' => $password, 'status' => AppConstants::userStatus['activated']]);
             
