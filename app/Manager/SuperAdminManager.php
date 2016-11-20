@@ -42,7 +42,7 @@ class SuperAdminManager {
                 ];
 
                 // Send verification email to the admin
-                Mail::send('emails.welcomeAdmin', $data, function ($message) {
+                Mail::send('emails.welcomeAdmin', $data, function ($message) use($user, $email) {
                     $message->from($user->email, $user->first_name . ' ' . $user->last_name);
                     $message->subject("Welcome to FabFive");
                     $message->to($email);
