@@ -22,7 +22,7 @@ class SuperAdminController extends Controller
         $this->superAdminManager = new SuperAdminManager();
     }
 
-    public function createUser(Request $request){
+    public function createAdmin(Request $request){
         $response = new ServiceResponse(); 
         try {
 
@@ -48,13 +48,13 @@ class SuperAdminController extends Controller
             }
 
             
-            if($this->superAdminManager->createUser($user, $input)){
+            if($this->superAdminManager->createAdmin($user, $input)){
                 $response->status = true;
-                $response->result = SuccessConstants::USER_CREATED_SUCCESSFULLY;
+                $response->result = SuccessConstants::ADMIN_CREATED_SUCCESSFULLY;
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::USER_CREATION_FAILED;
+                $response->result = ErrorConstants::ADMIN_CREATION_FAILED;
                 return json_encode($response);
             }
 
@@ -63,6 +63,20 @@ class SuperAdminController extends Controller
             $response->status = false;
             $response->result = $e;
             return json_encode($response);
+        }
+    }
+
+    public function verifyAdmin($token){
+        try {
+            
+            if($this->superAdminManager->verifyAdmin($token)){
+                return json_encode("user verified");
+            } else {
+                return json_encode("invalid verification token");
+            }
+
+        } catch(Exception $e){
+
         }
     }
 }

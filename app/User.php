@@ -56,4 +56,21 @@ class User extends Authenticatable
         'email' => 'required',
         'user_type' => 'required'
     );
+
+    // User change password validation rule
+    public static $userChangePasswordRule = array(
+        'old_password' => 'required',
+        'new_password' => 'required'
+    );
+
+    // Forgot password validation rule
+    public static $forgotPasswordRule = array(
+        'email' => 'required'
+    );
+
+    // Reset password validation rule
+    public static $resetPasswordRule = array(
+        'reset_token' => 'required',
+        'password' => 'required'
+    );
 }

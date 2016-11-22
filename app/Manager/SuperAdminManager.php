@@ -11,7 +11,7 @@ use App\User;
 
 class SuperAdminManager {
 
-    public function createUser($user, $input){
+    public function createAdmin($user, $input){
         try{
 
             $firstName = $input['first_name'];
@@ -37,13 +37,12 @@ class SuperAdminManager {
                 $data = [
                     'first_name' => $firstName,
                     'last_name' => $lastName,
-                    'verificationToken' => $verificationToken,
+                    'verificationToken' => AppConstants::APP_URL . "superAdmin/verifyAdmin/" . $verificationToken,
                     'password' => $password
                 ];
 
                 // Send verification email to the admin
-                Mail::send('emails.welcomeAdmin', $data, function ($message) use($user, $email) {
-                    $message->from($user->email, $user->first_name . ' ' . $user->last_name);
+                Mail::send('emails.welcomeAdmin', $data, function ($message) use($email) {
                     $message->subject("Welcome to FabFive");
                     $message->to($email);
                 });
@@ -53,6 +52,24 @@ class SuperAdminManager {
                 return false;
             }
  
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function verifyAdmin($token){
+        try{
+
+            $user = User::where('verification_token', $token)->first();
+            if(!$user || $user->status == AppConstants::userStatus['activated']){
+                return false;
+            } else {
+                $user->status = AppConstants::userStatus['activated'];
+                $user->verification_token = null;
+                $user->save();
+                return true;
+            }
+
         } catch(Exception $e){
             throw $e;
         }

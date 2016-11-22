@@ -33,4 +33,14 @@ Route::post('user/login', 'UserController@login');
 
 Route::post('user/logout', 'UserController@logout');
 
-Route::post('superAdmin/createUser', 'SuperAdminController@createUser');
+Route::post('user/changePassword', 'UserController@changePassword');
+
+Route::post('user/forgotPassword', 'UserController@forgotPassword');
+
+Route::get('user/resetPassword/{token}', 'UserController@verifyResetToken');
+
+Route::post('user/resetPassword', 'UserController@resetPassword');
+
+Route::post('superAdmin/createAdmin', 'SuperAdminController@createAdmin');
+
+Route::get('superAdmin/verifyAdmin/{token}', 'SuperAdminController@verifyAdmin');

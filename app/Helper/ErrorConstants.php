@@ -10,4 +10,9 @@ class ErrorConstants {
     const NO_PRIVILEGE = "No privilege";
     
     const USER_CREATION_FAILED = "User creation failed";
+    const ADMIN_CREATION_FAILED = "Admin creation failed";
+
+    const INVALID_OLD_PASSWORD = "Invalid old password";
+    const EMAIL_NOT_EXIST = "Email not exist";
+    const INVALID_RESET_TOKEN = "Invalid reset token";
 }

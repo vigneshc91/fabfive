@@ -26,6 +26,8 @@ class AppConstants {
         "others" => 3
     );
 
+    const APP_URL = "http://localhost/fabfive/";
+
     const SUPER_ADMIN_FIRST_NAME = "Super";
     const SUPER_ADMIN_LAST_NAME = "Admin";
     const SUPER_ADMIN_EMAIL = "support@fabfive.in";
