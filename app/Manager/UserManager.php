@@ -66,7 +66,7 @@ class UserManager {
             $email = $input['email'];
 
             $user = User::where('email', $email)->first();
-            if($user == null){
+            if($user == null || $user->reset_token != null){
                 return false;
             } else {
                 $resetToken = md5(rand());
@@ -128,6 +128,42 @@ class UserManager {
             }
 
         } catch(Excetion $e){
+            throw $e;
+        }
+    }
+
+    public function getUserById($input)
+    {
+        try {
+
+            $userId = $input['user_id'];
+
+            $user = User::find($userId);
+
+            return $user;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getUsersList($input)
+    {
+        try {
+
+            $start = $input['start'];
+            $size = $input['size'];
+
+            if(!empty($input['user_type'])){
+                $userType = $input['user_type'];
+                $result = User::where('user_type', $userType)->skip($start)->take($size)->get();
+            } else {
+                $result = User::skip($start)->take($size)->get();
+            }
+
+            return $result;
+
+        } catch(Exception $e){
             throw $e;
         }
     }

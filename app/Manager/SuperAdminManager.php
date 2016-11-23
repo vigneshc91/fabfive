@@ -17,7 +17,6 @@ class SuperAdminManager {
             $firstName = $input['first_name'];
             $lastName = $input['last_name'];
             $email = $input['email'];
-            $userType = $input['user_type'];
             $password = substr( md5(rand()), 0, 8);
             $verificationToken = md5(rand());
 
@@ -29,7 +28,7 @@ class SuperAdminManager {
                     'last_name' => $lastName,
                     'email' => $email,
                     'password' => bcrypt($password),
-                    'user_type' => $userType,
+                    'user_type' => AppConstants::userType['admin'],
                     'verification_token' => $verificationToken,
                     'status' => AppConstants::userStatus['pending']
                 ]);
@@ -73,6 +72,26 @@ class SuperAdminManager {
         } catch(Exception $e){
             throw $e;
         }
+    }
+
+    public function deleteAdmin($input)
+    {
+        try{
+
+            $userId = $input['user_id'];
+
+            $user = User::find($userId);
+            if($user == null){
+                return false;
+            } else {
+                $user->delete();
+                return true;
+            }
+
+        } catch(Exception $e){
+            throw $e;
+        }
+        
     }
     
 }

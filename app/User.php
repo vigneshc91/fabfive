@@ -53,8 +53,7 @@ class User extends Authenticatable
      */
     public static $createAdminRule = array(
         'first_name' => 'required',
-        'email' => 'required',
-        'user_type' => 'required'
+        'email' => 'required'
     );
 
     // User change password validation rule
@@ -72,5 +71,15 @@ class User extends Authenticatable
     public static $resetPasswordRule = array(
         'reset_token' => 'required',
         'password' => 'required'
+    );
+
+    // Delete admin validation rule
+    public static $deleteAdminRule = array(
+        'user_id' => 'required'
+    );
+
+    // Get user validation rule
+    public static $getUserRule = array(
+        'user_id' => 'required'
     );
 }

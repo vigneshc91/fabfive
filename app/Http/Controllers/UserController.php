@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Helper\ServiceResponse;
+use App\Helper\AppConstants;
 use App\Helper\SuccessConstants;
 use App\Helper\ErrorConstants;
 use App\Manager\SessionManager;
@@ -132,7 +133,7 @@ class UserController extends Controller
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::EMAIL_NOT_EXIST;
+                $response->result = ErrorConstants::EMAIL_NOT_EXIST_OR_ALREADY_SENT;
                 return json_encode($response);
             }
 
@@ -187,6 +188,87 @@ class UserController extends Controller
             $response->result = $e;
             return json_encode($response);
          }
+    }
+
+    public function getUserById(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type == AppConstants::userType['user']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('user_id');
+            
+            $getUserValidation = Validator::make($input, User::$getUserRule);
+            if(!$getUserValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            $result = $this->userManager->getUserById($input);
+            if($result != null){
+                $response->status = true;
+                $response->result = $result;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_FOUND;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function getUsersList(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type == AppConstants::userType['user']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('start', 'size', 'user_type');
+
+            if(empty($input['start'])){
+                $input['start'] = AppConstants::USER_START_VALUE;
+            }
+            if(empty($input['size'])){
+                $input['size'] = AppConstants::USER_SIZE_VALUE;
+            }
+            
+            $response->status = true;
+            $response->result = $this->userManager->getUsersList($input);
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
     }
     
 }

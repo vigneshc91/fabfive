@@ -41,6 +41,24 @@ Route::get('user/resetPassword/{token}', 'UserController@verifyResetToken');
 
 Route::post('user/resetPassword', 'UserController@resetPassword');
 
+Route::post('user/getUserById', 'UserController@getUserById');
+
+Route::post('user/getUsersList', 'UserController@getUsersList');
+
 Route::post('superAdmin/createAdmin', 'SuperAdminController@createAdmin');
 
+Route::post('superAdmin/deleteAdmin', 'SuperAdminController@deleteAdmin');
+
 Route::get('superAdmin/verifyAdmin/{token}', 'SuperAdminController@verifyAdmin');
+
+Route::post('admin/createCompany', 'AdminController@createCompany');
+
+Route::post('admin/editCompany', 'AdminController@editCompany');
+
+Route::post('admin/deleteCompany', 'AdminController@deleteCompany');
+
+Route::post('admin/getCompanyById', 'AdminController@getCompanyById');
+
+Route::post('admin/getCompanyList', 'AdminController@getCompanyList');
+
+

@@ -22,8 +22,16 @@ class AppConstants {
 
     const gender = array(
         "male" => 1,
-        "female" => 2,
-        "others" => 3
+        "female" => 2
+    );
+    
+    const productType = array(
+        'equity' => 1,
+        'commodity' => 2,
+        'mutualFund' => 3,
+        'lifeInsurance' => 4,
+        'healthInsurance' => 5,
+        'generalInsurance' => 6
     );
 
     const APP_URL = "http://localhost/fabfive/";
@@ -32,4 +40,10 @@ class AppConstants {
     const SUPER_ADMIN_LAST_NAME = "Admin";
     const SUPER_ADMIN_EMAIL = "support@fabfive.in";
     const SUPER_ADMIN_PASSWORD = "admin123";
+    
+    const USER_START_VALUE = 0;
+    const USER_SIZE_VALUE = 10;
+    
+    const COMPANY_START_VALUE = 0;
+    const COMPANY_SIZE_VALUE = 10;
 }

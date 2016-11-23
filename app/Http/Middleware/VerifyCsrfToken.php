@@ -12,7 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'user/login', 'user/logout', 'user/changePassword', 'user/forgotPassword', 'user/resetPassword',
-        'superAdmin/createAdmin', 'superAdmin/verifyAdmin'
+        'user/login', 'user/logout', 'user/changePassword', 'user/forgotPassword', 'user/resetPassword', 'user/getUserById', 'user/getUsersList',
+        'superAdmin/createAdmin', 'superAdmin/deleteAdmin', 'superAdmin/verifyAdmin',
+        'admin/createCompany', 'admin/editCompany', 'admin/deleteCompany', 'admin/getCompanyById', 'admin/getCompanyList'
     ];
 }
