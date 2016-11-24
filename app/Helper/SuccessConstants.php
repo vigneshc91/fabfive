@@ -18,4 +18,6 @@ class SuccessConstants {
     const COMPANY_CREATED_SUCCESSFULLY = "Company created successfully";
     const COMPANY_EDIT_SUCCESS = "Company edit success";
     const COMPANY_DELETE_SUCCESS= "Company delete success";
+
+    const SUBSCRIBED_SUCCESSFULLY = "Subscribed successfully";
 }

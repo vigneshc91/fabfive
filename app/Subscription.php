@@ -27,4 +27,9 @@ class Subscription extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    // Subscript validation rule
+    public static $subscriptionRule = array(
+        'email' => 'required'
+    );
 }

@@ -34,6 +34,11 @@ class AppConstants {
         'generalInsurance' => 6
     );
 
+    const subscriptionType = array(
+        'subscribed' => 1,
+        'unsubscribed' => 2
+    );
+
     const APP_URL = "http://localhost/fabfive/";
 
     const SUPER_ADMIN_FIRST_NAME = "Super";

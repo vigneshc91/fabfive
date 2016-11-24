@@ -23,4 +23,6 @@ class ErrorConstants {
     const COMPANY_EDIT_FAILED = "Company edit failed";
     const COMPANY_DELETE_FAILED= "Company delete failed";
     const COMPANY_NOT_FOUND = "Company not found";
+
+    const ALREADY_SUBSCRIBED = "Already Subscribed";
 }

@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'vignesh.jag@gmail.com',
+        'address' => 'support@fabfive.in',
         'name' => 'Support FabFive',
     ],
 

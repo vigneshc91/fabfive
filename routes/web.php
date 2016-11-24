@@ -27,6 +27,10 @@ Route::get('mutualFund', array('as' => 'mutualFund', 'uses' => 'HomeController@m
 
 Route::get('wealthInsurance', array('as' => 'wealthInsurance', 'uses' => 'HomeController@wealthInsurance'));
 
+Route::post('home/subscribe', 'HomeController@subscribe');
+
+Route::get('home/unsubscribe/{id}', 'HomeController@unsubscribe');
+
 // Apis for the superadmin
 
 Route::post('user/login', 'UserController@login');
