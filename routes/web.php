@@ -55,14 +55,16 @@ Route::post('superAdmin/deleteAdmin', 'SuperAdminController@deleteAdmin');
 
 Route::get('superAdmin/verifyAdmin/{token}', 'SuperAdminController@verifyAdmin');
 
-Route::post('admin/createCompany', 'AdminController@createCompany');
+Route::post('admin/createVendor', 'AdminController@createVendor');
 
-Route::post('admin/editCompany', 'AdminController@editCompany');
+Route::post('admin/editVendor', 'AdminController@editVendor');
 
-Route::post('admin/deleteCompany', 'AdminController@deleteCompany');
+Route::post('admin/deleteVendor', 'AdminController@deleteVendor');
 
-Route::post('admin/getCompanyById', 'AdminController@getCompanyById');
+Route::post('admin/getVendorById', 'AdminController@getVendorById');
 
-Route::post('admin/getCompanyList', 'AdminController@getCompanyList');
+Route::post('admin/getVendorsList', 'AdminController@getVendorsList');
+
+Route::post('admin/createUser', 'AdminController@createUser');
 
 

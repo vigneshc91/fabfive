@@ -19,10 +19,10 @@ class ErrorConstants {
     const EMAIL_NOT_EXIST_OR_ALREADY_SENT = "Email not exist or verification link already sent to your email";
     const INVALID_RESET_TOKEN = "Invalid reset token";
 
-    const COMPANY_CREATION_FAILED = "Company creation failed";
-    const COMPANY_EDIT_FAILED = "Company edit failed";
-    const COMPANY_DELETE_FAILED= "Company delete failed";
-    const COMPANY_NOT_FOUND = "Company not found";
+    const VENDOR_CREATION_FAILED = "Vendor creation failed";
+    const VENDOR_EDIT_FAILED = "Vendor edit failed";
+    const VENDOR_DELETE_FAILED= "Vendor delete failed";
+    const VENDOR_NOT_FOUND = "Vendor not found";
 
     const ALREADY_SUBSCRIBED = "Already Subscribed";
 }

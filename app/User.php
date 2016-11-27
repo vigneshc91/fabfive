@@ -82,4 +82,19 @@ class User extends Authenticatable
     public static $getUserRule = array(
         'user_id' => 'required'
     );
+
+    // Create user validation rule
+    public static $createUserRule = array(
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required',
+        'date_of_birth' => 'required',
+        'gender' => 'required',
+        'contact_number' => 'required',
+        'pan_card' => 'required',
+        'address_line_1' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'country' => 'required'
+    );
 }

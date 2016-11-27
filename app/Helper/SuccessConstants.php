@@ -15,9 +15,9 @@ class SuccessConstants {
     const FORGOT_PASSWORD_SUCCESSFULLY = "Password reset link sent to your email";
     const RESET_PASSWORD_SUCCESSFULLY = "Password reset success";
 
-    const COMPANY_CREATED_SUCCESSFULLY = "Company created successfully";
-    const COMPANY_EDIT_SUCCESS = "Company edit success";
-    const COMPANY_DELETE_SUCCESS= "Company delete success";
+    const VENDOR_CREATED_SUCCESSFULLY = "Vendor created successfully";
+    const VENDOR_EDIT_SUCCESS = "Vendor edit success";
+    const VENDOR_DELETE_SUCCESS= "Vendor delete success";
 
     const SUBSCRIBED_SUCCESSFULLY = "Subscribed successfully";
 }

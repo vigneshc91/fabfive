@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanyTable extends Migration
+class CreateVendorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('vendor', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('type');
             $table->string('name');
@@ -28,6 +28,6 @@ class CreateCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('company');
+        Schema::drop('vendor');
     }
 }

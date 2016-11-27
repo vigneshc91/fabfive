@@ -12,7 +12,8 @@ use App\Helper\SuccessConstants;
 use App\Helper\ErrorConstants;
 use App\Manager\SessionManager;
 use App\Manager\AdminManager;
-use App\Company;
+use App\Vendor;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -21,7 +22,7 @@ class AdminController extends Controller
         $this->adminManager = new AdminManager();
     }
 
-    public function createCompany(Request $request)
+    public function createVendor(Request $request)
     {
         $response = new ServiceResponse(); 
         try {
@@ -40,20 +41,20 @@ class AdminController extends Controller
 
             $input = $request->only('type', 'name');
             
-            $createCompanyValidation = Validator::make($input, Company::$createCompanyRule);
-            if(!$createCompanyValidation->passes()){
+            $createVendorValidation = Validator::make($input, Vendor::$createVendorRule);
+            if(!$createVendorValidation->passes()){
                 $response->status = false;
                 $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
                 return json_encode($response);
             }
 
-            if($this->adminManager->createCompany($input)){
+            if($this->adminManager->createVendor($input)){
                 $response->status = true;
-                $response->result = SuccessConstants::COMPANY_CREATED_SUCCESSFULLY;
+                $response->result = SuccessConstants::VENDOR_CREATED_SUCCESSFULLY;
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::COMPANY_CREATION_FAILED;
+                $response->result = ErrorConstants::VENDOR_CREATION_FAILED;
                 return json_encode($response);
             }
 
@@ -64,7 +65,7 @@ class AdminController extends Controller
         }
     }
 
-    public function editCompany(Request $request)
+    public function editVendor(Request $request)
     {
         $response = new ServiceResponse(); 
         try {
@@ -81,22 +82,22 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            $input = $request->only('company_id', 'type', 'name');
+            $input = $request->only('vendor_id', 'type', 'name');
             
-            $editCompanyValidation = Validator::make($input, Company::$editCompanyRule);
-            if(!$editCompanyValidation->passes()){
+            $editVendorValidation = Validator::make($input, Vendor::$editVendorRule);
+            if(!$editVendorValidation->passes()){
                 $response->status = false;
                 $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
                 return json_encode($response);
             }
 
-            if($this->adminManager->editCompany($input)){
+            if($this->adminManager->editVendor($input)){
                 $response->status = true;
-                $response->result = SuccessConstants::COMPANY_EDIT_SUCCESS;
+                $response->result = SuccessConstants::VENDOR_EDIT_SUCCESS;
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::COMPANY_EDIT_FAILED;
+                $response->result = ErrorConstants::VENDOR_EDIT_FAILED;
                 return json_encode($response);
             }
 
@@ -107,7 +108,7 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteCompany(Request $request)
+    public function deleteVendor(Request $request)
     {
         $response = new ServiceResponse(); 
         try {
@@ -124,22 +125,22 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            $input = $request->only('company_id');
+            $input = $request->only('vendor_id');
             
-            $deleteCompanyValidation = Validator::make($input, Company::$deleteCompanyRule);
-            if(!$deleteCompanyValidation->passes()){
+            $deleteVendorValidation = Validator::make($input, Vendor::$deleteVendorRule);
+            if(!$deleteVendorValidation->passes()){
                 $response->status = false;
                 $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
                 return json_encode($response);
             }
 
-            if($this->adminManager->deleteCompany($input)){
+            if($this->adminManager->deleteVendor($input)){
                 $response->status = true;
-                $response->result = SuccessConstants::COMPANY_DELETE_SUCCESS;
+                $response->result = SuccessConstants::VENDOR_DELETE_SUCCESS;
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::COMPANY_DELETE_FAILED;
+                $response->result = ErrorConstants::VENDOR_DELETE_FAILED;
                 return json_encode($response);
             }
 
@@ -150,7 +151,7 @@ class AdminController extends Controller
         }
     }
 
-    public function getCompanyById(Request $request)
+    public function getVendorById(Request $request)
     {
         $response = new ServiceResponse(); 
         try {
@@ -167,23 +168,23 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            $input = $request->only('company_id');
+            $input = $request->only('vendor_id');
             
-            $getCompanyValidation = Validator::make($input, Company::$getCompanyRule);
-            if(!$getCompanyValidation->passes()){
+            $getVendorValidation = Validator::make($input, Vendor::$getVendorRule);
+            if(!$getVendorValidation->passes()){
                 $response->status = false;
                 $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
                 return json_encode($response);
             }
 
-            $result = $this->adminManager->getCompanyById($input);
+            $result = $this->adminManager->getVendorById($input);
             if($result != null){
                 $response->status = true;
                 $response->result = $result;
                 return json_encode($response);
             } else {
                 $response->status = false;
-                $response->result = ErrorConstants::COMPANY_NOT_FOUND;
+                $response->result = ErrorConstants::VENDOR_NOT_FOUND;
                 return json_encode($response);
             }
 
@@ -194,7 +195,7 @@ class AdminController extends Controller
         }
     }
 
-    public function getCompanyList(Request $request)
+    public function getVendorsList(Request $request)
     {
         $response = new ServiceResponse(); 
         try {
@@ -214,17 +215,60 @@ class AdminController extends Controller
             $input = $request->only('start', 'size', 'type');
 
             if(empty($input['start'])){
-                $input['start'] = AppConstants::COMPANY_START_VALUE;
+                $input['start'] = AppConstants::VENDOR_START_VALUE;
             }
             if(empty($input['size'])){
-                $input['size'] = AppConstants::COMPANY_SIZE_VALUE;
+                $input['size'] = AppConstants::VENDOR_SIZE_VALUE;
             }
             
             $response->status = true;
-            $response->result = $this->adminManager->getCompanyList($input);
+            $response->result = $this->adminManager->getVendorsList($input);
             return json_encode($response);
 
         } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function createUser(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('first_name', 'last_name', 'email', 'date_of_birth', 'gender', 'contact_number', 'profile_pic', 'pan_card', 'introducer_name', 'address_line_1', 'address_line_2', 'city', 'state', 'country', 'pin_code');
+            
+            $createUserValidation = Validator::make($input, User::$createUserRule);
+            if(!$createUserValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->createUser($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::USER_CREATED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = true;
+                $response->result = ErrorConstants::USER_CREATION_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e) {
             $response->status = false;
             $response->result = $e;
             return json_encode($response);

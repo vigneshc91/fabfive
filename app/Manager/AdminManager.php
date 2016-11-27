@@ -2,21 +2,25 @@
 
 namespace App\Manager;
 
+use Storage;
+
 use App\Helper\AppConstants;
 use App\Helper\SuccessConstants;
 use App\Helper\ErrorConstants;
-use App\Company;
+use App\Vendor;
+use App\User;
+use App\Address;
 
 class AdminManager {
     
-    public function createCompany($input)
+    public function createVendor($input)
     {
         try {
          
             $type = $input['type'];
             $name = $input['name'];
 
-            Company::create([
+            Vendor::create([
                 'type' => $type,
                 'name' => $name
             ]);
@@ -28,25 +32,25 @@ class AdminManager {
         }
     }
 
-    public function editCompany($input)
+    public function editVendor($input)
     {
         try {
 
-            $companyId = $input['company_id'];
+            $vendorId = $input['vendor_id'];
 
-            $company = Company::find($companyId);
-            if($company == null){
+            $vendor = Vendor::find($vendorId);
+            if($vendor == null){
                 return false;
             } else {
                 if(isset($input['type']) && strlen($input['type']) > 0){
-                    $company->type = $input['type'];
+                    $vendor->type = $input['type'];
                 }
 
                 if(isset($input['name']) && strlen($input['name']) > 0){
-                    $company->name = $input['name'];
+                    $vendor->name = $input['name'];
                 }
 
-                $company->save();
+                $vendor->save();
                 return true;
             }
 
@@ -55,18 +59,18 @@ class AdminManager {
         }
     }
 
-    public function deleteCompany($input)
+    public function deleteVendor($input)
     {
         try {
 
-            $companyId = $input['company_id'];
+            $vendorId = $input['vendor_id'];
 
-            $company = Company::find($companyId);
+            $vendor = Vendor::find($vendorId);
 
-            if($company == null){
+            if($vendor == null){
                 return false;
             } else {
-                $company->delete();
+                $vendor->delete();
                 return true;
             }
 
@@ -75,22 +79,22 @@ class AdminManager {
         }
     }
 
-    public function getCompanyById($input)
+    public function getVendorById($input)
     {
         try {
 
-            $companyId = $input['company_id'];
+            $vendorId = $input['vendor_id'];
 
-            $company = Company::find($companyId);
+            $vendor = Vendor::find($vendorId);
 
-            return $company;
+            return $vendor;
 
         } catch(Exception $e){
             throw $e;
         }
     }
 
-    public function getCompanyList($input)
+    public function getVendorsList($input)
     {
         try {
 
@@ -99,12 +103,105 @@ class AdminManager {
 
             if(!empty($input['type'])){
                 $type = $input['type'];
-                $result = Company::where('type', $type)->skip($start)->take($size)->get();
+                $result = Vendor::where('type', $type)->skip($start)->take($size)->get();
             } else {
-                $result = Company::skip($start)->take($size)->get();
+                $result = Vendor::skip($start)->take($size)->get();
             }
 
             return $result;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function createUser($input)
+    {
+        try {
+
+            $firstName = $input['first_name'];
+            $lastName = $input['last_name'];
+            $email = $input['email'];
+            $dob = $input['date_of_birth'];
+            $gender = $input['gender'];
+            $phone = $input['contact_number'];
+            $profilePicture = null;
+            if(!empty($input['profile_pic'])){
+                $profilePicture = $this->uploadFile($input['profile_pic']);
+            }
+            $pan = $input['pan_card'];
+            $introducer = null;
+            if(!empty($input['introducer_name'])){
+                $introducer = $input['introducer_name'];
+            }
+            $addres1 = $input['address_line_1'];
+            $addres2 = null;
+            if(!empty($input['address_line_2'])){
+                $addres2 = $input['address_line_2']; 
+            }
+            $city = $input['city'];
+            $state = $input['state'];
+            $country = $input['country'];
+            $pinCode = null;
+            if(!empty($input['pin_code'])){
+                $pinCode = $input['pin_code'];
+            }
+
+            $isUserExist = User::where('email', $email)->count();
+            if($isUserExist == 0){
+                $user = User::create([
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'email' => $email,
+                    'date_of_birth' => $dob,
+                    'gender' => $gender,
+                    'contact_number' => $phone,
+                    'profile_pic' => $profilePicture,
+                    'user_type' => AppConstants::userType['user'],
+                    'status' => AppConstants::userStatus['pending'],
+                    'pan_card' => $pan,
+                    'introducer_name' => $introducer
+                ]);
+
+                $address = Address::create([
+                    'user_id' => $user->id,
+                    'address_line_1' => $addres1,
+                    'address_line_2' => $addres2,
+                    'city' => $city,
+                    'state' => $state,
+                    'country' => $country,
+                    'pin_code' => $pinCode
+                ]);
+
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function uploadFile($file){
+        try {
+            $fileName = uniqid() . "." . $file->getClientOriginalExtension();
+            $upload = Storage::put($fileName, file_get_contents($file));
+            if($upload){
+                return $fileName;
+            }
+
+            return false;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function deleteFile($file){
+        try{
+
+            Storage::delete($file);
 
         } catch(Exception $e){
             throw $e;

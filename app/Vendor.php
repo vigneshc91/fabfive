@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Vendor extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'company';
+    protected $table = 'vendor';
     
     /**
      * The attributes that are mass assignable.
@@ -28,24 +28,24 @@ class Company extends Model
      */
     protected $guarded = ['id'];
 
-    // Create company validation rule
-    public static $createCompanyRule = array(
+    // Create vendor validation rule
+    public static $createVendorRule = array(
         'type' => 'required',
         'name' => 'required'
     );
 
-    // Edit company validation rule
-    public static $editCompanyRule = array(
-        'company_id' => 'required'
+    // Edit vendor validation rule
+    public static $editVendorRule = array(
+        'vendor_id' => 'required'
     );
 
-    // Delete company validation rule
-    public static $deleteCompanyRule = array(
-        'company_id' => 'required'
+    // Delete vendor validation rule
+    public static $deleteVendorRule = array(
+        'vendor_id' => 'required'
     );
 
-    // Get company validation rule
-    public static $getCompanyRule = array(
-        'company_id' => 'required'
+    // Get vendor validation rule
+    public static $getVendorRule = array(
+        'vendor_id' => 'required'
     );
 }
