@@ -26,4 +26,9 @@ class Address extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    // Edit address validation rule
+    public static $editAddressRule = array(
+        'address_id' => 'required'
+    );
 }

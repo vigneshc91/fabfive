@@ -14,6 +14,7 @@ use App\Manager\SessionManager;
 use App\Manager\AdminManager;
 use App\Vendor;
 use App\User;
+use App\Address;
 
 class AdminController extends Controller
 {
@@ -263,12 +264,141 @@ class AdminController extends Controller
                 $response->result = SuccessConstants::USER_CREATED_SUCCESSFULLY;
                 return json_encode($response);
             } else {
-                $response->status = true;
+                $response->status = false;
                 $response->result = ErrorConstants::USER_CREATION_FAILED;
                 return json_encode($response);
             }
 
         } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function editUser(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type == AppConstants::userType['superAdmin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('user_id', 'first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'profile_pic', 'pan_card', 'introducer_name');
+            
+            $editUserValidation = Validator::make($input, User::$editUserRule);
+            if(!$editUserValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->editUser($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::USER_EDITED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::USER_EDIT_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function editAddress(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type == AppConstants::userType['superAdmin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('address_id', 'address_line_1', 'address_line_2', 'city', 'state', 'country', 'pin_code');
+            
+            $editAddressValidation = Validator::make($input, Address::$editAddressRule);
+            if(!$editAddressValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->editAddress($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::USER_ADDRESS_EDITED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::USER_ADDRESS_EDIT_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type == AppConstants::userType['superAdmin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('user_id', 'address_id');
+            
+            $deleteUserValidation = Validator::make($input, User::$deleteUserRule);
+            if(!$deleteUserValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->deleteUser($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::USER_DELETED_SUCCESS;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::USER_DELETE_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e){
             $response->status = false;
             $response->result = $e;
             return json_encode($response);

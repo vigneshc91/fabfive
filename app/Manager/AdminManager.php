@@ -208,4 +208,116 @@ class AdminManager {
         }
     }
 
+    public function editUser($input)
+    {
+        try {
+
+            $userId = $input['user_id'];
+
+            $user = User::find($userId);
+            
+            if($user == null){
+                return false;
+            } else {
+                if(!empty($input['first_name'])){
+                    $user->first_name = $input['first_name'];
+                }
+                if(!empty($input['last_name'])){
+                    $user->last_name = $input['last_name'];
+                }
+                if(!empty($input['date_of_birth'])){
+                    $user->date_of_birth = $input['date_of_birth'];
+                }
+                if(!empty($input['gender'])){
+                    $user->gender = $input['gender'];
+                }
+                if(!empty($input['contact_number'])){
+                    $user->contact_number = $input['contact_number'];
+                }
+                if(!empty($input['profile_pic'])){
+                    if(!empty($user->profile_pic)){
+                        $this->deleteFile($user->profile_pic);
+                    }
+                    $user->profile_pic = $this->uploadFile($input['profile_pic']);
+                }
+                if(!empty($input['pan_card'])){
+                    $user->pan_card = $input['pan_card'];
+                }
+                if(!empty($input['introducer_name'])){
+                    $user->introducer_name =  $input['introducer_name'];
+                }
+
+                $user->save();
+
+                return true;
+            }
+
+            
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function editAddress($input)
+    {
+        try{
+
+            $addressId = $input['address_id'];
+
+            $address = Address::find($addressId);
+            if($address == null){
+                return false;
+            } else{
+                if(!empty($input['address_line_1'])){
+                    $address->address_line_1 = $input['address_line_1']; 
+                }
+                if(!empty($input['address_line_2'])){
+                    $address->address_line_2 = $input['address_line_2']; 
+                }
+                if(!empty($input['city'])){
+                    $address->city = $input['city'];
+                }
+                if(!empty($input['state'])){
+                    $address->state = $input['state'];
+                }
+                if(!empty($input['country'])){
+                    $address->country = $input['country'];
+                }
+                if(!empty($input['pin_code'])){
+                    $address->pin_code = $input['pin_code'];
+                }
+
+                $address->save();
+                return true;
+            }
+
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function deleteUser($input)
+    {
+        try {
+
+            $userId = $input['user_id'];
+            $addressId = $input['address_id'];
+
+            $user = User::find($userId);
+            $address = Address::find($addressId);
+
+            if($user == null || $address == null){
+                return false;
+            } else {
+                $address->delete();
+                $user->delete();
+                return true;
+            }
+            
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
 }

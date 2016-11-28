@@ -67,4 +67,10 @@ Route::post('admin/getVendorsList', 'AdminController@getVendorsList');
 
 Route::post('admin/createUser', 'AdminController@createUser');
 
+Route::post('admin/editUser', 'AdminController@editUser');
+
+Route::post('admin/editAddress', 'AdminController@editAddress');
+
+Route::post('admin/deleteUser', 'AdminController@deleteUser');
+
 

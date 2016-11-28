@@ -13,7 +13,10 @@ class ErrorConstants {
     const USER_NOT_FOUND = "User not found";
     const ADMIN_CREATION_FAILED = "Admin creation failed";
     const ADMIN_DELETE_FAILED = "Admin delete failed";
-    
+    const USER_DELETE_FAILED = "User delete failed";
+    const USER_EDIT_FAILED = "User edit failed";
+    const USER_ADDRESS_EDIT_FAILED = "User address edit failed";
+
     const INVALID_OLD_PASSWORD = "Invalid old password";
     const EMAIL_NOT_EXIST = "Email not exist";
     const EMAIL_NOT_EXIST_OR_ALREADY_SENT = "Email not exist or verification link already sent to your email";

@@ -15,7 +15,7 @@ class VerifyCsrfToken extends BaseVerifier
         'user/login', 'user/logout', 'user/changePassword', 'user/forgotPassword', 'user/resetPassword', 'user/getUserById', 'user/getUsersList',
         'superAdmin/createAdmin', 'superAdmin/deleteAdmin', 'superAdmin/verifyAdmin',
         'admin/createVendor', 'admin/editVendor', 'admin/deleteVendor', 'admin/getVendorById', 'admin/getVendorsList',
-        'admin/createUser',
+        'admin/createUser', 'admin/editUser', 'admin/editAddress', 'admin/deleteUser',
         'home/subscribe', 'home/unsubscribe'
     ];
 }
