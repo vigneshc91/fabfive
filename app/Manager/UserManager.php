@@ -5,6 +5,7 @@ namespace App\Manager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use JWTAuth;
 
 use App\Helper\AppConstants;
 use App\User;
@@ -17,7 +18,7 @@ class UserManager {
             $email = $input['email'];
             $password = $input['password'];
 
-            $login = Auth::attempt(['email' => $email, 'password' => $password, 'status' => AppConstants::userStatus['activated']]);
+            $login = JWTAuth::attempt(['email' => $email, 'password' => $password, 'status' => AppConstants::userStatus['activated']]);
             
             return $login;
 
@@ -29,7 +30,7 @@ class UserManager {
     public function logout(){
         try{
 
-            return Auth::logout();
+            return true;
 
         } catch(Exception $e) {
             throw $e;

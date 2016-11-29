@@ -302,15 +302,17 @@ class AdminManager {
         try {
 
             $userId = $input['user_id'];
-            $addressId = $input['address_id'];
 
             $user = User::find($userId);
-            $address = Address::find($addressId);
 
-            if($user == null || $address == null){
+            if($user == null){
                 return false;
             } else {
-                $address->delete();
+                if($user->address != null){
+                    $addressId = $user->address->id;
+                    $address = Address::find($addressId);
+                    $address->delete();
+                }
                 $user->delete();
                 return true;
             }

@@ -379,7 +379,7 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            $input = $request->only('user_id', 'address_id');
+            $input = $request->only('user_id');
             
             $deleteUserValidation = Validator::make($input, User::$deleteUserRule);
             if(!$deleteUserValidation->passes()){

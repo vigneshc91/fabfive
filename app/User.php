@@ -105,7 +105,6 @@ class User extends Authenticatable
 
     // Delete user validation rule
     public static $deleteUserRule = array(
-        'user_id' => 'required',
-        'address_id' => 'required'
+        'user_id' => 'required'
     );
 }
