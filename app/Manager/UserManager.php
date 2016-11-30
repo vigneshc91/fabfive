@@ -140,7 +140,9 @@ class UserManager {
             $userId = $input['user_id'];
 
             $user = User::find($userId);
-
+            if($user->user_type == AppConstants::userType['user']){
+                $user->address;
+            }
             return $user;
 
         } catch(Exception $e){
@@ -157,7 +159,13 @@ class UserManager {
 
             if(!empty($input['user_type'])){
                 $userType = $input['user_type'];
+                if($userType == AppConstants::userType['user']){
+                    $result = User::where('user_type', $userType)
+                                ->join('address', 'users.id' , '=', 'address.user_id')
+                                ->skip($start)->take($size)->get();
+                } else{
                 $result = User::where('user_type', $userType)->skip($start)->take($size)->get();
+                }
             } else {
                 $result = User::skip($start)->take($size)->get();
             }
