@@ -39,6 +39,17 @@ class AppConstants {
         'unsubscribed' => 2
     );
 
+    const mutualFundType = array(
+        'SIP' => 1,
+        'oneTimeInvestment' => 2
+    );
+
+    const mutualFundStatus = array(
+        'active' => 1,
+        'hold' => 2,
+        'closed' => 3
+    );
+
     const APP_URL = "http://localhost/fabfive/";
 
     const SUPER_ADMIN_FIRST_NAME = "Super";
@@ -51,4 +62,7 @@ class AppConstants {
     
     const VENDOR_START_VALUE = 0;
     const VENDOR_SIZE_VALUE = 10;
+
+    const MUTUAL_FUND_START_VALUE = 0;
+    const MUTUAL_FUND_SIZE_VALUE = 10;
 }

@@ -15,6 +15,7 @@ use App\Manager\AdminManager;
 use App\Vendor;
 use App\User;
 use App\Address;
+use App\MutualFund;
 
 class AdminController extends Controller
 {
@@ -397,6 +398,260 @@ class AdminController extends Controller
                 $response->result = ErrorConstants::USER_DELETE_FAILED;
                 return json_encode($response);
             }
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function createMutualFund(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('user_id', 'vendor_id', 'folio_number', 'type', 'scheme', 'start_date', 'amount_invested',  'comments');
+            
+            $createMutualFundValidation = Validator::make($input, MutualFund::$createMutualFundRule);
+            if(!$createMutualFundValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->createMutualFund($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::MUTUAL_FUND_CREATED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::MUTUAL_FUND_CREATION_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function editMutualFund(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('mutual_fund_id', 'user_id', 'vendor_id', 'type', 'scheme', 'start_date', 'amount_invested', 'mature_date', 'matured_amount', 'comments');
+            
+            $editMutualFundValidation = Validator::make($input, MutualFund::$editMutualFundRule);
+            if(!$editMutualFundValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->editMutualFund($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::MUTUAL_FUND_EDITED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::MUTUAL_FUND_EDIT_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function deleteMutualFund(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('mutual_fund_id');
+            
+            $deleteMutualFundValidation = Validator::make($input, MutualFund::$deleteMutualFundRule);
+            if(!$deleteMutualFundValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->deleteMutualFund($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::MUTUAL_FUND_DELETED_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::MUTUAL_FUND_DELETE_FAILED;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e) {
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function getMutualFundById(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('mutual_fund_id');
+            
+            $getMutualFundByIdValidation = Validator::make($input, MutualFund::$getMutualFundByIdRule);
+            if(!$getMutualFundByIdValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            $result = $this->adminManager->getMutualFundById($input);
+            if($result != null){
+                $response->status = true;
+                $response->result = $result;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::MUTUAL_FUND_NOT_FOUND;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function getMutualFundByFolioNumber(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('folio_number');
+            
+            $getMutualFundByFolioNumberValidation = Validator::make($input, MutualFund::$getMutualFundByFolioNumberRule);
+            if(!$getMutualFundByFolioNumberValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            $result = $this->adminManager->getMutualFundByFolioNumber($input);
+            if($result != null){
+                $response->status = true;
+                $response->result = $result;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::MUTUAL_FUND_NOT_FOUND;
+                return json_encode($response);
+            }
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function getMutualFundsList(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('start', 'size', 'user_id', 'vendor_id', 'type', 'scheme');
+
+            if(empty($input['start'])){
+                $input['start'] = AppConstants::MUTUAL_FUND_START_VALUE;
+            }
+            if(empty($input['size'])){
+                $input['size'] = AppConstants::MUTUAL_FUND_SIZE_VALUE;
+            }
+            
+            $response->status = true;
+            $response->result = $this->adminManager->getMutualFundsList($input);
+            return json_encode($response);
 
         } catch(Exception $e){
             $response->status = false;

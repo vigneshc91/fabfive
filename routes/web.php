@@ -73,4 +73,16 @@ Route::post('admin/editAddress', 'AdminController@editAddress');
 
 Route::post('admin/deleteUser', 'AdminController@deleteUser');
 
+Route::post('admin/createMutualFund', 'AdminController@createMutualFund');
+
+Route::post('admin/editMutualFund', 'AdminController@editMutualFund');
+
+Route::post('admin/deleteMutualFund', 'AdminController@deleteMutualFund');
+
+Route::post('admin/getMutualFundById', 'AdminController@getMutualFundById');
+
+Route::post('admin/getMutualFundByFolioNumber', 'AdminController@getMutualFundByFolioNumber');
+
+Route::post('admin/getMutualFundsList', 'AdminController@getMutualFundsList');
+
 

@@ -41,6 +41,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the mutual fund of the user.
+     */
+    public function mutualFund()
+    {
+        return $this->hasMany('App\MutualFund');
+    }
+
+    /**
      * Login validation rule
      */
     public static $userLoginRule = array(

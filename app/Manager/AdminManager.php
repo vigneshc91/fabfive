@@ -10,6 +10,7 @@ use App\Helper\ErrorConstants;
 use App\Vendor;
 use App\User;
 use App\Address;
+use App\MutualFund;
 
 class AdminManager {
     
@@ -317,6 +318,181 @@ class AdminManager {
                 return true;
             }
             
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function createMutualFund($input)
+    {
+        try {
+
+            $userId = $input['user_id'];
+            $vendorId = $input['vendor_id'];
+            $folioNumber = $input['folio_number'];
+            $type = $input['type'];
+            $scheme = $input['scheme'];
+            $startDate = $input['start_date'];
+            $amountInvested = $input['amount_invested'];
+            $comments = null;
+            if(!empty($input['comments'])){
+                $comments = $input['comments'];
+            }
+
+            $isMutualFundExist = MutualFund::where('folio_number', $folioNumber)->count();
+
+            if($isMutualFundExist == 0){
+                
+                MutualFund::create([
+                    'user_id' => $userId,
+                    'vendor_id' => $vendorId,
+                    'folio_number' => $folioNumber,
+                    'type' => $type,
+                    'scheme' => $scheme,
+                    'start_date' => $startDate,
+                    'amount_invested' => $amountInvested,
+                    'status' => AppConstants::mutualFundStatus['active'],
+                    'comments' => $comments
+                ]);
+                
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function editMutualFund($input)
+    {
+        try {
+
+            $mutualFundId = $input['mutual_fund_id'];
+
+            $mutualFund = MutualFund::find($mutualFundId);
+            
+            if($mutualFund == null){
+                return false;
+            } else {
+                if(!empty($input['user_id'])){
+                    $mutualFund->user_id = $input['user_id'];
+                }
+                if(!empty($input['vendor_id'])){
+                    $mutualFund->vendor_id = $input['vendor_id'];
+                }
+                if(!empty($input['type'])){
+                    $mutualFund->type = $input['type'];
+                }
+                if(!empty($input['scheme'])){
+                    $mutualFund->scheme = $input['scheme'];
+                }
+                if(!empty($input['start_date'])){
+                    $mutualFund->start_date = $input['start_date'];
+                }
+                if(!empty($input['amount_invested'])){
+                    $mutualFund->amount_invested = $input['amount_invested'];
+                }
+                if(!empty($input['mature_date'])){
+                    $mutualFund->mature_date = $input['mature_date'];
+                }
+                if(!empty($input['matured_amount'])){
+                    $mutualFund->matured_amount = $input['matured_amount'];
+                }
+                if(!empty($input['status'])){
+                    $mutualFund->status = $input['status'];
+                }
+                if(!empty($input['comments'])){
+                    $mutualFund->comments = $input['comments'];
+                }
+
+                $mutualFund->save();
+
+                return true;
+            }
+
+            
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function deleteMutualFund($input)
+    {
+        try {
+
+            $mutualFundId = $input['mutual_fund_id'];
+
+            $mutualFund = MutualFund::find($mutualFundId);
+
+            if($mutualFund == null){
+                return false;
+            } else {
+                $mutualFund->delete();
+                return true;
+            }
+            
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getMutualFundById($input)
+    {
+        try {
+
+            $mutualFundId = $input['mutual_fund_id'];
+
+            $mutualFund = MutualFund::find($mutualFundId);
+            
+            return $mutualFund;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getMutualFundByFolioNumber($input)
+    {
+        try {
+
+            $folioNumber = $input['folio_number'];
+
+            $mutualFund = MutualFund::where('folio_number', $folioNumber)->first();
+            
+            return $mutualFund;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getMutualFundsList($input)
+    {
+        try {
+
+            $start = $input['start'];
+            $size = $input['size'];
+
+            $query = array();
+            if(!empty($input['user_id'])){
+                array_push($query, ['user_id', $input['user_id']]);
+            }
+            if(!empty($input['vendor_id'])){
+                array_push($query, ['vendor_id', $input['vendor_id']]);
+            }
+            if(!empty($input['type'])){
+                array_push($query, ['type', $input['type']]);
+            }
+            if(!empty($input['scheme'])){
+                array_push($query, ['scheme', $input['scheme']]);
+            }
+
+            $result = MutualFund::where($query)->skip($start)->take($size)->get();
+
+            return $result;
+
         } catch(Exception $e){
             throw $e;
         }

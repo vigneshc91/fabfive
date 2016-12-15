@@ -23,4 +23,8 @@ class SuccessConstants {
     const VENDOR_DELETE_SUCCESS= "Vendor delete success";
 
     const SUBSCRIBED_SUCCESSFULLY = "Subscribed successfully";
+
+    const MUTUAL_FUND_CREATED_SUCCESSFULLY = "Mutual Fund created successfully";
+    const MUTUAL_FUND_EDITED_SUCCESSFULLY = "Mutual Fund edited successfully";
+    const MUTUAL_FUND_DELETED_SUCCESSFULLY = "Mutual Fund deleted successfully";
 }
