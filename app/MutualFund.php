@@ -31,7 +31,7 @@ class MutualFund extends Model
     public static $createMutualFundRule = array(
         'user_id' => 'required',
         'vendor_id' => 'required',
-        'folio_number' => 'required|integer',
+        'folio_number' => 'required',
         'type' => 'required|integer',
         'scheme' => 'required',
         'start_date' => 'required|date',

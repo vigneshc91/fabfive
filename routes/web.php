@@ -85,4 +85,7 @@ Route::post('admin/getMutualFundByFolioNumber', 'AdminController@getMutualFundBy
 
 Route::post('admin/getMutualFundsList', 'AdminController@getMutualFundsList');
 
+// Serving web pages
+
+Route::get('superAdmin/login', 'SuperAdminController@login');
 

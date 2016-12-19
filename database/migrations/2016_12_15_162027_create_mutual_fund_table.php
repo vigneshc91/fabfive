@@ -17,7 +17,7 @@ class CreateMutualFundTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('vendor_id')->unsigned();
-            $table->integer('folio_number')->unique();
+            $table->string('folio_number')->unique();
             $table->integer('type');
             $table->string('scheme');
             $table->date('start_date');

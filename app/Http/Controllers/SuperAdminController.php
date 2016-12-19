@@ -122,4 +122,8 @@ class SuperAdminController extends Controller
             return json_encode($response);
         }
     }
+
+    public function login(){
+        return view('superAdmin.login');
+    }
 }
