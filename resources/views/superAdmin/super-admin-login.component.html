@@ -1,25 +1,38 @@
-<header role="header" class="">
+<header role="header" class="login-header">
     <div class="container">
         <!-- START #fh5co-logo -->
-        <h1 class="text-center"><a href="/">FabFive</a> - Super Admin Login</h1>
+        <h1 class="text-center"><a href="/">FabFive</a></h1>
     </div>
 </header>
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            <form>
-                <div class="form-group">
-                    <label for="email" class="text-primary">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Super Admin Login</h3>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="text-primary">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                <div class="panel-body">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div *ngIf="superAdminLoginFailureMessage" class="alert alert-danger" role="alert">{{ message }}</div>
+                        <form [formGroup]="superAdminLoginForm" (ngSubmit)="superAdminLogin(superAdminLoginForm.value)">
+                            <div class="form-group" [ngClass]="{'has-error':!superAdminLoginForm.controls['email'].valid && superAdminLoginForm.controls['email'].touched}">
+                                <label for="email" class="text-primary">Email address</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" [formControl]="superAdminLoginForm.controls['email']">
+                                <small *ngIf="superAdminLoginForm.controls['email'].hasError('required') && superAdminLoginForm.controls['email'].touched" class="text-danger">Email Required</small>
+                                <small *ngIf="superAdminLoginForm.controls['email'].hasError('isInvalidEmail') && superAdminLoginForm.controls['email'].touched" class="text-danger">Invalid Email</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!superAdminLoginForm.controls['password'].valid && superAdminLoginForm.controls['password'].touched}">
+                                <label for="password" class="text-primary">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" [formControl]="superAdminLoginForm.controls['password']">
+                                <small *ngIf="superAdminLoginForm.controls['password'].hasError('required') && superAdminLoginForm.controls['password'].touched" class="text-danger">Password Required</small>
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!superAdminLoginForm.valid">Login</button>
+                            </p>
+                        </form>
+                    </div>
                 </div>
-                <p class="text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </p>
-            </form>
+            </div>
         </div>
     </div>
 </div>

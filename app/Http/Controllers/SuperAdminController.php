@@ -126,4 +126,8 @@ class SuperAdminController extends Controller
     public function login(){
         return view('superAdmin.login');
     }
+
+    public function dashboard(){
+        return view('superAdmin.dashboard');
+    }
 }
