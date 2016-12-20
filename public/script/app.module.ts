@@ -11,11 +11,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Super Admin Components
 import { SuperAdminLoginComponent } from './superAdmin/super-admin-login.component';
+import { SuperAdminDashboardComponent } from './superAdmin/super-admin-dashboard.component';
+
+// Services
+import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule],
-  declarations: [ AppComponent, SuperAdminLoginComponent ],
+  declarations: [ AppComponent, SuperAdminLoginComponent, SuperAdminDashboardComponent ],
+  providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })
 

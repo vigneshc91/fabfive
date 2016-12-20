@@ -1543,3 +1543,16 @@ a > img {
 		margin: 0;
 	}
 }
+
+/* Login form */
+
+.login-header {
+	margin: 2%;
+}
+
+.login-panel {
+	margin-bottom: 10%;
+	.panel-title {
+		color: $brand-danger;
+	}
+}

@@ -13,10 +13,12 @@ var router_1 = require("@angular/router");
 var app_constants_1 = require("./helper/app.constants");
 // Super Admin components
 var super_admin_login_component_1 = require("./superAdmin/super-admin-login.component");
+var super_admin_dashboard_component_1 = require("./superAdmin/super-admin-dashboard.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
     { path: routeurl + '/superAdmin', redirectTo: routeurl + '/superAdmin/login', pathMatch: 'full' },
     { path: routeurl + '/superAdmin/login', component: super_admin_login_component_1.SuperAdminLoginComponent },
+    { path: routeurl + '/superAdmin/dashboard', component: super_admin_dashboard_component_1.SuperAdminDashboardComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

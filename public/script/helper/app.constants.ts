@@ -7,4 +7,12 @@ export class AppConstants {
             return '';
         }
     }
+
+    static get AppUrl():string {
+        if(window.location.hostname == 'localhost'){
+            return  'http://localhost/fabfive/';
+        } else {
+            return  'http://' + window.location.hostname + '/';
+        }
+    }
 }

@@ -1841,3 +1841,18 @@ a > img.fh5co-align-center {
 .contact-address p {
   margin: 0;
 }
+
+/* Login form */
+/* line 1549, ../sass/style.scss */
+.login-header {
+  margin: 2%;
+}
+
+/* line 1553, ../sass/style.scss */
+.login-panel {
+  margin-bottom: 10%;
+}
+/* line 1555, ../sass/style.scss */
+.login-panel .panel-title {
+  color: #e02745;
+}
