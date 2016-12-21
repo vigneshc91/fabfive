@@ -270,5 +270,28 @@ class UserController extends Controller
             return json_encode($response);
         }
     }
+
+    public function getLoggedInUser(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+            
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+            } else {
+                $response->status = true;
+                $response->result = $user;
+            }
+
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
     
 }

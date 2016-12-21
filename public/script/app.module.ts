@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 // Common Components
 import { AppRoutingModule } from './app-routing.module';
+import { SuperAdminHeaderComponent } from './superAdmin/super-admin-header.component';
 
 // Super Admin Components
 import { SuperAdminLoginComponent } from './superAdmin/super-admin-login.component';
@@ -19,7 +20,7 @@ import { LoginLogoutService } from './services/login-logout.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule],
-  declarations: [ AppComponent, SuperAdminLoginComponent, SuperAdminDashboardComponent ],
+  declarations: [ AppComponent, SuperAdminLoginComponent, SuperAdminHeaderComponent, SuperAdminDashboardComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

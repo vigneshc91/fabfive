@@ -16,6 +16,7 @@ var ng2_bootstrap_1 = require("ng2-bootstrap/ng2-bootstrap");
 var app_component_1 = require("./app.component");
 // Common Components
 var app_routing_module_1 = require("./app-routing.module");
+var super_admin_header_component_1 = require("./superAdmin/super-admin-header.component");
 // Super Admin Components
 var super_admin_login_component_1 = require("./superAdmin/super-admin-login.component");
 var super_admin_dashboard_component_1 = require("./superAdmin/super-admin-dashboard.component");
@@ -29,7 +30,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, ng2_bootstrap_1.ModalModule, app_routing_module_1.AppRoutingModule],
-        declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent],
+        declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, super_admin_header_component_1.SuperAdminHeaderComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent],
         providers: [login_logout_service_1.LoginLogoutService],
         bootstrap: [app_component_1.AppComponent]
     }),

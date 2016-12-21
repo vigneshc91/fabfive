@@ -10,11 +10,13 @@ let route:string = AppConstants.RouteUrl;
 
 @Component({
     selector: 'super-admin-dashboard',
-    templateUrl: route + '/resources/views/superAdmin/super-admin-dashboard.component.html'
+    templateUrl: route + '/resources/views/superAdmin/super-admin-dashboard.component.html'    
 })
 
 export class SuperAdminDashboardComponent {
     
-    constructor() { }
+    constructor() {
+        
+     }
 
 }
