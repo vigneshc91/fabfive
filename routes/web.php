@@ -95,3 +95,7 @@ Route::get('superAdmin/login', 'SuperAdminController@login');
 
 Route::get('superAdmin/dashboard', 'SuperAdminController@dashboard');
 
+Route::get('superAdmin/create', 'SuperAdminController@create');
+
+Route::get('superAdmin/view', 'SuperAdminController@view');
+

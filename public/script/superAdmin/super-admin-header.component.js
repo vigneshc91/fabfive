@@ -18,11 +18,11 @@ var SuperAdminHeaderComponent = (function () {
     function SuperAdminHeaderComponent(router, userService) {
         this.router = router;
         this.userService = userService;
-        this.routeurl = app_constants_1.AppConstants.RouteUrl;
+        this.routerurl = app_constants_1.AppConstants.RouterUrl;
         this.loggedInUser = {};
-        this.superAdminDashboardLink = this.routeurl + '/superAdmin/dashboard';
-        this.superAdminCreateLink = this.routeurl + '/superAdmin/create';
-        this.superAdminViewLink = this.routeurl + '/superAdmin/view';
+        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
+        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
+        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
         this.common = new common_1.Common();
         this.getLoggedInUser();
     }
@@ -35,7 +35,7 @@ var SuperAdminHeaderComponent = (function () {
                 _this.loggedInUser = data.result;
             }
             else {
-                _this.router.navigate([_this.routeurl + '/superAdmin/login']);
+                _this.router.navigate([_this.routerurl + '/superAdmin/login']);
             }
         }, function (err) {
             console.log(err);
@@ -43,7 +43,7 @@ var SuperAdminHeaderComponent = (function () {
     };
     SuperAdminHeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {
-            this.router.navigate([this.routeurl + '/superAdmin/login']);
+            this.router.navigate([this.routerurl + '/superAdmin/login']);
         }
     };
     return SuperAdminHeaderComponent;

@@ -12,41 +12,32 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../helper/app.constants");
 var common_1 = require("../helper/common");
-var UserService = (function () {
-    function UserService(http) {
+var AdminService = (function () {
+    function AdminService(http) {
         this.http = http;
-        this.getLoggedInUserUrl = app_constants_1.AppConstants.AppUrl + "user/getLoggedInUser";
-        this.changePasswordUrl = app_constants_1.AppConstants.AppUrl + "user/changePassword";
-        this.getUsersListUrl = app_constants_1.AppConstants.AppUrl + "user/getUsersList";
+        this.createAdminUrl = app_constants_1.AppConstants.AppUrl + "superAdmin/createAdmin";
+        this.deleteAdminUrl = app_constants_1.AppConstants.AppUrl + "superAdmin/deleteAdmin";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
-    UserService.prototype.getLoggedInUser = function () {
+    AdminService.prototype.createAdmin = function (data) {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
-        var data;
-        return this.http.post(this.getLoggedInUserUrl, data, options)
+        return this.http.post(this.createAdminUrl, data, options)
             .map(function (res) { return res.json(); });
         // .catch((error:any) => Observable.throw(error.json().error || "Server error" ));
     };
-    UserService.prototype.changePassword = function (data) {
+    AdminService.prototype.deleteAdmin = function (data) {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.changePasswordUrl, data, options)
-            .map(function (res) { return res.json(); });
-        // .catch((error:any) => Observable.throw(error.json().error || "Server error" ));
-    };
-    UserService.prototype.getUsersList = function (data) {
-        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.getUsersListUrl, data, options)
+        return this.http.post(this.deleteAdminUrl, data, options)
             .map(function (res) { return res.json(); });
     };
-    return UserService;
+    return AdminService;
 }());
-UserService = __decorate([
+AdminService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], UserService);
-exports.UserService = UserService;
-//# sourceMappingURL=user-service.js.map
+], AdminService);
+exports.AdminService = AdminService;
+//# sourceMappingURL=admin-service.js.map

@@ -130,4 +130,12 @@ class SuperAdminController extends Controller
     public function dashboard(){
         return view('superAdmin.dashboard');
     }
+
+    public function create(){
+        return view('superAdmin.dashboard');
+    }
+
+    public function view(){
+        return view('superAdmin.dashboard');
+    }
 }

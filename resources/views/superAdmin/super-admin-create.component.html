@@ -1,0 +1,38 @@
+<super-admin-header></super-admin-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Create Admin</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div *ngIf="adminCreateSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="adminCreateFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="adminCreateForm" (ngSubmit)="createAdmin(adminCreateForm.value)">
+                            <div class="form-group" [ngClass]="{'has-error':!adminCreateForm.controls['first_name'].valid && adminCreateForm.controls['first_name'].touched}">
+                                <label for="first_name" class="text-primary">First Name</label>
+                                <input type="type" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="adminCreateForm.controls['first_name']">
+                                <small *ngIf="adminCreateForm.controls['first_name'].hasError('required') && adminCreateForm.controls['first_name'].touched" class="text-danger">First Name Required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="text-primary">Last Name</label>
+                                <input type="type" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="adminCreateForm.controls['last_name']">
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!adminCreateForm.controls['email'].valid && adminCreateForm.controls['email'].touched}">
+                                <label for="email" class="text-primary">Email address</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" [formControl]="adminCreateForm.controls['email']">
+                                <small *ngIf="adminCreateForm.controls['email'].hasError('required') && adminCreateForm.controls['email'].touched" class="text-danger">Email Required</small>
+                                <small *ngIf="adminCreateForm.controls['email'].hasError('isInvalidEmail') && adminCreateForm.controls['email'].touched" class="text-danger">Invalid Email</small>
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!adminCreateForm.valid">Login</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

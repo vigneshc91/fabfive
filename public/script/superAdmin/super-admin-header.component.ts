@@ -17,16 +17,16 @@ let route:string = AppConstants.RouteUrl;
 })
 export class SuperAdminHeaderComponent {
     private loggedInUser:User;
-    private routeurl:string = AppConstants.RouteUrl;
+    private routerurl:string = AppConstants.RouterUrl;
     private superAdminDashboardLink:string;
     private superAdminCreateLink:string;
     private superAdminViewLink:string;
     private common: Common;
     constructor(private router: Router, private userService: UserService) { 
         this.loggedInUser = {};
-        this.superAdminDashboardLink = this.routeurl + '/superAdmin/dashboard';
-        this.superAdminCreateLink = this.routeurl + '/superAdmin/create';
-        this.superAdminViewLink = this.routeurl + '/superAdmin/view';
+        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
+        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
+        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
         this.common = new Common();
         this.getLoggedInUser();
     }
@@ -39,7 +39,7 @@ export class SuperAdminHeaderComponent {
                  if(data.status){
                      this.loggedInUser = data.result;
                  } else {
-                     this.router.navigate([this.routeurl + '/superAdmin/login']);
+                     this.router.navigate([this.routerurl + '/superAdmin/login']);
                  }
              },
              err => {
@@ -50,7 +50,7 @@ export class SuperAdminHeaderComponent {
 
      superAdminLogout(){
          if(this.common.clearToken()){
-             this.router.navigate([this.routeurl + '/superAdmin/login']);
+             this.router.navigate([this.routerurl + '/superAdmin/login']);
          }
      }
 
