@@ -19,7 +19,9 @@ let route:string = AppConstants.RouteUrl;
 
 export class SuperAdminViewComponent {
     
-    adminCreateForm: FormGroup;
+    adminEditForm: FormGroup;
+    adminEditSuccessMessage: boolean = false;
+    adminEditFailureMessage: boolean = false;
     adminDeleteSuccessMessage: boolean = false;
     adminDeleteFailureMessage: boolean = false;
     successMessage: string;
@@ -27,9 +29,14 @@ export class SuperAdminViewComponent {
     adminModel: User;
     admins: User[];
     hasMoreAdmins: boolean;
+    isEditAdmin: boolean = false;
     @ViewChild('deleteAdminModal') public deleteAdminModal:ModalDirective;
 
-    constructor(private adminService: AdminService, private userService: UserService) {
+    constructor(private formBuilder: FormBuilder, private adminService: AdminService, private userService: UserService) {
+        this.adminEditForm = formBuilder.group({
+            'first_name': [null, Validators.required],
+            'last_name': [null],
+        });
         this.admins = [];
         this.adminModel = new User();
         this.getAdminsList();
@@ -91,6 +98,7 @@ export class SuperAdminViewComponent {
                     this.successMessage = data.result;
                     setTimeout(function() {
                         this.adminDeleteSuccessMessage = false;
+                        this.closeDeleteAdminModal();
                     }.bind(this), 3000);
                 } else {
                     this.adminDeleteFailureMessage = true;
@@ -104,6 +112,56 @@ export class SuperAdminViewComponent {
                 console.log(err);
             }
         );
+    }
+
+    showEditAdmin(index:number, admin:User){
+        this.isEditAdmin = true;
+        this.adminModel = admin;
+        this.adminModel.index = index;
+        this.adminEditForm = this.formBuilder.group({
+            'first_name': [admin.first_name, Validators.required],
+            'last_name': [admin.last_name],
+        });
+
+    }
+
+    cancelEditAdmin(){
+        this.adminModel = {};
+        this.isEditAdmin = false;
+    }
+
+    editAdmin(value: User){
+        if(this.adminEditForm.valid){
+            value.user_id = this.adminModel.id;
+            let response: Observable<ServiceResponse>;
+            
+            response = this.userService.editUser(value);
+            response.subscribe(
+                data => {
+                    if(data.status){
+                        this.adminEditSuccessMessage = true;
+                        this.successMessage = data.result;
+                        value.id = this.adminModel.id;
+                        this.admins[this.adminModel.index] = value;
+                        this.adminModel = {};
+                        setTimeout(function() {
+                            this.adminEditSuccessMessage = false;
+                            this.isEditAdmin = false;
+                        }.bind(this), 3000);
+                    } else{
+                        this.adminEditFailureMessage = true;
+                        this.failureMessage = data.result;
+                        setTimeout(function() {
+                            this.adminEditFailureMessage = false;
+                        }.bind(this), 3000);
+                    }
+                },
+                err => {
+
+                }
+            );
+
+        }
     }
      
 

@@ -17,6 +17,7 @@ export class UserService {
     private getLoggedInUserUrl = AppConstants.AppUrl + "user/getLoggedInUser";
     private changePasswordUrl = AppConstants.AppUrl + "user/changePassword";
     private getUsersListUrl = AppConstants.AppUrl + "user/getUsersList";
+    private editUserUrl = AppConstants.AppUrl + "admin/editUser";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -47,5 +48,13 @@ export class UserService {
 
         return this.http.post(this.getUsersListUrl, data, options)
                         .map((res:Response) => res.json());   
+    }
+
+    editUser(data: User): Observable<ServiceResponse>{
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.editUserUrl, data, options)
+                        .map((res: Response) => res.json());
     }
 }

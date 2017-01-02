@@ -288,7 +288,7 @@ class AdminController extends Controller
                 $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
                 return json_encode($response);
             }
-            if($user->user_type == AppConstants::userType['superAdmin']){
+            if($user->user_type == AppConstants::userType['user']){
                 $response->status = false;
                 $response->result = ErrorConstants::NO_PRIVILEGE;
                 return json_encode($response);

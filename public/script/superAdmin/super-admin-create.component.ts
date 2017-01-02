@@ -42,6 +42,7 @@ export class SuperAdminCreateComponent {
                      if(data.status){
                          this.adminCreateSuccessMessage = true;
                          this.successMessage = data.result;
+                         this.adminCreateForm.reset();
                          setTimeout(function() {
                              this.adminCreateSuccessMessage = false;
                          }.bind(this), 3000);

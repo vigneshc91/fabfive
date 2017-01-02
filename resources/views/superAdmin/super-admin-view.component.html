@@ -1,15 +1,17 @@
 <super-admin-header></super-admin-header>
 <div class="container">
-    <div class="row">
+    <div class="row" [ngClass]="{'hide': isEditAdmin}">
+        <h2 class="text-center text-danger">Admin List</h2>
         <div class="col-md-offset-2 col-md-8">
             <table class="table table-hover">
                 <tr *ngFor="let admin of admins; let i = index">
                     <td>{{ admin.first_name + ' ' + admin.last_name }}</td>
                     <td>{{ admin.email }}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="showEditAdmin(i, admin)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></td>
                     <td><button type="button" class="btn btn-danger" (click)="showDeleteConfirm(i, admin.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
                 </tr>
                 <tr *ngIf="!hasMoreAdmins">
-                    <td colspan="3">
+                    <td colspan="4">
                         <p class="text-center text-uppercase text-muted">Thats All Folks</p>
                     </td>
                 </tr>
@@ -19,6 +21,38 @@
             </div>
         </div>
     </div>
+
+    <div class="row" [ngClass]="{'hide': !isEditAdmin}">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Edit Admin</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div *ngIf="adminEditSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="adminEditFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="adminEditForm" (ngSubmit)="editAdmin(adminEditForm.value)">
+                            <div class="form-group" [ngClass]="{'has-error':!adminEditForm.controls['first_name'].valid && adminEditForm.controls['first_name'].touched}">
+                                <label for="first_name" class="text-primary">First Name</label>
+                                <input type="type" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="adminEditForm.controls['first_name']">
+                                <small *ngIf="adminEditForm.controls['first_name'].hasError('required') && adminEditForm.controls['first_name'].touched" class="text-danger">First Name Required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="text-primary">Last Name</label>
+                                <input type="type" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="adminEditForm.controls['last_name']">
+                            </div>
+                            <p class="text-center">
+                                <button type="button" class="btn btn-danger" (click)="cancelEditAdmin()">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="!adminEditForm.valid">Edit</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Delete Admin alert modal -->
@@ -28,15 +62,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-label="Close" (click)="closeDeleteAdminModal()">
-        <span aria-hidden="true">&times;</span>
-    </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title">Delete Admin</h4>
             </div>
             <div class="modal-body">
+                <div *ngIf="adminDeleteSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                <div *ngIf="adminDeleteFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
                 <p>Are you sure. Do you want to delete this admin?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" (click)="closeDeleteAdminModal()">Close</button>
                 <button type="button" class="btn btn-danger" (click)="deleteAdmin()">Delete</button>
             </div>
         </div>
