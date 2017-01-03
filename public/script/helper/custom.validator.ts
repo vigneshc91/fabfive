@@ -28,4 +28,15 @@ export class CustomValidator {
         return null;
     }
     
+    static passwordMatch(control: FormControl){
+        let paswd = control.root.get('new_password');
+        
+        if(paswd && control.value != paswd.value){
+            return {
+                passwordMatch: false
+            };   
+        }
+        
+        return null;
+    }
 }

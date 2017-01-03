@@ -99,3 +99,4 @@ Route::get('superAdmin/create', 'SuperAdminController@create');
 
 Route::get('superAdmin/view', 'SuperAdminController@view');
 
+Route::get('user/changePassword', 'UserController@password');

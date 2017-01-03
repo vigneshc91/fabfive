@@ -23,6 +23,7 @@ var SuperAdminHeaderComponent = (function () {
         this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
         this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
         this.superAdminViewLink = this.routerurl + '/superAdmin/view';
+        this.changePasswordLink = this.routerurl + '/user/changePassword';
         this.common = new common_1.Common();
         this.getLoggedInUser();
     }

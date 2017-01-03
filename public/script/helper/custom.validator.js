@@ -22,6 +22,15 @@ var CustomValidator = (function () {
         }
         return null;
     };
+    CustomValidator.passwordMatch = function (control) {
+        var paswd = control.root.get('new_password');
+        if (paswd && control.value != paswd.value) {
+            return {
+                passwordMatch: false
+            };
+        }
+        return null;
+    };
     return CustomValidator;
 }());
 exports.CustomValidator = CustomValidator;

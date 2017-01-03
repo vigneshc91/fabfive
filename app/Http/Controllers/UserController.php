@@ -293,5 +293,10 @@ class UserController extends Controller
             return json_encode($response);
         }
     }
+
+    public function password()
+    {
+        return view('user.changePassword');
+    }
     
 }

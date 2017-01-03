@@ -21,12 +21,15 @@ export class SuperAdminHeaderComponent {
     private superAdminDashboardLink:string;
     private superAdminCreateLink:string;
     private superAdminViewLink:string;
+    private changePasswordLink:string;
     private common: Common;
+
     constructor(private router: Router, private userService: UserService) { 
         this.loggedInUser = {};
         this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
         this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
         this.superAdminViewLink = this.routerurl + '/superAdmin/view';
+        this.changePasswordLink = this.routerurl + '/user/changePassword';
         this.common = new Common();
         this.getLoggedInUser();
     }
