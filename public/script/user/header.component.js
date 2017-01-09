@@ -20,10 +20,6 @@ var HeaderComponent = (function () {
         this.userService = userService;
         this.routerurl = app_constants_1.AppConstants.RouterUrl;
         this.loggedInUser = {};
-        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
-        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
-        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
-        this.changePasswordLink = this.routerurl + '/user/changePassword';
         this.common = new common_1.Common();
         this.getLoggedInUser();
     }
@@ -34,6 +30,14 @@ var HeaderComponent = (function () {
         response.subscribe(function (data) {
             if (data.status) {
                 _this.loggedInUser = data.result;
+                switch (_this.loggedInUser.user_type) {
+                    case 1:
+                        _this.setSuperAdminRoutes();
+                        break;
+                    case 2:
+                        _this.setAdminRoutes();
+                        break;
+                }
             }
             else {
                 _this.router.navigate([_this.routerurl + '/superAdmin/login']);
@@ -42,20 +46,35 @@ var HeaderComponent = (function () {
             console.log(err);
         });
     };
+    HeaderComponent.prototype.setSuperAdminRoutes = function () {
+        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
+        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
+        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
+        this.changePasswordLink = this.routerurl + '/user/changePassword';
+    };
+    HeaderComponent.prototype.setAdminRoutes = function () {
+        this.adminDashboardLink = this.routerurl + '/admin/dashboard';
+        this.changePasswordLink = this.routerurl + '/user/changePassword';
+    };
     HeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {
             this.router.navigate([this.routerurl + '/superAdmin/login']);
+        }
+    };
+    HeaderComponent.prototype.adminLogout = function () {
+        if (this.common.clearToken()) {
+            this.router.navigate([this.routerurl + '/admin/login']);
         }
     };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([
     core_1.Component({
-        selector: 'header',
+        selector: 'user-header',
         templateUrl: route + '/resources/views/user/header.component.html',
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router, user_service_1.UserService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
-//# sourceMappingURL=super-admin-header.component.js.map
+//# sourceMappingURL=header.component.js.map

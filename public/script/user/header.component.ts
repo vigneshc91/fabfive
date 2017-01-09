@@ -11,25 +11,22 @@ import { Common } from '../helper/common';
 let route:string = AppConstants.RouteUrl;
 
 @Component({
-    selector: 'super-admin-header',
-    templateUrl: route + '/resources/views/superAdmin/super-admin-header.component.html',
+    selector: 'user-header',
+    templateUrl: route + '/resources/views/user/header.component.html',
     providers: [ UserService ]
 })
-export class SuperAdminHeaderComponent {
+export class HeaderComponent {
     private loggedInUser:User;
     private routerurl:string = AppConstants.RouterUrl;
     private superAdminDashboardLink:string;
     private superAdminCreateLink:string;
     private superAdminViewLink:string;
     private changePasswordLink:string;
+    private adminDashboardLink:string;
     private common: Common;
 
     constructor(private router: Router, private userService: UserService) { 
         this.loggedInUser = {};
-        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
-        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
-        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
-        this.changePasswordLink = this.routerurl + '/user/changePassword';
         this.common = new Common();
         this.getLoggedInUser();
     }
@@ -41,6 +38,14 @@ export class SuperAdminHeaderComponent {
              data => {
                  if(data.status){
                      this.loggedInUser = data.result;
+                     switch (this.loggedInUser.user_type) {
+                         case 1:
+                             this.setSuperAdminRoutes();
+                             break;
+                         case 2:
+                             this.setAdminRoutes();
+                             break;
+                     }
                  } else {
                      this.router.navigate([this.routerurl + '/superAdmin/login']);
                  }
@@ -51,9 +56,27 @@ export class SuperAdminHeaderComponent {
          );
      }
 
+     setSuperAdminRoutes(){
+        this.superAdminDashboardLink = this.routerurl + '/superAdmin/dashboard';
+        this.superAdminCreateLink = this.routerurl + '/superAdmin/create';
+        this.superAdminViewLink = this.routerurl + '/superAdmin/view';
+        this.changePasswordLink = this.routerurl + '/user/changePassword';
+     }
+
+     setAdminRoutes(){
+         this.adminDashboardLink = this.routerurl + '/admin/dashboard';
+         this.changePasswordLink = this.routerurl + '/user/changePassword';
+     }
+
      superAdminLogout(){
          if(this.common.clearToken()){
              this.router.navigate([this.routerurl + '/superAdmin/login']);
+         }
+     }
+
+     adminLogout(){
+         if(this.common.clearToken()){
+             this.router.navigate([this.routerurl + '/admin/login']);
          }
      }
 

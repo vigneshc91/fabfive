@@ -659,4 +659,12 @@ class AdminController extends Controller
             return json_encode($response);
         }
     }
+
+    public function login(){
+        return view('admin.login');
+    }
+
+    public function dashboard(){
+        return view('admin.dashboard');
+    }
 }

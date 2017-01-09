@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 // Common Components
 import { AppRoutingModule } from './app-routing.module';
-import { SuperAdminHeaderComponent } from './superAdmin/super-admin-header.component';
+import { HeaderComponent } from './user/header.component';
 import { ChangePasswordComponent } from './user/change-password.component';
 
 // Super Admin Components
@@ -16,13 +16,20 @@ import { SuperAdminLoginComponent } from './superAdmin/super-admin-login.compone
 import { SuperAdminDashboardComponent } from './superAdmin/super-admin-dashboard.component';
 import { SuperAdminCreateComponent } from './superAdmin/super-admin-create.component';
 import { SuperAdminViewComponent } from './superAdmin/super-admin-view.component';
+
+// Admin Components
+import { AdminLoginComponent } from './admin/admin-login.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard.component';
+
 // Services
 import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule],
-  declarations: [ AppComponent, SuperAdminLoginComponent, SuperAdminHeaderComponent, SuperAdminDashboardComponent, SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent ],
+  declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
+                  SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
+                  AdminLoginComponent, AdminDashboardComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

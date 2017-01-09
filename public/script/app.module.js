@@ -16,13 +16,16 @@ var ng2_bootstrap_1 = require("ng2-bootstrap/ng2-bootstrap");
 var app_component_1 = require("./app.component");
 // Common Components
 var app_routing_module_1 = require("./app-routing.module");
-var super_admin_header_component_1 = require("./superAdmin/super-admin-header.component");
+var header_component_1 = require("./user/header.component");
 var change_password_component_1 = require("./user/change-password.component");
 // Super Admin Components
 var super_admin_login_component_1 = require("./superAdmin/super-admin-login.component");
 var super_admin_dashboard_component_1 = require("./superAdmin/super-admin-dashboard.component");
 var super_admin_create_component_1 = require("./superAdmin/super-admin-create.component");
 var super_admin_view_component_1 = require("./superAdmin/super-admin-view.component");
+// Admin Components
+var admin_login_component_1 = require("./admin/admin-login.component");
+var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
 // Services
 var login_logout_service_1 = require("./services/login-logout.service");
 var AppModule = (function () {
@@ -33,7 +36,9 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, ng2_bootstrap_1.ModalModule, app_routing_module_1.AppRoutingModule],
-        declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, super_admin_header_component_1.SuperAdminHeaderComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent, super_admin_create_component_1.SuperAdminCreateComponent, super_admin_view_component_1.SuperAdminViewComponent, change_password_component_1.ChangePasswordComponent],
+        declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, header_component_1.HeaderComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent,
+            super_admin_create_component_1.SuperAdminCreateComponent, super_admin_view_component_1.SuperAdminViewComponent, change_password_component_1.ChangePasswordComponent,
+            admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent],
         providers: [login_logout_service_1.LoginLogoutService],
         bootstrap: [app_component_1.AppComponent]
     }),

@@ -17,14 +17,23 @@ var super_admin_dashboard_component_1 = require("./superAdmin/super-admin-dashbo
 var super_admin_create_component_1 = require("./superAdmin/super-admin-create.component");
 var super_admin_view_component_1 = require("./superAdmin/super-admin-view.component");
 var change_password_component_1 = require("./user/change-password.component");
+// Admin components
+var admin_login_component_1 = require("./admin/admin-login.component");
+var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
+    // super admin routes
     { path: routeurl + '/superAdmin', redirectTo: routeurl + '/superAdmin/login', pathMatch: 'full' },
     { path: routeurl + '/superAdmin/login', component: super_admin_login_component_1.SuperAdminLoginComponent },
     { path: routeurl + '/superAdmin/dashboard', component: super_admin_dashboard_component_1.SuperAdminDashboardComponent },
     { path: routeurl + '/superAdmin/create', component: super_admin_create_component_1.SuperAdminCreateComponent },
     { path: routeurl + '/superAdmin/view', component: super_admin_view_component_1.SuperAdminViewComponent },
-    { path: routeurl + '/user/changePassword', component: change_password_component_1.ChangePasswordComponent }
+    // common routes
+    { path: routeurl + '/user/changePassword', component: change_password_component_1.ChangePasswordComponent },
+    // admin routes  
+    { path: routeurl + '/admin', redirectTo: routeurl + '/admin/login', pathMatch: 'full' },
+    { path: routeurl + '/admin/login', component: admin_login_component_1.AdminLoginComponent },
+    { path: routeurl + '/admin/dashboard', component: admin_dashboard_component_1.AdminDashboardComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
