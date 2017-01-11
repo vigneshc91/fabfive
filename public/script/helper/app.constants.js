@@ -46,5 +46,31 @@ AppConstants.USER_TYPE = {
     'user': 3
 };
 AppConstants.PAGINATION_SIZE = 10;
+AppConstants.VENDOR_TYPES = [
+    {
+        name: 'EQUITY',
+        value: 1
+    },
+    {
+        name: 'COMMODITY',
+        value: 2
+    },
+    {
+        name: "MUTUAL FUND",
+        value: 3
+    },
+    {
+        name: "LIFE INSURANCE",
+        value: 4
+    },
+    {
+        name: "HEALTH INSURANCE",
+        value: 5
+    },
+    {
+        name: "GENERAL INSURANCE",
+        value: 6
+    }
+];
 exports.AppConstants = AppConstants;
 //# sourceMappingURL=app.constants.js.map

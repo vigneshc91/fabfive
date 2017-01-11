@@ -26,6 +26,8 @@ var super_admin_view_component_1 = require("./superAdmin/super-admin-view.compon
 // Admin Components
 var admin_login_component_1 = require("./admin/admin-login.component");
 var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
+var vendor_dashboard_component_1 = require("./admin/vendor-dashboard.component");
+var vendor_create_component_1 = require("./admin/vendor-create.component");
 // Services
 var login_logout_service_1 = require("./services/login-logout.service");
 var AppModule = (function () {
@@ -38,7 +40,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, ng2_bootstrap_1.ModalModule, app_routing_module_1.AppRoutingModule],
         declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, header_component_1.HeaderComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent,
             super_admin_create_component_1.SuperAdminCreateComponent, super_admin_view_component_1.SuperAdminViewComponent, change_password_component_1.ChangePasswordComponent,
-            admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent],
+            admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent, vendor_dashboard_component_1.VendorDashboardComponent, vendor_create_component_1.VendorCreateComponent],
         providers: [login_logout_service_1.LoginLogoutService],
         bootstrap: [app_component_1.AppComponent]
     }),

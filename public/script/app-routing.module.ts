@@ -10,6 +10,8 @@ import { ChangePasswordComponent } from './user/change-password.component';
 // Admin components
 import { AdminLoginComponent } from './admin/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard.component';
+import { VendorDashboardComponent } from './admin/vendor-dashboard.component';
+import { VendorCreateComponent } from './admin/vendor-create.component';
 
 let routeurl:string = AppConstants.RouteUrl;
 
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: routeurl + '/admin', redirectTo: routeurl + '/admin/login', pathMatch: 'full' },
   { path: routeurl + '/admin/login', component: AdminLoginComponent },
   { path: routeurl + '/admin/dashboard', component: AdminDashboardComponent },
+  { path: routeurl + '/vendor/dashboard', component: VendorDashboardComponent },
+  { path: routeurl + '/vendor/create', component: VendorCreateComponent },
 ];
 
 @NgModule({

@@ -107,3 +107,7 @@ Route::get('admin/login', 'AdminController@login');
 
 Route::get('admin/dashboard', 'AdminController@dashboard');
 
+Route::get('vendor/dashboard', 'AdminController@vendorDashboard');
+
+Route::get('vendor/create', 'AdminController@vendorCreate');
+

@@ -667,4 +667,12 @@ class AdminController extends Controller
     public function dashboard(){
         return view('admin.dashboard');
     }
+
+    public function vendorDashboard(){
+        return view('admin.dashboard');
+    }
+
+    public function vendorCreate(){
+        return view('admin.dashboard');
+    }
 }

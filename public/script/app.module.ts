@@ -20,7 +20,8 @@ import { SuperAdminViewComponent } from './superAdmin/super-admin-view.component
 // Admin Components
 import { AdminLoginComponent } from './admin/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard.component';
-
+import { VendorDashboardComponent } from './admin/vendor-dashboard.component';
+import { VendorCreateComponent } from './admin/vendor-create.component';
 // Services
 import { LoginLogoutService } from './services/login-logout.service';
 
@@ -29,7 +30,7 @@ import { LoginLogoutService } from './services/login-logout.service';
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule],
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
-                  AdminLoginComponent, AdminDashboardComponent ],
+                  AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, VendorCreateComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

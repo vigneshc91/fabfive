@@ -20,6 +20,8 @@ var change_password_component_1 = require("./user/change-password.component");
 // Admin components
 var admin_login_component_1 = require("./admin/admin-login.component");
 var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
+var vendor_dashboard_component_1 = require("./admin/vendor-dashboard.component");
+var vendor_create_component_1 = require("./admin/vendor-create.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
     // super admin routes
@@ -34,6 +36,8 @@ var routes = [
     { path: routeurl + '/admin', redirectTo: routeurl + '/admin/login', pathMatch: 'full' },
     { path: routeurl + '/admin/login', component: admin_login_component_1.AdminLoginComponent },
     { path: routeurl + '/admin/dashboard', component: admin_dashboard_component_1.AdminDashboardComponent },
+    { path: routeurl + '/vendor/dashboard', component: vendor_dashboard_component_1.VendorDashboardComponent },
+    { path: routeurl + '/vendor/create', component: vendor_create_component_1.VendorCreateComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

@@ -55,6 +55,8 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.setAdminRoutes = function () {
         this.adminDashboardLink = this.routerurl + '/admin/dashboard';
         this.changePasswordLink = this.routerurl + '/user/changePassword';
+        this.vendorDashboardLink = this.routerurl + '/vendor/dashboard';
+        this.vendorCreateLink = this.routerurl + '/vendor/create';
     };
     HeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {
