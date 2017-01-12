@@ -14,6 +14,9 @@ export class VendorService {
     private token:string;
     private common:Common;
     private createVendorUrl = AppConstants.AppUrl + "admin/createVendor";
+    private getVendorsListUrl = AppConstants.AppUrl + "admin/getVendorsList";
+    private deleteVendorUrl = AppConstants.AppUrl + "admin/deleteVendor";
+    private editVendorUrl = AppConstants.AppUrl + "admin/editVendor";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -25,6 +28,27 @@ export class VendorService {
         let options = new RequestOptions({ headers });
         return this.http.post(this.createVendorUrl, data, options)
                         .map((res:Response) => res.json());
+    }
+
+    getVendorsList(data: Vendor): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.getVendorsListUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    deleteVendor(data: Vendor): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.deleteVendorUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    editVendor(data: Vendor): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.editVendorUrl, data, options)
+                        .map((res:Response) => res.json());   
     }
 
     

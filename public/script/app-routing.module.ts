@@ -12,6 +12,7 @@ import { AdminLoginComponent } from './admin/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard.component';
 import { VendorDashboardComponent } from './admin/vendor-dashboard.component';
 import { VendorCreateComponent } from './admin/vendor-create.component';
+import { VendorViewComponent } from './admin/vendor-view.component';
 
 let routeurl:string = AppConstants.RouteUrl;
 
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: routeurl + '/admin/dashboard', component: AdminDashboardComponent },
   { path: routeurl + '/vendor/dashboard', component: VendorDashboardComponent },
   { path: routeurl + '/vendor/create', component: VendorCreateComponent },
+  { path: routeurl + '/vendor/view', component: VendorViewComponent },
 ];
 
 @NgModule({

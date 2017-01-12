@@ -46,6 +46,14 @@ AppConstants.USER_TYPE = {
     'user': 3
 };
 AppConstants.PAGINATION_SIZE = 10;
+AppConstants.VENDOR_NAMES = {
+    1: "EQUITY",
+    2: "COMMODITY",
+    3: "MUTUAL FUND",
+    4: "LIFE INSURANCE",
+    5: "HEALTH INSURANCE",
+    6: "GENERAL INSURANCE"
+};
 AppConstants.VENDOR_TYPES = [
     {
         name: 'EQUITY',

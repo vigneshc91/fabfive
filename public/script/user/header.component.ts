@@ -26,6 +26,8 @@ export class HeaderComponent {
     private adminDashboardLink:string;
     private vendorDashboardLink:string;
     private vendorCreateLink:string;
+    private vendorViewLink:string;
+
     private common: Common;
 
     constructor(private router: Router, private userService: UserService) { 
@@ -71,6 +73,7 @@ export class HeaderComponent {
          this.changePasswordLink = this.routerurl + '/user/changePassword';
          this.vendorDashboardLink = this.routerurl + '/vendor/dashboard';
          this.vendorCreateLink = this.routerurl + '/vendor/create';
+         this.vendorViewLink = this.routerurl + '/vendor/view';
      }
 
      superAdminLogout(){

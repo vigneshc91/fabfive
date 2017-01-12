@@ -157,7 +157,7 @@ export class SuperAdminViewComponent {
                     }
                 },
                 err => {
-
+                    console.log(err);
                 }
             );
 

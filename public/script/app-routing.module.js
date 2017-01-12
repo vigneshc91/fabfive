@@ -22,6 +22,7 @@ var admin_login_component_1 = require("./admin/admin-login.component");
 var admin_dashboard_component_1 = require("./admin/admin-dashboard.component");
 var vendor_dashboard_component_1 = require("./admin/vendor-dashboard.component");
 var vendor_create_component_1 = require("./admin/vendor-create.component");
+var vendor_view_component_1 = require("./admin/vendor-view.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
     // super admin routes
@@ -38,6 +39,7 @@ var routes = [
     { path: routeurl + '/admin/dashboard', component: admin_dashboard_component_1.AdminDashboardComponent },
     { path: routeurl + '/vendor/dashboard', component: vendor_dashboard_component_1.VendorDashboardComponent },
     { path: routeurl + '/vendor/create', component: vendor_create_component_1.VendorCreateComponent },
+    { path: routeurl + '/vendor/view', component: vendor_view_component_1.VendorViewComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

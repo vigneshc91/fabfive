@@ -1,0 +1,98 @@
+<user-header></user-header>
+<div class="container">
+    <div class="row" [ngClass]="{'hide': isEditVendor}">
+        <div class="row">
+            <form [formGroup]="vendorSearchForm" (ngSubmit)="searchVendor(vendorSearchForm.value)">
+                <div class="col-md-4 pull-right">
+                    <div class="input-group">
+                    <select class="form-control" name="type" id="type" placeholder="Vendor Type" [formControl]="vendorSearchForm.controls['type']">
+                        <option value="" selected>Select Vendor Type</option>
+                        <option *ngFor="let vendor of vendorList" [value]="vendor.value">{{ vendor.name }}</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <h2 class="text-center text-danger">Vendor List</h2>
+        <div class="col-md-offset-2 col-md-8">
+            <table class="table table-hover">
+                <tr *ngFor="let vendor of vendors; let i = index">
+                    <td>{{ vendorNames[vendor.type] }}</td>
+                    <td>{{ vendor.name }}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="showEditVendor(i, vendor)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="showDeleteConfirm(i, vendor.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+                </tr>
+                <tr *ngIf="!hasMoreVendors">
+                    <td colspan="4">
+                        <p class="text-center text-uppercase text-muted">Thats All Folks</p>
+                    </td>
+                </tr>
+            </table>
+            <div *ngIf="hasMoreVendors" class="text-center">
+                <button type="button" class="btn btn-sm btn-danger" (click)="getVendorsList(1)">Load More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" [ngClass]="{'hide': !isEditVendor}">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Edit Vendor</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div *ngIf="vendorEditSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="vendorEditFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="vendorEditForm" (ngSubmit)="editVendor(vendorEditForm.value)">
+                            <div class="form-group" [ngClass]="{'has-error':!vendorEditForm.controls['type'].valid && vendorEditForm.controls['type'].touched}">
+                                <label for="type" class="text-primary">Vendor Type</label>
+                                <select class="form-control" name="type" id="type" placeholder="Vendor Type" [formControl]="vendorEditForm.controls['type']">
+                                    <option value="" selected>Select Vendor Type</option>
+                                    <option *ngFor="let vendor of vendorList" [value]="vendor.value">{{ vendor.name }}</option>
+                                </select>
+                                <small *ngIf="vendorEditForm.controls['type'].hasError('required') && vendorEditForm.controls['type'].touched" class="text-danger">Vendor Type Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!vendorEditForm.controls['name'].valid && vendorEditForm.controls['name'].touched}">
+                                <label for="name" class="text-primary">Vendor Name</label>
+                                <input type="type" class="form-control" name="name" id="name" placeholder="Vendor" [formControl]="vendorEditForm.controls['name']">
+                                <small *ngIf="vendorEditForm.controls['name'].hasError('required') && vendorEditForm.controls['name'].touched" class="text-danger">Vendor Name Required</small>
+                            </div>
+                            <p class="text-center">
+                                <button type="button" class="btn btn-danger" (click)="cancelEditVendor()">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="!vendorEditForm.valid">Edit</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Delete Admin alert modal -->
+<div bsModal #deleteVendorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteVendorModal"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="closeDeleteVendorModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete Vendor</h4>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="vendorDeleteSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                <div *ngIf="vendorDeleteFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                <p>Are you sure. Do you want to delete this vendor?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteVendor()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

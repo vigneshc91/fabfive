@@ -111,3 +111,5 @@ Route::get('vendor/dashboard', 'AdminController@vendorDashboard');
 
 Route::get('vendor/create', 'AdminController@vendorCreate');
 
+Route::get('vendor/view', 'AdminController@vendorView');
+

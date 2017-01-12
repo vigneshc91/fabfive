@@ -675,4 +675,8 @@ class AdminController extends Controller
     public function vendorCreate(){
         return view('admin.dashboard');
     }
+
+    public function vendorView(){
+        return view('admin.dashboard');
+    }
 }

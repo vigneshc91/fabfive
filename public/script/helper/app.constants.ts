@@ -31,6 +31,15 @@ export class AppConstants {
     }
 
     public static PAGINATION_SIZE:number = 10;
+    
+    public static VENDOR_NAMES = {
+        1: "EQUITY",
+        2: "COMMODITY",
+        3: "MUTUAL FUND",
+        4: "LIFE INSURANCE",
+        5: "HEALTH INSURANCE",
+        6: "GENERAL INSURANCE"
+    };
 
     public static VENDOR_TYPES = [
             {

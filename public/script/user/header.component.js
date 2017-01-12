@@ -57,6 +57,7 @@ var HeaderComponent = (function () {
         this.changePasswordLink = this.routerurl + '/user/changePassword';
         this.vendorDashboardLink = this.routerurl + '/vendor/dashboard';
         this.vendorCreateLink = this.routerurl + '/vendor/create';
+        this.vendorViewLink = this.routerurl + '/vendor/view';
     };
     HeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {

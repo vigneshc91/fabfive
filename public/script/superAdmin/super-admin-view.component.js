@@ -137,6 +137,7 @@ var SuperAdminViewComponent = (function () {
                     }.bind(_this), 3000);
                 }
             }, function (err) {
+                console.log(err);
             });
         }
     };
