@@ -1,0 +1,104 @@
+<user-header></user-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Create User</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div *ngIf="userCreateSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="userCreateFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="userCreateForm" (ngSubmit)="createUser(userCreateForm.value)">
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['first_name'].valid && userCreateForm.controls['first_name'].touched}">
+                                <label for="first_name" class="text-primary">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="userCreateForm.controls['first_name']">
+                                <small *ngIf="userCreateForm.controls['first_name'].hasError('required') && userCreateForm.controls['first_name'].touched" class="text-danger">First Name Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['last_name'].valid && userCreateForm.controls['last_name'].touched}">
+                                <label for="last_name" class="text-primary">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="userCreateForm.controls['last_name']">
+                                <small *ngIf="userCreateForm.controls['last_name'].hasError('required') && userCreateForm.controls['last_name'].touched" class="text-danger">Last Name Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['email'].valid && userCreateForm.controls['email'].touched}">
+                                <label for="email" class="text-primary">E-Mail</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="E-Mail" [formControl]="userCreateForm.controls['email']">
+                                <small *ngIf="userCreateForm.controls['email'].hasError('required') && userCreateForm.controls['email'].touched" class="text-danger">E-Mail Required</small>
+                                <small *ngIf="userCreateForm.controls['email'].hasError('isInvalidEmail') && userCreateForm.controls['email'].touched" class="text-danger">Invalid Email</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['date_of_birth'].valid && userCreateForm.controls['date_of_birth'].touched}">
+                                <label for="date_of_birth" class="text-primary">Date of Birth</label>
+                                <div class="input-group date_of_birth">
+                                    <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth" [(ngModel)]="datePickerValue" [formControl]="userCreateForm.controls['date_of_birth']" (click)="showDatePicker()" readonly>
+                                    <span class="input-group-addon" (click)="showDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                                <div class="dp-popup" *ngIf="isDatePickerShown">
+                                    <datepicker [(ngModel)]="datePickerDate" [showWeeks]="false" [maxDate]="today" [ngModelOptions]="{standalone: true}" (selectionDone)="dateSelected($event)"></datepicker>
+                                </div>
+                                <small *ngIf="userCreateForm.controls['date_of_birth'].hasError('required') && userCreateForm.controls['date_of_birth'].touched" class="text-danger">Date of Birth Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['gender'].valid && userCreateForm.controls['gender'].touched}">
+                                <label for="gender" class="text-primary">Gender</label>
+                                <select class="form-control" name="type" id="type" placeholder="Gender" [formControl]="userCreateForm.controls['gender']">
+                                    <option value="" selected>Select Gender</option>
+                                    <option *ngFor="let gen of gender" [value]="gen.value">{{ gen.name }}</option>
+                                </select>
+                                <small *ngIf="userCreateForm.controls['gender'].hasError('required') && userCreateForm.controls['gender'].touched" class="text-danger">Gender Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['contact_number'].valid && userCreateForm.controls['contact_number'].touched}">
+                                <label for="contact_number" class="text-primary">Contact Number</label>
+                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Contact Number" [formControl]="userCreateForm.controls['contact_number']">
+                                <small *ngIf="userCreateForm.controls['contact_number'].hasError('required') && userCreateForm.controls['contact_number'].touched" class="text-danger">Contact Number Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['profile_pic'].valid && userCreateForm.controls['profile_pic'].touched}">
+                                <label for="profile_pic" class="text-primary">Photo</label>
+                                <input type="file" class="form-control" name="profile_pic" id="profile_pic" [formControl]="userCreateForm.controls['profile_pic']">
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['pan_card'].valid && userCreateForm.controls['pan_card'].touched}">
+                                <label for="pan_card" class="text-primary">PAN Number</label>
+                                <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="PAN Number" [formControl]="userCreateForm.controls['pan_card']">
+                                <small *ngIf="userCreateForm.controls['pan_card'].hasError('required') && userCreateForm.controls['pan_card'].touched" class="text-danger">PAN Number Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['introducer_name'].valid && userCreateForm.controls['introducer_name'].touched}">
+                                <label for="introducer_name" class="text-primary">Introducer Name</label>
+                                <input type="text" class="form-control" name="introducer_name" id="introducer_name" placeholder="Introducer Name" [formControl]="userCreateForm.controls['introducer_name']">
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['address_line_1'].valid && userCreateForm.controls['address_line_1'].touched}">
+                                <label for="address_line_1" class="text-primary">Address Line 1</label>
+                                <input type="text" class="form-control" name="address_line_1" id="address_line_1" placeholder="Address Line 1" [formControl]="userCreateForm.controls['address_line_1']">
+                                <small *ngIf="userCreateForm.controls['address_line_1'].hasError('required') && userCreateForm.controls['address_line_1'].touched" class="text-danger">Address Line 1 Required</small>
+                            </div>
+                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['address_line_2'].valid && userCreateForm.controls['address_line_2'].touched}">
+                                <label for="address_line_1" class="text-primary">Address Line 2</label>
+                                <input type="text" class="form-control" name="address_line_2" id="address_line_2" placeholder="Address Line 2" [formControl]="userCreateForm.controls['address_line_2']">
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['city'].valid && userCreateForm.controls['city'].touched}">
+                                <label for="city" class="text-primary">City</label>
+                                <input type="text" class="form-control" name="city" id="city" placeholder="City" [formControl]="userCreateForm.controls['city']">
+                                <small *ngIf="userCreateForm.controls['city'].hasError('required') && userCreateForm.controls['city'].touched" class="text-danger">City Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['state'].valid && userCreateForm.controls['state'].touched}">
+                                <label for="state" class="text-primary">State</label>
+                                <input type="text" class="form-control" name="state" id="state" placeholder="State" [formControl]="userCreateForm.controls['state']">
+                                <small *ngIf="userCreateForm.controls['state'].hasError('required') && userCreateForm.controls['state'].touched" class="text-danger">State Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['country'].valid && userCreateForm.controls['country'].touched}">
+                                <label for="country" class="text-primary">Country</label>
+                                <input type="text" class="form-control" name="country" id="country" placeholder="Country" [formControl]="userCreateForm.controls['country']">
+                                <small *ngIf="userCreateForm.controls['country'].hasError('required') && userCreateForm.controls['country'].touched" class="text-danger">Country Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['pin_code'].valid && userCreateForm.controls['pin_code'].touched}">
+                                <label for="pin_code" class="text-primary">Pin Code</label>
+                                <input type="text" class="form-control" name="pin_code" id="pin_code" placeholder="Pin Code" [formControl]="userCreateForm.controls['pin_code']">
+                            </div>
+                            <p class="text-center col-md-12">
+                                <button type="submit" class="btn btn-primary" [disabled]="!userCreateForm.valid">Create</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

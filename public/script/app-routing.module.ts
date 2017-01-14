@@ -13,6 +13,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard.component';
 import { VendorDashboardComponent } from './admin/vendor-dashboard.component';
 import { VendorCreateComponent } from './admin/vendor-create.component';
 import { VendorViewComponent } from './admin/vendor-view.component';
+import { UserDashboardComponent } from './admin/user-dashboard.component';
+import { UserCreateComponent } from './admin/user-create.component';
 
 let routeurl:string = AppConstants.RouteUrl;
 
@@ -32,6 +34,8 @@ const routes: Routes = [
   { path: routeurl + '/vendor/dashboard', component: VendorDashboardComponent },
   { path: routeurl + '/vendor/create', component: VendorCreateComponent },
   { path: routeurl + '/vendor/view', component: VendorViewComponent },
+  { path: routeurl + '/user/dashboard', component: UserDashboardComponent },
+  { path: routeurl + '/user/create', component: UserCreateComponent },
 ];
 
 @NgModule({

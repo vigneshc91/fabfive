@@ -80,5 +80,19 @@ AppConstants.VENDOR_TYPES = [
         value: 6
     }
 ];
+AppConstants.GENDER_NAMES = {
+    1: "Male",
+    2: "Female"
+};
+AppConstants.GENDER_TYPES = [
+    {
+        name: 'Male',
+        value: 1
+    },
+    {
+        name: 'Female',
+        value: 2
+    }
+];
 exports.AppConstants = AppConstants;
 //# sourceMappingURL=app.constants.js.map

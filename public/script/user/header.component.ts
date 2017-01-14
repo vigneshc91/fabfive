@@ -27,6 +27,8 @@ export class HeaderComponent {
     private vendorDashboardLink:string;
     private vendorCreateLink:string;
     private vendorViewLink:string;
+    private userDashboardLink:string;
+    private userCreateLink:string;
 
     private common: Common;
 
@@ -74,6 +76,8 @@ export class HeaderComponent {
          this.vendorDashboardLink = this.routerurl + '/vendor/dashboard';
          this.vendorCreateLink = this.routerurl + '/vendor/create';
          this.vendorViewLink = this.routerurl + '/vendor/view';
+         this.userDashboardLink = this.routerurl + '/user/dashboard';
+         this.userCreateLink = this.routerurl + '/user/create';
      }
 
      superAdminLogout(){

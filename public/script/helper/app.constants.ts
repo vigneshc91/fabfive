@@ -67,4 +67,20 @@ export class AppConstants {
                 value: 6 
             }
         ];
+
+    public static GENDER_NAMES = {
+        1: "Male",
+        2: "Female"
+    };
+
+    public static GENDER_TYPES = [
+        {
+            name: 'Male',
+            value: 1
+        },
+        {
+            name: 'Female',
+            value: 2
+        }
+    ];
 }

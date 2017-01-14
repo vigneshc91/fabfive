@@ -58,6 +58,8 @@ var HeaderComponent = (function () {
         this.vendorDashboardLink = this.routerurl + '/vendor/dashboard';
         this.vendorCreateLink = this.routerurl + '/vendor/create';
         this.vendorViewLink = this.routerurl + '/vendor/view';
+        this.userDashboardLink = this.routerurl + '/user/dashboard';
+        this.userCreateLink = this.routerurl + '/user/create';
     };
     HeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {

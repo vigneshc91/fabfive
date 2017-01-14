@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
@@ -23,17 +23,19 @@ import { AdminDashboardComponent } from './admin/admin-dashboard.component';
 import { VendorDashboardComponent } from './admin/vendor-dashboard.component';
 import { VendorCreateComponent } from './admin/vendor-create.component';
 import { VendorViewComponent } from './admin/vendor-view.component';
+import { UserDashboardComponent } from './admin/user-dashboard.component';
+import { UserCreateComponent } from './admin/user-create.component';
 
 // Services
 import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule, DatepickerModule ],
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
-                  VendorCreateComponent, VendorViewComponent ],
+                  VendorCreateComponent, VendorViewComponent, UserDashboardComponent, UserCreateComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

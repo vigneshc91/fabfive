@@ -1856,3 +1856,25 @@ a > img.fh5co-align-center {
 .login-panel .panel-title {
   color: #e02745;
 }
+
+/* line 1560, ../sass/style.scss */
+.dp-popup {
+  position: absolute;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 2;
+}
+
+/* line 1568, ../sass/style.scss */
+.input-group.date {
+  width: 200px;
+}
+
+/* line 1573, ../sass/style.scss */
+datepicker .btn {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}

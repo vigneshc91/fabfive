@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group" [ngClass]="{'has-error':!vendorCreateForm.controls['name'].valid && vendorCreateForm.controls['name'].touched}">
                                 <label for="name" class="text-primary">Vendor Name</label>
-                                <input type="type" class="form-control" name="name" id="name" placeholder="Vendor" [formControl]="vendorCreateForm.controls['name']">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Vendor" [formControl]="vendorCreateForm.controls['name']">
                                 <small *ngIf="vendorCreateForm.controls['name'].hasError('required') && vendorCreateForm.controls['name'].touched" class="text-danger">Vendor Name Required</small>
                             </div>
                             <p class="text-center">
