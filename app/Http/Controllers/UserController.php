@@ -294,6 +294,44 @@ class UserController extends Controller
         }
     }
 
+    public function searchUser(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+            
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('first_name', 'last_name', 'email', 'contact_number', 'pan_card', 'start', 'size');
+            
+            if(empty($input['start'])){
+                $input['start'] = AppConstants::USER_SEARCH_START_VALUE;
+            }
+            if(empty($input['size'])){
+                $input['size'] = AppConstants::USER_SEARCH_SIZE_VALUE;
+            }
+            
+            $response->status = true;
+            $response->result = $this->userManager->searchUser($input);
+
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
     public function password()
     {
         return view('user.changePassword');

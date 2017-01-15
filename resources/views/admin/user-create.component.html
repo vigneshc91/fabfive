@@ -10,7 +10,7 @@
                     <div class="col-md-offset-1 col-md-10">
                         <div *ngIf="userCreateSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
                         <div *ngIf="userCreateFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
-                        <form [formGroup]="userCreateForm" (ngSubmit)="createUser(userCreateForm.value)">
+                        <form [formGroup]="userCreateForm" (ngSubmit)="createUser(userCreateForm.value)" enctype="multipart/form-data">
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['first_name'].valid && userCreateForm.controls['first_name'].touched}">
                                 <label for="first_name" class="text-primary">First Name</label>
                                 <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="userCreateForm.controls['first_name']">
@@ -30,8 +30,8 @@
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['date_of_birth'].valid && userCreateForm.controls['date_of_birth'].touched}">
                                 <label for="date_of_birth" class="text-primary">Date of Birth</label>
                                 <div class="input-group date_of_birth">
-                                    <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth" [(ngModel)]="datePickerValue" [formControl]="userCreateForm.controls['date_of_birth']" (click)="showDatePicker()" readonly>
-                                    <span class="input-group-addon" (click)="showDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                    <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth" [(ngModel)]="datePickerValue" [formControl]="userCreateForm.controls['date_of_birth']" (focus)="showDatePicker()" readonly>
+                                    <span class="input-group-addon" (focus)="showDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                                 </div>
                                 <div class="dp-popup" *ngIf="isDatePickerShown">
                                     <datepicker [(ngModel)]="datePickerDate" [showWeeks]="false" [maxDate]="today" [ngModelOptions]="{standalone: true}" (selectionDone)="dateSelected($event)"></datepicker>
@@ -53,7 +53,8 @@
                             </div>
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['profile_pic'].valid && userCreateForm.controls['profile_pic'].touched}">
                                 <label for="profile_pic" class="text-primary">Photo</label>
-                                <input type="file" class="form-control" name="profile_pic" id="profile_pic" [formControl]="userCreateForm.controls['profile_pic']">
+                                <input type="file" class="form-control" name="profile_pic" id="profile_pic" accept="image/*" [formControl]="userCreateForm.controls['profile_pic']">
+                                <small *ngIf="invalidFile" class="text-danger">Only Image files accepted</small>
                             </div>
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['pan_card'].valid && userCreateForm.controls['pan_card'].touched}">
                                 <label for="pan_card" class="text-primary">PAN Number</label>
@@ -69,8 +70,8 @@
                                 <input type="text" class="form-control" name="address_line_1" id="address_line_1" placeholder="Address Line 1" [formControl]="userCreateForm.controls['address_line_1']">
                                 <small *ngIf="userCreateForm.controls['address_line_1'].hasError('required') && userCreateForm.controls['address_line_1'].touched" class="text-danger">Address Line 1 Required</small>
                             </div>
-                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['address_line_2'].valid && userCreateForm.controls['address_line_2'].touched}">
-                                <label for="address_line_1" class="text-primary">Address Line 2</label>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['address_line_2'].valid && userCreateForm.controls['address_line_2'].touched}">
+                                <label for="address_line_2" class="text-primary">Address Line 2</label>
                                 <input type="text" class="form-control" name="address_line_2" id="address_line_2" placeholder="Address Line 2" [formControl]="userCreateForm.controls['address_line_2']">
                             </div>
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userCreateForm.controls['city'].valid && userCreateForm.controls['city'].touched}">

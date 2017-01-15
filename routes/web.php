@@ -47,6 +47,8 @@ Route::post('user/resetPassword', 'UserController@resetPassword');
 
 Route::post('user/getUserById', 'UserController@getUserById');
 
+Route::post('user/searchUser', 'UserController@searchUser');
+
 Route::post('user/getUsersList', 'UserController@getUsersList');
 
 Route::post('superAdmin/createAdmin', 'SuperAdminController@createAdmin');
@@ -116,4 +118,6 @@ Route::get('vendor/view', 'AdminController@vendorView');
 Route::get('user/dashboard', 'AdminController@userDashboard');
 
 Route::get('user/create', 'AdminController@userCreate');
+
+Route::get('user/view', 'AdminController@userView');
 

@@ -8,4 +8,5 @@ export class Address {
     state?: string;
     country?: string;
     pin_code?: string;
+    index?: number;
 }

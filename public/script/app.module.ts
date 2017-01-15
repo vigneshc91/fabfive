@@ -25,6 +25,7 @@ import { VendorCreateComponent } from './admin/vendor-create.component';
 import { VendorViewComponent } from './admin/vendor-view.component';
 import { UserDashboardComponent } from './admin/user-dashboard.component';
 import { UserCreateComponent } from './admin/user-create.component';
+import { UserViewComponent } from './admin/user-view.component';
 
 // Services
 import { LoginLogoutService } from './services/login-logout.service';
@@ -35,7 +36,8 @@ import { LoginLogoutService } from './services/login-logout.service';
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
-                  VendorCreateComponent, VendorViewComponent, UserDashboardComponent, UserCreateComponent ],
+                  VendorCreateComponent, VendorViewComponent, UserDashboardComponent,
+                  UserCreateComponent, UserViewComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

@@ -1,0 +1,184 @@
+<user-header></user-header>
+<div class="container">
+    <div class="row" *ngIf="!isEditUser && !isEditUserAddress">
+        <h2 class="text-center text-danger">Users List</h2>
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-hover">
+                <tr *ngFor="let user of users; let i = index">
+                    <td>
+                        <img *ngIf="user.profile_pic != null" src="{{ imageBaseUrl + user.profile_pic }}" class="img-circle profile-image"/>
+                        <img *ngIf="user.profile_pic == null && user.gender == 1" src="{{ malePlaceholderImage }}" class="img-circle profile-image"/>
+                        <img *ngIf="user.profile_pic == null && user.gender == 2" src="{{ femalePlaceholderImage }}" class="img-circle profile-image"/>
+                        {{ user.first_name + ' ' + user.last_name }}
+                    </td>
+                    <td>{{ user.city }}
+                        <a href="javascript:void(0)" (click)="showEditUserAddress(i, user)">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td><button type="button" class="btn btn-primary" (click)="showEditUser(i, user)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="showDeleteConfirm(i, user.user_id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+                </tr>
+                <tr *ngIf="!hasMoreUsers">
+                    <td colspan="4">
+                        <p class="text-center text-uppercase text-muted">Thats All Folks</p>
+                    </td>
+                </tr>
+            </table>
+            <div *ngIf="hasMoreusers" class="text-center">
+                <button type="button" class="btn btn-sm btn-danger" (click)="getUsersList(1)">Load More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" [ngClass]="{'hide': !isEditUser}">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Edit User</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div *ngIf="userEditSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="userEditFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="userEditForm" (ngSubmit)="editUser(userEditForm.value)">
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['first_name'].valid && userEditForm.controls['first_name'].touched}">
+                                <label for="first_name" class="text-primary">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="userEditForm.controls['first_name']">
+                                <small *ngIf="userEditForm.controls['first_name'].hasError('required') && userEditForm.controls['first_name'].touched" class="text-danger">First Name Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['last_name'].valid && userEditForm.controls['last_name'].touched}">
+                                <label for="last_name" class="text-primary">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="userEditForm.controls['last_name']">
+                                <small *ngIf="userEditForm.controls['last_name'].hasError('required') && userEditForm.controls['last_name'].touched" class="text-danger">Last Name Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['email'].valid && userEditForm.controls['email'].touched}">
+                                <label for="email" class="text-primary">E-Mail</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="E-Mail" [formControl]="userEditForm.controls['email']">
+                                <small *ngIf="userEditForm.controls['email'].hasError('required') && userEditForm.controls['email'].touched" class="text-danger">E-Mail Required</small>
+                                <small *ngIf="userEditForm.controls['email'].hasError('isInvalidEmail') && userEditForm.controls['email'].touched" class="text-danger">Invalid Email</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['date_of_birth'].valid && userEditForm.controls['date_of_birth'].touched}">
+                                <label for="date_of_birth" class="text-primary">Date of Birth</label>
+                                <div class="input-group date_of_birth">
+                                    <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth" [(ngModel)]="datePickerValue" [formControl]="userEditForm.controls['date_of_birth']" (focus)="showDatePicker()" readonly>
+                                    <span class="input-group-addon" (focus)="showDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                                <div class="dp-popup" *ngIf="isDatePickerShown">
+                                    <datepicker [(ngModel)]="datePickerDate" [showWeeks]="false" [maxDate]="today" [ngModelOptions]="{standalone: true}" (selectionDone)="dateSelected($event)"></datepicker>
+                                </div>
+                                <small *ngIf="userEditForm.controls['date_of_birth'].hasError('required') && userEditForm.controls['date_of_birth'].touched" class="text-danger">Date of Birth Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['gender'].valid && userEditForm.controls['gender'].touched}">
+                                <label for="gender" class="text-primary">Gender</label>
+                                <select class="form-control" name="type" id="type" placeholder="Gender" [formControl]="userEditForm.controls['gender']">
+                                    <option value="" selected>Select Gender</option>
+                                    <option *ngFor="let gender of genderList" [value]="gender.value">{{ gender.name }}</option>
+                                </select>
+                                <small *ngIf="userEditForm.controls['gender'].hasError('required') && userEditForm.controls['gender'].touched" class="text-danger">Gender Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['contact_number'].valid && userEditForm.controls['contact_number'].touched}">
+                                <label for="contact_number" class="text-primary">Contact Number</label>
+                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Contact Number" [formControl]="userEditForm.controls['contact_number']">
+                                <small *ngIf="userEditForm.controls['contact_number'].hasError('required') && userEditForm.controls['contact_number'].touched" class="text-danger">Contact Number Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['profile_pic'].valid && userEditForm.controls['profile_pic'].touched}">
+                                <img *ngIf="userModel.profile_pic != null" src="{{ imageBaseUrl + userModel.profile_pic }}" class="img-circle profile-image"/>
+                                <label for="profile_pic" class="text-primary">Photo</label>
+                                <input type="file" class="form-control" name="profile_pic" id="profile_pic" accept="image/*" [formControl]="userEditForm.controls['profile_pic']">
+                                <small *ngIf="invalidFile" class="text-danger">Only Image files accepted</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['pan_card'].valid && userEditForm.controls['pan_card'].touched}">
+                                <label for="pan_card" class="text-primary">PAN Number</label>
+                                <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="PAN Number" [formControl]="userEditForm.controls['pan_card']">
+                                <small *ngIf="userEditForm.controls['pan_card'].hasError('required') && userEditForm.controls['pan_card'].touched" class="text-danger">PAN Number Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['introducer_name'].valid && userEditForm.controls['introducer_name'].touched}">
+                                <label for="introducer_name" class="text-primary">Introducer Name</label>
+                                <input type="text" class="form-control" name="introducer_name" id="introducer_name" placeholder="Introducer Name" [formControl]="userEditForm.controls['introducer_name']">
+                            </div>
+                            <p class="text-center col-md-12">
+                                <button type="button" class="btn btn-danger" (click)="cancelEditUser()">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="!userEditForm.valid">Edit</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" [ngClass]="{'hide': !isEditUserAddress}">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">{{ user }} Edit Address</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div *ngIf="userAddressEditSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="userAddressEditFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="userAddressEditForm" (ngSubmit)="editUserAddress(userAddressEditForm.value)">
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['address_line_1'].valid && userAddressEditForm.controls['address_line_1'].touched}">
+                                <label for="address_line_1" class="text-primary">Address Line 1</label>
+                                <input type="text" class="form-control" name="address_line_1" id="address_line_1" placeholder="Address Line 1" [formControl]="userAddressEditForm.controls['address_line_1']">
+                                <small *ngIf="userAddressEditForm.controls['address_line_1'].hasError('required') && userAddressEditForm.controls['address_line_1'].touched" class="text-danger">Address Line 1 Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['address_line_2'].valid && userAddressEditForm.controls['address_line_2'].touched}">
+                                <label for="address_line_2" class="text-primary">Address Line 2</label>
+                                <input type="text" class="form-control" name="address_line_2" id="address_line_2" placeholder="Address Line 2" [formControl]="userAddressEditForm.controls['address_line_2']">
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['city'].valid && userAddressEditForm.controls['city'].touched}">
+                                <label for="city" class="text-primary">City</label>
+                                <input type="text" class="form-control" name="city" id="city" placeholder="City" [formControl]="userAddressEditForm.controls['city']">
+                                <small *ngIf="userAddressEditForm.controls['city'].hasError('required') && userAddressEditForm.controls['city'].touched" class="text-danger">City Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['state'].valid && userAddressEditForm.controls['state'].touched}">
+                                <label for="state" class="text-primary">State</label>
+                                <input type="text" class="form-control" name="state" id="state" placeholder="State" [formControl]="userAddressEditForm.controls['state']">
+                                <small *ngIf="userAddressEditForm.controls['state'].hasError('required') && userAddressEditForm.controls['state'].touched" class="text-danger">State Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['country'].valid && userAddressEditForm.controls['country'].touched}">
+                                <label for="country" class="text-primary">Country</label>
+                                <input type="text" class="form-control" name="country" id="country" placeholder="Country" [formControl]="userAddressEditForm.controls['country']">
+                                <small *ngIf="userAddressEditForm.controls['country'].hasError('required') && userAddressEditForm.controls['country'].touched" class="text-danger">Country Required</small>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-error':!userAddressEditForm.controls['pin_code'].valid && userAddressEditForm.controls['pin_code'].touched}">
+                                <label for="pin_code" class="text-primary">Pin Code</label>
+                                <input type="text" class="form-control" name="pin_code" id="pin_code" placeholder="Pin Code" [formControl]="userAddressEditForm.controls['pin_code']">
+                            </div>
+                            <p class="text-center col-md-12">
+                                <button type="button" class="btn btn-danger" (click)="cancelEditUserAddress()">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="!userAddressEditForm.valid">Edit</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Delete Admin alert modal -->
+<div bsModal #deleteUserModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="closeDeleteUserModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="userDeleteSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                <div *ngIf="userDeleteFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                <p>Are you sure. Do you want to delete this user?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteUser()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

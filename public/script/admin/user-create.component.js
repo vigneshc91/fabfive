@@ -13,16 +13,17 @@ var forms_1 = require("@angular/forms");
 var moment = require("moment");
 var app_constants_1 = require("../helper/app.constants");
 var custom_validator_1 = require("../helper/custom.validator");
-var vendor_service_1 = require("../services/vendor-service");
+var user_service_1 = require("../services/user-service");
 var route = app_constants_1.AppConstants.RouteUrl;
 var UserCreateComponent = (function () {
-    function UserCreateComponent(formBuilder, vendorService) {
+    function UserCreateComponent(formBuilder, userService) {
         this.formBuilder = formBuilder;
-        this.vendorService = vendorService;
+        this.userService = userService;
         this.userCreateSuccessMessage = false;
         this.userCreateFailureMessage = false;
         this.isDatePickerShown = false;
         this.today = new Date();
+        this.invalidFile = false;
         this.userCreateForm = formBuilder.group({
             'first_name': [null, forms_1.Validators.required],
             'last_name': [null, forms_1.Validators.required],
@@ -46,12 +47,24 @@ var UserCreateComponent = (function () {
         var _this = this;
         if (this.userCreateForm.valid) {
             var response = void 0;
-            response = this.vendorService.createVendor(value);
+            var file = document.getElementById('profile_pic');
+            if (file && file.files.length) {
+                var image = file.files[0];
+                if (image.type.indexOf("image") > -1) {
+                    this.invalidFile = false;
+                    value.profile_pic = image;
+                }
+                else {
+                    this.invalidFile = true;
+                    return false;
+                }
+            }
+            response = this.userService.createEndUser(value);
             response.subscribe(function (data) {
                 if (data.status) {
                     _this.userCreateSuccessMessage = true;
                     _this.successMessage = data.result;
-                    _this.userCreateForm.reset({ 'type': '' });
+                    _this.userCreateForm.reset({ 'gender': '' });
                     setTimeout(function () {
                         this.userCreateSuccessMessage = false;
                     }.bind(_this), 3000);
@@ -92,9 +105,9 @@ UserCreateComponent = __decorate([
             '(document:click)': 'handleClick($event)'
         },
         templateUrl: route + '/resources/views/admin/user-create.component.html',
-        providers: [vendor_service_1.VendorService]
+        providers: [user_service_1.UserService]
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, vendor_service_1.VendorService])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, user_service_1.UserService])
 ], UserCreateComponent);
 exports.UserCreateComponent = UserCreateComponent;
 //# sourceMappingURL=user-create.component.js.map

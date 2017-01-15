@@ -8,8 +8,8 @@ import { AppConstants } from '../helper/app.constants';
 import { CustomValidator } from '../helper/custom.validator';
 import { ServiceResponse } from '../models/service.response.model';
 import { Common } from '../helper/common';
-import { VendorService } from '../services/vendor-service';
-import { Vendor } from '../models/vendor.model';
+import { UserService } from '../services/user-service';
+import { EndUser } from '../models/end-user.model';
 
 let route:string = AppConstants.RouteUrl;
 
@@ -19,7 +19,7 @@ let route:string = AppConstants.RouteUrl;
         '(document:click)': 'handleClick($event)'
     },
     templateUrl: route + '/resources/views/admin/user-create.component.html',
-    providers: [ VendorService ]
+    providers: [ UserService ]
 })
 
 export class UserCreateComponent {
@@ -34,8 +34,9 @@ export class UserCreateComponent {
     datePickerValue;
     isDatePickerShown: boolean = false;
     today:Date = new Date();
+    invalidFile:boolean = false;
 
-    constructor(private formBuilder: FormBuilder, private vendorService: VendorService) {
+    constructor(private formBuilder: FormBuilder, private userService: UserService) {
         this.userCreateForm = formBuilder.group({
             'first_name': [null, Validators.required],
             'last_name': [null, Validators.required],
@@ -56,16 +57,28 @@ export class UserCreateComponent {
         this.gender = AppConstants.GENDER_TYPES;
      }
 
-     createUser(value: Vendor){
+     createUser(value: EndUser){
          if(this.userCreateForm.valid){
              let response: Observable<ServiceResponse>;
-             response = this.vendorService.createVendor(value);
+             
+             let file:any = document.getElementById('profile_pic');
+             if(file && file.files.length){
+                 var image:File = file.files[0]
+                 if(image.type.indexOf("image") > -1){
+                    this.invalidFile = false;
+                    value.profile_pic = image;
+                 } else {
+                     this.invalidFile = true;
+                     return false;
+                 }
+             }
+             response = this.userService.createEndUser(value);
              response.subscribe(
                  data => {
                      if(data.status){
                          this.userCreateSuccessMessage = true;
                          this.successMessage = data.result;
-                         this.userCreateForm.reset({'type': ''});
+                         this.userCreateForm.reset({'gender': ''});
                          setTimeout(function() {
                              this.userCreateSuccessMessage = false;
                          }.bind(this), 3000);

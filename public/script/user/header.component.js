@@ -60,6 +60,7 @@ var HeaderComponent = (function () {
         this.vendorViewLink = this.routerurl + '/vendor/view';
         this.userDashboardLink = this.routerurl + '/user/dashboard';
         this.userCreateLink = this.routerurl + '/user/create';
+        this.userViewLink = this.routerurl + '/user/view';
     };
     HeaderComponent.prototype.superAdminLogout = function () {
         if (this.common.clearToken()) {

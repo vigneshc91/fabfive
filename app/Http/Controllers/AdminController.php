@@ -687,4 +687,8 @@ class AdminController extends Controller
     public function userCreate(){
         return view('admin.dashboard');
     }
+
+    public function userView(){
+        return view('admin.dashboard');
+    }
 }

@@ -24,6 +24,10 @@ export class AppConstants {
         }
     }
 
+    static get ImageUrl():string {
+        return this.AppUrl + "storage/app/public/"; 
+    }
+
     public static USER_TYPE = {
         'superAdmin' : 1,
         'admin' : 2,

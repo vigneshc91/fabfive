@@ -164,7 +164,7 @@ class UserManager {
                                 ->join('address', 'users.id' , '=', 'address.user_id')
                                 ->skip($start)->take($size)->get();
                 } else{
-                $result = User::where('user_type', $userType)->skip($start)->take($size)->get();
+                    $result = User::where('user_type', $userType)->skip($start)->take($size)->get();
                 }
             } else {
                 $result = User::skip($start)->take($size)->get();
@@ -175,6 +175,49 @@ class UserManager {
         } catch(Exception $e){
             throw $e;
         }
+    }
+
+    public function searchUser($input)
+    {
+        try {
+
+            $start = $input['start'];
+            $size = $input['size'];
+
+            $query = User::where('user_type', AppConstants::userType['user']);
+
+            if(!empty($input['first_name'])){
+                $first_name = $input['first_name'];
+                $query->where('first_name', 'LIKE', '%'.$first_name.'%');
+            }
+
+            if(!empty($input['last_name'])){
+                $last_name = $input['last_name'];
+                $query->where('last_name', 'LIKE', '%'.$last_name.'%');
+            }
+
+            if(!empty($input['email'])){
+                $email = $input['email'];
+                $query->where('email', 'LIKE', '%'.$email.'%');
+            }
+
+            if(!empty($input['contact_number'])){
+                $contact_number = $input['contact_number'];
+                $query->where('contact_number', 'LIKE', '%'.$contact_number.'%');
+            }
+
+            if(!empty($input['pan_card'])){
+                $pan_card = $input['pan_card'];
+                $query->where('pan_card', 'LIKE', '%'.$pan_card.'%');
+            }
+            
+            $result = $query->skip($start)->take($size)->get();
+
+            return $result;
+
+        } catch(Exception $e){
+            throw $e;
+        }   
     }
     
 }

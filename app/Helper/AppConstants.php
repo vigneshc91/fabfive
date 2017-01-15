@@ -59,6 +59,9 @@ class AppConstants {
     
     const USER_START_VALUE = 0;
     const USER_SIZE_VALUE = 10;
+
+    const USER_SEARCH_START_VALUE = 0;
+    const USER_SEARCH_SIZE_VALUE = 10;
     
     const VENDOR_START_VALUE = 0;
     const VENDOR_SIZE_VALUE = 10;

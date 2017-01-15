@@ -1,4 +1,4 @@
-export class User {
+export class EndUser {
 
     id?: number;
     user_id?: number;
@@ -17,4 +17,10 @@ export class User {
     start? :number;
     size?: number;
     index?: number;
+    address_line_1?: string;
+    address_line_2?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    pin_code?: string;
 }

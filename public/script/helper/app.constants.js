@@ -38,6 +38,13 @@ var AppConstants = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AppConstants, "ImageUrl", {
+        get: function () {
+            return this.AppUrl + "storage/app/public/";
+        },
+        enumerable: true,
+        configurable: true
+    });
     return AppConstants;
 }());
 AppConstants.USER_TYPE = {
