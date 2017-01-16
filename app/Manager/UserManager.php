@@ -211,7 +211,9 @@ class UserManager {
                 $query->where('pan_card', 'LIKE', '%'.$pan_card.'%');
             }
             
-            $result = $query->skip($start)->take($size)->get();
+            $result = $query
+                        ->join('address', 'users.id' , '=', 'address.user_id')
+                        ->skip($start)->take($size)->get();
 
             return $result;
 

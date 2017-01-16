@@ -30,6 +30,9 @@ export class HeaderComponent {
     private userDashboardLink:string;
     private userCreateLink:string;
     private userViewLink:string;
+    private mutualFundDashboardLink:string;
+    private mutualFundCreateLink:string;
+    private mutualFundViewLink:string;
 
     private common: Common;
 
@@ -80,6 +83,9 @@ export class HeaderComponent {
          this.userDashboardLink = this.routerurl + '/user/dashboard';
          this.userCreateLink = this.routerurl + '/user/create';
          this.userViewLink = this.routerurl + '/user/view';
+         this.mutualFundDashboardLink = this.routerurl + '/mutualFund/dashboard';
+         this.mutualFundCreateLink = this.routerurl + '/mutualFund/create';
+         this.mutualFundViewLink = this.routerurl + '/mutualFund/view';
      }
 
      superAdminLogout(){

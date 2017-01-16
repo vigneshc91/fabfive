@@ -1,6 +1,27 @@
 <user-header></user-header>
 <div class="container">
     <div class="row" *ngIf="!isEditUser && !isEditUserAddress">
+        <div class="row">
+            <form [formGroup]="userSearchForm" (ngSubmit)="searchUser(false, '', userSearchForm.value)">
+                <div class="col-md-4 pull-right">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" id="query" placeholder="Search..." [formControl]="userSearchForm.controls['query']">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search by <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, 'first_name', userSearchForm.value)">First Name</a></li>
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, 'last_name', userSearchForm.value)">Last Name</a></li>
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, 'email', userSearchForm.value)">Email</a></li>
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, 'contact_number', userSearchForm.value)">Contact Number</a></li>
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, 'pan_card', userSearchForm.value)">PAN Number</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="javascript:void(0)" (click)="searchUser(false, '', userSearchForm.value)">Reset</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <h2 class="text-center text-danger">Users List</h2>
         <div class="col-md-offset-1 col-md-10">
             <table class="table table-hover">
@@ -54,7 +75,7 @@
                             </div>
                             <div class="form-group col-md-6" [ngClass]="{'has-error':!userEditForm.controls['email'].valid && userEditForm.controls['email'].touched}">
                                 <label for="email" class="text-primary">E-Mail</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="E-Mail" [formControl]="userEditForm.controls['email']">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="E-Mail" [formControl]="userEditForm.controls['email']" readonly>
                                 <small *ngIf="userEditForm.controls['email'].hasError('required') && userEditForm.controls['email'].touched" class="text-danger">E-Mail Required</small>
                                 <small *ngIf="userEditForm.controls['email'].hasError('isInvalidEmail') && userEditForm.controls['email'].touched" class="text-danger">Invalid Email</small>
                             </div>

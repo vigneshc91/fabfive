@@ -32,6 +32,7 @@ var UserViewComponent = (function () {
         this.isDatePickerShown = false;
         this.today = new Date();
         this.invalidFile = false;
+        this.isUserSearch = false;
         this.imageBaseUrl = app_constants_1.AppConstants.ImageUrl;
         this.malePlaceholderImage = app_constants_1.AppConstants.AppUrl + 'public/images/placeholder-male.jpg';
         this.femalePlaceholderImage = app_constants_1.AppConstants.AppUrl + 'public/images/placeholder-female.jpg';
@@ -54,6 +55,9 @@ var UserViewComponent = (function () {
             'country': [null, forms_1.Validators.required],
             'pin_code': [null]
         });
+        this.userSearchForm = formBuilder.group({
+            'query': [null]
+        });
         this.users = [];
         this.userModel = new end_user_model_1.EndUser();
         this.addressModel = new address_model_1.Address();
@@ -65,6 +69,10 @@ var UserViewComponent = (function () {
         var _this = this;
         var user = {};
         user.user_type = app_constants_1.AppConstants.USER_TYPE.user;
+        if (this.isUserSearch) {
+            this.searchUser(true);
+            return false;
+        }
         if (load) {
             user.start = this.users.length;
             user.size = app_constants_1.AppConstants.PAGINATION_SIZE;
@@ -262,6 +270,50 @@ var UserViewComponent = (function () {
     UserViewComponent.prototype.handleClick = function (event) {
         if (!(event.target.closest('datepicker') != null || event.target.closest('.btn') != null || event.target.closest('.date_of_birth') != null)) {
             this.hideDatePicker();
+        }
+    };
+    UserViewComponent.prototype.searchUser = function (load, key, value) {
+        var _this = this;
+        if (this.userSearchForm.valid) {
+            if (!key.length) {
+                this.userModel = {};
+                this.isUserSearch = false;
+                this.userSearchForm.reset();
+                this.users = [];
+                this.getUsersList(false);
+            }
+            else {
+                this.isUserSearch = true;
+                if (!load) {
+                    this.userModel = {};
+                    this.userModel[key] = value.query;
+                }
+                var user = this.userModel;
+                if (load) {
+                    user.start = this.users.length;
+                    user.size = app_constants_1.AppConstants.PAGINATION_SIZE;
+                }
+                var response = void 0;
+                response = this.userService.searchUser(user);
+                response.subscribe(function (data) {
+                    if (data.status) {
+                        if (!load) {
+                            _this.users = [];
+                        }
+                        if (data.result.length) {
+                            _this.users = _this.users.concat(data.result);
+                            if (data.result.length < app_constants_1.AppConstants.PAGINATION_SIZE) {
+                                _this.hasMoreUsers = false;
+                            }
+                            else {
+                                _this.hasMoreUsers = true;
+                            }
+                        }
+                    }
+                }, function (err) {
+                    console.log(err);
+                });
+            }
         }
     };
     return UserViewComponent;

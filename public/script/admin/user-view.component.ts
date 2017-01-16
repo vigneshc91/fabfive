@@ -26,6 +26,7 @@ export class UserViewComponent {
     
     userEditForm: FormGroup;
     userAddressEditForm: FormGroup;
+    userSearchForm: FormGroup;
     userEditSuccessMessage: boolean = false;
     userEditFailureMessage: boolean = false;
     userAddressEditSuccessMessage: boolean = false;
@@ -48,6 +49,7 @@ export class UserViewComponent {
     today:Date = new Date();
     user: string;
     invalidFile:boolean = false;
+    isUserSearch: boolean = false;
     imageBaseUrl:string = AppConstants.ImageUrl;
     malePlaceholderImage: string = AppConstants.AppUrl + 'public/images/placeholder-male.jpg';
     femalePlaceholderImage: string = AppConstants.AppUrl + 'public/images/placeholder-female.jpg';
@@ -73,6 +75,9 @@ export class UserViewComponent {
             'country': [null, Validators.required],
             'pin_code': [null]
         });
+        this.userSearchForm = formBuilder.group({
+            'query': [null]
+        });
         this.users = [];
         this.userModel = new EndUser();
         this.addressModel = new Address();
@@ -84,6 +89,10 @@ export class UserViewComponent {
      getUsersList(load?: boolean){
          let user: EndUser = {};
          user.user_type = AppConstants.USER_TYPE.user;
+         if(this.isUserSearch){
+             this.searchUser(true);
+             return false;
+         }
          if(load){
              user.start = this.users.length;
              user.size = AppConstants.PAGINATION_SIZE;
@@ -306,6 +315,52 @@ export class UserViewComponent {
      handleClick(event){
          if(!(event.target.closest('datepicker') != null || event.target.closest('.btn') != null || event.target.closest('.date_of_birth') != null)){
              this.hideDatePicker();
+         }
+     }
+
+     searchUser(load:boolean, key?:string, value?){
+         if(this.userSearchForm.valid){
+             if(!key.length){
+                 this.userModel = {};
+                 this.isUserSearch = false;
+                 this.userSearchForm.reset();
+                 this.users = [];
+                 this.getUsersList(false);
+             } else {
+                 this.isUserSearch = true;
+                 if(!load){
+                    this.userModel = {};
+                    this.userModel[key] = value.query;
+                 }
+                 let user: User = this.userModel;
+                 if(load){
+                    user.start = this.users.length;
+                    user.size = AppConstants.PAGINATION_SIZE;
+                 }
+
+                 let response: Observable<ServiceResponse>;
+                 response =  this.userService.searchUser(user);
+                 response.subscribe(
+                    data => {
+                        if(data.status){
+                            if(!load){
+                                this.users = [];
+                            }
+                            if(data.result.length){
+                                this.users = this.users.concat(data.result);
+                                if(data.result.length < AppConstants.PAGINATION_SIZE){
+                                    this.hasMoreUsers = false;
+                                } else {
+                                    this.hasMoreUsers = true;
+                                }
+                            }
+                        }
+                    },
+                    err => {
+                        console.log(err);
+                    }
+                 );
+             }
          }
      }
 

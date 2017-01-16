@@ -24,6 +24,7 @@ export class UserService {
     private deleteUserUrl = AppConstants.AppUrl + "admin/deleteUser";
     private editEndUserUrl = AppConstants.AppUrl + "admin/editUser";
     private editUserAddressUrl = AppConstants.AppUrl + "admin/editAddress";
+    private searchUserUrl = AppConstants.AppUrl + "user/searchUser";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -138,6 +139,13 @@ export class UserService {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
         return this.http.post(this.deleteUserUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    searchUser(data: User): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.searchUserUrl, data, options)
                         .map((res:Response) => res.json());
     }
 }
