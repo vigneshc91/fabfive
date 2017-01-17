@@ -53,6 +53,7 @@ AppConstants.USER_TYPE = {
     'user': 3
 };
 AppConstants.PAGINATION_SIZE = 10;
+AppConstants.MAX_VALUE = 99999999;
 AppConstants.VENDOR_NAMES = {
     1: "EQUITY",
     2: "COMMODITY",
@@ -60,6 +61,14 @@ AppConstants.VENDOR_NAMES = {
     4: "LIFE INSURANCE",
     5: "HEALTH INSURANCE",
     6: "GENERAL INSURANCE"
+};
+AppConstants.VENDOR_VALUES = {
+    "EQUITY": 1,
+    "COMMODITY": 2,
+    "MUTUAL_FUND": 3,
+    "LIFE_INSURANCE": 4,
+    "HEALTH_INSURANCE": 5,
+    "GENERAL_INSURANCE": 6
 };
 AppConstants.VENDOR_TYPES = [
     {
@@ -98,6 +107,20 @@ AppConstants.GENDER_TYPES = [
     },
     {
         name: 'Female',
+        value: 2
+    }
+];
+AppConstants.MUTUAL_FUND_NAMES = {
+    1: 'SIP',
+    2: 'ONE TIME INVESTMENT'
+};
+AppConstants.MUTUAL_FUND_TYPES = [
+    {
+        name: 'SIP',
+        value: 1
+    },
+    {
+        name: 'ONE TIME INVESTMENT',
         value: 2
     }
 ];

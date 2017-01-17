@@ -16,6 +16,8 @@ import { VendorViewComponent } from './admin/vendor-view.component';
 import { UserDashboardComponent } from './admin/user-dashboard.component';
 import { UserCreateComponent } from './admin/user-create.component';
 import { UserViewComponent } from './admin/user-view.component';
+import { MutualFundDashboardComponent } from './admin/mutual-fund-dashboard.component';
+import { MutualFundCreateComponent } from './admin/mutual-fund-create.component';
 
 let routeurl:string = AppConstants.RouteUrl;
 
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: routeurl + '/user/dashboard', component: UserDashboardComponent },
   { path: routeurl + '/user/create', component: UserCreateComponent },
   { path: routeurl + '/user/view', component: UserViewComponent },
+  { path: routeurl + '/mutualFund/dashboard', component: MutualFundDashboardComponent },
+  { path: routeurl + '/mutualFund/create', component: MutualFundCreateComponent },
 ];
 
 @NgModule({

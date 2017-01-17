@@ -1,0 +1,77 @@
+<user-header></user-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default login-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center text-default">Create Mutal Fund</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div *ngIf="mutualFundCreateSuccessMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+                        <div *ngIf="mutualFundCreateFailureMessage" class="alert alert-danger" role="alert">{{ failureMessage }}</div>
+                        <form [formGroup]="mutualFundCreateForm" (ngSubmit)="createMutualFund(mutualFundCreateForm.value)">
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['user_id'].valid && mutualFundCreateForm.controls['user_id'].touched}">
+                                <label for="user_id" class="text-primary">User</label>
+                                <select class="form-control" name="user_id" id="user_id" placeholder="User" [formControl]="mutualFundCreateForm.controls['user_id']">
+                                    <option value="" selected>Select User</option>
+                                    <option *ngFor="let user of users" [value]="user.user_id">{{ user.first_name + ' ' + user.last_name }}</option>
+                                </select>
+                                <small *ngIf="mutualFundCreateForm.controls['user_id'].hasError('required') && mutualFundCreateForm.controls['user_id'].touched" class="text-danger">User Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['vendor_id'].valid && mutualFundCreateForm.controls['vendor_id'].touched}">
+                                <label for="vendor_id" class="text-primary">Vendor</label>
+                                <select class="form-control" name="vendor_id" id="vendor_id" placeholder="Vendor" [formControl]="mutualFundCreateForm.controls['vendor_id']">
+                                    <option value="" selected>Select Vendor</option>
+                                    <option *ngFor="let vendor of vendors" [value]="vendor.id">{{ vendor.name }}</option>
+                                </select>
+                                <small *ngIf="mutualFundCreateForm.controls['vendor_id'].hasError('required') && mutualFundCreateForm.controls['vendor_id'].touched" class="text-danger">Vendor Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['folio_number'].valid && mutualFundCreateForm.controls['folio_number'].touched}">
+                                <label for="folio_number" class="text-primary">Folio Number</label>
+                                <input type="text" class="form-control" name="folio_number" id="folio_number" placeholder="Folio Number" [formControl]="mutualFundCreateForm.controls['folio_number']">
+                                <small *ngIf="mutualFundCreateForm.controls['folio_number'].hasError('required') && mutualFundCreateForm.controls['folio_number'].touched" class="text-danger">Folio Number Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['type'].valid && mutualFundCreateForm.controls['type'].touched}">
+                                <label for="type" class="text-primary">Type</label>
+                                <select class="form-control" name="type" id="type" placeholder="Type" [formControl]="mutualFundCreateForm.controls['type']">
+                                    <option value="" selected>Select Type</option>
+                                    <option *ngFor="let type of types" [value]="type.value">{{ type.name }}</option>
+                                </select>
+                                <small *ngIf="mutualFundCreateForm.controls['type'].hasError('required') && mutualFundCreateForm.controls['type'].touched" class="text-danger">Type Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['scheme'].valid && mutualFundCreateForm.controls['scheme'].touched}">
+                                <label for="scheme" class="text-primary">Scheme</label>
+                                <input type="text" class="form-control" name="scheme" id="scheme" placeholder="Scheme" [formControl]="mutualFundCreateForm.controls['scheme']">
+                                <small *ngIf="mutualFundCreateForm.controls['scheme'].hasError('required') && mutualFundCreateForm.controls['scheme'].touched" class="text-danger">Scheme Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['start_date'].valid && mutualFundCreateForm.controls['start_date'].touched}">
+                                <label for="start_date" class="text-primary">Start Date</label>
+                                <div class="input-group date-picker">
+                                    <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date" [(ngModel)]="datePickerValue" [formControl]="mutualFundCreateForm.controls['start_date']" (focus)="showDatePicker()" readonly>
+                                    <span class="input-group-addon" (focus)="showDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                                <div class="dp-popup" *ngIf="isDatePickerShown">
+                                    <datepicker [(ngModel)]="datePickerDate" [showWeeks]="false" [maxDate]="today" [ngModelOptions]="{standalone: true}" (selectionDone)="dateSelected($event)"></datepicker>
+                                </div>
+                                <small *ngIf="mutualFundCreateForm.controls['start_date'].hasError('required') && mutualFundCreateForm.controls['start_date'].touched" class="text-danger">Start Date Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['amount_invested'].valid && mutualFundCreateForm.controls['amount_invested'].touched}">
+                                <label for="amount_invested" class="text-primary">Amount Invested</label>
+                                <input type="text" class="form-control" name="amount_invested" id="amount_invested" placeholder="Amount Invested" [formControl]="mutualFundCreateForm.controls['amount_invested']">
+                                <small *ngIf="mutualFundCreateForm.controls['amount_invested'].hasError('required') && mutualFundCreateForm.controls['amount_invested'].touched" class="text-danger">Amount Invested Required</small>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundCreateForm.controls['comments'].valid && mutualFundCreateForm.controls['comments'].touched}">
+                                <label for="comments" class="text-primary">Comments</label>
+                                <input type="text" class="form-control" name="comments" id="comments" placeholder="Comments" [formControl]="mutualFundCreateForm.controls['comments']">
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="!mutualFundCreateForm.valid">Create</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

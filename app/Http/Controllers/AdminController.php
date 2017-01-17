@@ -691,4 +691,12 @@ class AdminController extends Controller
     public function userView(){
         return view('admin.dashboard');
     }
+
+    public function mutualFundDashboard(){
+        return view('admin.dashboard');
+    }
+    
+    public function mutualFundCreate(){
+        return view('admin.dashboard');
+    }
 }

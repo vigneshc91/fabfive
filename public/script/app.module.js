@@ -32,6 +32,8 @@ var vendor_view_component_1 = require("./admin/vendor-view.component");
 var user_dashboard_component_1 = require("./admin/user-dashboard.component");
 var user_create_component_1 = require("./admin/user-create.component");
 var user_view_component_1 = require("./admin/user-view.component");
+var mutual_fund_dashboard_component_1 = require("./admin/mutual-fund-dashboard.component");
+var mutual_fund_create_component_1 = require("./admin/mutual-fund-create.component");
 // Services
 var login_logout_service_1 = require("./services/login-logout.service");
 var AppModule = (function () {
@@ -46,7 +48,7 @@ AppModule = __decorate([
             super_admin_create_component_1.SuperAdminCreateComponent, super_admin_view_component_1.SuperAdminViewComponent, change_password_component_1.ChangePasswordComponent,
             admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent, vendor_dashboard_component_1.VendorDashboardComponent,
             vendor_create_component_1.VendorCreateComponent, vendor_view_component_1.VendorViewComponent, user_dashboard_component_1.UserDashboardComponent,
-            user_create_component_1.UserCreateComponent, user_view_component_1.UserViewComponent],
+            user_create_component_1.UserCreateComponent, user_view_component_1.UserViewComponent, mutual_fund_dashboard_component_1.MutualFundDashboardComponent, mutual_fund_create_component_1.MutualFundCreateComponent],
         providers: [login_logout_service_1.LoginLogoutService],
         bootstrap: [app_component_1.AppComponent]
     }),

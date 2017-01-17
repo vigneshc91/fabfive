@@ -35,6 +35,8 @@ export class AppConstants {
     }
 
     public static PAGINATION_SIZE:number = 10;
+
+    public static MAX_VALUE: number = 99999999;
     
     public static VENDOR_NAMES = {
         1: "EQUITY",
@@ -43,6 +45,15 @@ export class AppConstants {
         4: "LIFE INSURANCE",
         5: "HEALTH INSURANCE",
         6: "GENERAL INSURANCE"
+    };
+
+    public static VENDOR_VALUES = {
+        "EQUITY": 1,
+        "COMMODITY": 2,
+        "MUTUAL_FUND": 3,
+        "LIFE_INSURANCE": 4,
+        "HEALTH_INSURANCE": 5,
+        "GENERAL_INSURANCE": 6
     };
 
     public static VENDOR_TYPES = [
@@ -84,6 +95,22 @@ export class AppConstants {
         },
         {
             name: 'Female',
+            value: 2
+        }
+    ];
+
+    public static MUTUAL_FUND_NAMES = {
+        1: 'SIP',
+        2: 'ONE TIME INVESTMENT'
+    };
+    
+    public static MUTUAL_FUND_TYPES = [
+        {
+            name: 'SIP',
+            value: 1
+        },
+        {
+            name: 'ONE TIME INVESTMENT',
             value: 2
         }
     ];

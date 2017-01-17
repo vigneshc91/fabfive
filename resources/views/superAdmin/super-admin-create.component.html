@@ -13,12 +13,12 @@
                         <form [formGroup]="adminCreateForm" (ngSubmit)="createAdmin(adminCreateForm.value)">
                             <div class="form-group" [ngClass]="{'has-error':!adminCreateForm.controls['first_name'].valid && adminCreateForm.controls['first_name'].touched}">
                                 <label for="first_name" class="text-primary">First Name</label>
-                                <input type="type" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="adminCreateForm.controls['first_name']">
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" [formControl]="adminCreateForm.controls['first_name']">
                                 <small *ngIf="adminCreateForm.controls['first_name'].hasError('required') && adminCreateForm.controls['first_name'].touched" class="text-danger">First Name Required</small>
                             </div>
                             <div class="form-group">
                                 <label for="last_name" class="text-primary">Last Name</label>
-                                <input type="type" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="adminCreateForm.controls['last_name']">
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" [formControl]="adminCreateForm.controls['last_name']">
                             </div>
                             <div class="form-group" [ngClass]="{'has-error':!adminCreateForm.controls['email'].valid && adminCreateForm.controls['email'].touched}">
                                 <label for="email" class="text-primary">Email address</label>

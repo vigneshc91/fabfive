@@ -121,3 +121,7 @@ Route::get('user/create', 'AdminController@userCreate');
 
 Route::get('user/view', 'AdminController@userView');
 
+Route::get('mutualFund/dashboard', 'AdminController@mutualFundDashboard');
+
+Route::get('mutualFund/create', 'AdminController@mutualFundCreate');
+
