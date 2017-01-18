@@ -28,6 +28,7 @@ import { UserCreateComponent } from './admin/user-create.component';
 import { UserViewComponent } from './admin/user-view.component';
 import { MutualFundDashboardComponent } from './admin/mutual-fund-dashboard.component';
 import { MutualFundCreateComponent } from './admin/mutual-fund-create.component';
+import { MutualFundViewComponent } from './admin/mutual-fund-view.component';
 
 // Services
 import { LoginLogoutService } from './services/login-logout.service';
@@ -39,7 +40,8 @@ import { LoginLogoutService } from './services/login-logout.service';
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
                   VendorCreateComponent, VendorViewComponent, UserDashboardComponent,
-                  UserCreateComponent, UserViewComponent, MutualFundDashboardComponent, MutualFundCreateComponent ],
+                  UserCreateComponent, UserViewComponent, MutualFundDashboardComponent,
+                  MutualFundCreateComponent, MutualFundViewComponent ],
   providers: [ LoginLogoutService ],
   bootstrap:    [ AppComponent ]
 })

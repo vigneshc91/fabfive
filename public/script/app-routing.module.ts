@@ -18,6 +18,7 @@ import { UserCreateComponent } from './admin/user-create.component';
 import { UserViewComponent } from './admin/user-view.component';
 import { MutualFundDashboardComponent } from './admin/mutual-fund-dashboard.component';
 import { MutualFundCreateComponent } from './admin/mutual-fund-create.component';
+import { MutualFundViewComponent } from './admin/mutual-fund-view.component';
 
 let routeurl:string = AppConstants.RouteUrl;
 
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: routeurl + '/user/view', component: UserViewComponent },
   { path: routeurl + '/mutualFund/dashboard', component: MutualFundDashboardComponent },
   { path: routeurl + '/mutualFund/create', component: MutualFundCreateComponent },
+  { path: routeurl + '/mutualFund/view', component: MutualFundViewComponent },
 ];
 
 @NgModule({

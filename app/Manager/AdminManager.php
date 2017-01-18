@@ -489,7 +489,10 @@ class AdminManager {
                 array_push($query, ['scheme', $input['scheme']]);
             }
 
-            $result = MutualFund::where($query)->skip($start)->take($size)->get();
+            $result = MutualFund::where($query)
+                                    ->join('users', 'mutual_fund.user_id' , '=', 'users.id')
+                                    ->select('mutual_fund.*', 'users.first_name', 'users.last_name', 'users.email', 'users.profile_pic', 'users.pan_card', 'users.contact_number')
+                                    ->skip($start)->take($size)->get();
 
             return $result;
 

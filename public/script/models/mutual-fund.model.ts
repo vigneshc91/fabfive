@@ -3,7 +3,7 @@ export class MutualFund {
     id?: number;
     mutual_fund_id?: number;
     user_id?: number;
-    vendpr_id?: number;
+    vendor_id?: number;
     folio_number?: string;
     type?: number;
     scheme?: string;

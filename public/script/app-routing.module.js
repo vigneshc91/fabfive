@@ -28,6 +28,7 @@ var user_create_component_1 = require("./admin/user-create.component");
 var user_view_component_1 = require("./admin/user-view.component");
 var mutual_fund_dashboard_component_1 = require("./admin/mutual-fund-dashboard.component");
 var mutual_fund_create_component_1 = require("./admin/mutual-fund-create.component");
+var mutual_fund_view_component_1 = require("./admin/mutual-fund-view.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
     // super admin routes
@@ -50,6 +51,7 @@ var routes = [
     { path: routeurl + '/user/view', component: user_view_component_1.UserViewComponent },
     { path: routeurl + '/mutualFund/dashboard', component: mutual_fund_dashboard_component_1.MutualFundDashboardComponent },
     { path: routeurl + '/mutualFund/create', component: mutual_fund_create_component_1.MutualFundCreateComponent },
+    { path: routeurl + '/mutualFund/view', component: mutual_fund_view_component_1.MutualFundViewComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

@@ -15,6 +15,9 @@ export class MutualFundService {
     private token:string;
     private common:Common;
     private createMutualFundUrl = AppConstants.AppUrl + "admin/createMutualFund";
+    private editMutualFundUrl = AppConstants.AppUrl + "admin/editMutualFund";
+    private deleteMutualFundUrl = AppConstants.AppUrl + "admin/deleteMutualFund";
+    private getMutualFundsListUrl = AppConstants.AppUrl + "admin/getMutualFundsList";
    
 
     constructor(private http: Http){
@@ -31,9 +34,26 @@ export class MutualFundService {
                         .map((res:Response) => res.json());
     }
 
- 
+    editMutualFund(data: MutualFund): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.editMutualFundUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
 
-    
+    deleteMutualFund(data: MutualFund): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.deleteMutualFundUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getMutualFundsList(data: MutualFund): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.getMutualFundsListUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
 
    
 }
