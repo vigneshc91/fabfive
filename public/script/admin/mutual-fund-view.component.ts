@@ -17,6 +17,9 @@ let route:string = AppConstants.RouteUrl;
 
 @Component({
     selector: 'mutual-fund-view',
+    host: {
+        '(document:click)': 'handleClick($event)'
+    },
     templateUrl: route + '/resources/views/admin/mutual-fund-view.component.html',
     providers: [ VendorService, UserService, MutualFundService ] 
 })
@@ -36,7 +39,9 @@ export class MutualFundViewComponent {
     isEditMutualFund: boolean = false;
     datePickerDate;
     datePickerValue;
+    matureDatePickerValue;
     isDatePickerShown: boolean = false;
+    isMatureDatePickerShown: boolean = false;
     today:Date = new Date();
     types;
     users: EndUser[];
@@ -52,7 +57,9 @@ export class MutualFundViewComponent {
             'scheme': [null, Validators.required],
             'start_date': [null, Validators.required],
             'amount_invested': [null, Validators.required],
-            'comments': [null]
+            'comments': [null],
+            'mature_date': [null],
+            'matured_amount': [null],
         });
         this.types = AppConstants.MUTUAL_FUND_TYPES;
         this.mutualFunds = [];
@@ -190,7 +197,9 @@ export class MutualFundViewComponent {
             'scheme': [mutualFund.scheme, Validators.required],
             'start_date': [mutualFund.start_date, Validators.required],
             'amount_invested': [mutualFund.amount_invested, Validators.required],
-            'comments': [mutualFund.comments]
+            'comments': [mutualFund.comments],
+            'mature_date': [mutualFund.mature_date],
+            'matured_amount': [mutualFund.matured_amount],
         });
 
     }
@@ -212,7 +221,13 @@ export class MutualFundViewComponent {
                         this.mutualFundEditSuccessMessage = true;
                         this.successMessage = data.result;
                         value.id = this.mutualFundModel.id;
-                        this.mutualFunds[this.mutualFundModel.index] = value;
+
+                        for(let key in this.mutualFunds[this.mutualFundModel.index]){
+                            if(value[key] != undefined){
+                                this.mutualFunds[this.mutualFundModel.index][key] = value[key];
+                            }
+                        }
+                        
                         this.mutualFundModel = {};
                         setTimeout(function() {
                             this.mutualFundEditSuccessMessage = false;
@@ -233,6 +248,38 @@ export class MutualFundViewComponent {
 
         }
     }
+
+    showDatePicker(){
+         this.isDatePickerShown = true;
+     }
+
+     hideDatePicker(){
+         this.isDatePickerShown = false;
+     }
+
+     showMatureDatePicker(){
+         this.isMatureDatePickerShown = true;
+     }
+
+     hideMatureDatePicker(){
+         this.isMatureDatePickerShown = false;
+     }
+
+     dateSelected(event){
+         this.datePickerValue = moment(event).format("YYYY-MM-DD");
+         this.hideDatePicker();
+     }
+
+     matureDateSelected(event){
+         this.matureDatePickerValue = moment(event).format("YYYY-MM-DD");
+         this.hideMatureDatePicker();
+     }
+
+     handleClick(event){
+         if(!(event.target.closest('datepicker') != null || event.target.closest('.btn') != null || event.target.closest('.date-picker') != null)){
+             this.hideDatePicker();
+         }
+     }
      
 
 }

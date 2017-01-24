@@ -87,6 +87,20 @@
                                 <label for="comments" class="text-primary">Comments</label>
                                 <input type="text" class="form-control" name="comments" id="comments" placeholder="Comments" [formControl]="mutualFundEditForm.controls['comments']">
                             </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundEditForm.controls['mature_date'].valid && mutualFundEditForm.controls['mature_date'].touched}">
+                                <label for="mature_date" class="text-primary">Mature Date</label>
+                                <div class="input-group date-picker">
+                                    <input type="text" class="form-control" name="mature_date" id="mature_date" placeholder="Matured Date" [(ngModel)]="matureDatePickerValue" [formControl]="mutualFundEditForm.controls['mature_date']" (focus)="showMatureDatePicker()" readonly>
+                                    <span class="input-group-addon" (focus)="showMatureDatePicker()"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                                <div class="dp-popup" *ngIf="isMatureDatePickerShown">
+                                    <datepicker [(ngModel)]="datePickerDate" [showWeeks]="false" [maxDate]="today" [ngModelOptions]="{standalone: true}" (selectionDone)="matureDateSelected($event)"></datepicker>
+                                </div>
+                            </div>
+                            <div class="form-group" [ngClass]="{'has-error':!mutualFundEditForm.controls['matured_amount'].valid && mutualFundEditForm.controls['matured_amount'].touched}">
+                                <label for="matured_amount" class="text-primary">Matured Amount</label>
+                                <input type="text" class="form-control" name="matured_amount" id="matured_amount" placeholder="Matured Amount" [formControl]="mutualFundEditForm.controls['matured_amount']">
+                            </div>
                             <p class="text-center">
                                 <button type="button" class="btn btn-danger" (click)="cancelEditMutualFund()">Cancel</button>
                                 <button type="submit" class="btn btn-primary" [disabled]="!mutualFundEditForm.valid">Edit</button>
