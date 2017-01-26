@@ -14,7 +14,7 @@
                     </span>
                 </div>
             </form>
-            <form [formGroup]="mutualFundSearchForm" class="col-md-6 pull-right" (ngSubmit)="searchMutualFund(mutualFundSearchForm.value)">
+            <form [formGroup]="mutualFundSearchForm" class="col-md-7 pull-right" (ngSubmit)="searchMutualFund(mutualFundSearchForm.value)">
                 <div class="input-group input-group-sm">
                     <select class="form-control input-sm" name="user_id" id="search_user_id" placeholder="User" [formControl]="mutualFundSearchForm.controls['user_id']">
                         <option value="" selected>Select User</option>
@@ -91,7 +91,7 @@
         <div class="col-md-offset-3 col-md-6">
             <div class="panel panel-default login-panel">
                 <div class="panel-heading">
-                    <a href="javascript:void(0)" (click)="cancelEditMutualFund()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a href="javascript:void(0)" class="pull-left text-warning" (click)="cancelEditMutualFund()"><span class="glyphicon glyphicon-chevron-left"></span></a>
                     <h3 class="panel-title text-center text-default">Edit Mutual Fund</h3>
                 </div>
                 <div class="panel-body">
