@@ -19,6 +19,7 @@ var MutualFundService = (function () {
         this.editMutualFundUrl = app_constants_1.AppConstants.AppUrl + "admin/editMutualFund";
         this.deleteMutualFundUrl = app_constants_1.AppConstants.AppUrl + "admin/deleteMutualFund";
         this.getMutualFundsListUrl = app_constants_1.AppConstants.AppUrl + "admin/getMutualFundsList";
+        this.getMutualFundByFolioNumberUrl = app_constants_1.AppConstants.AppUrl + "admin/getMutualFundByFolioNumber";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
@@ -44,6 +45,12 @@ var MutualFundService = (function () {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.getMutualFundsListUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    MutualFundService.prototype.getMutualFundByFolioNumber = function (data) {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getMutualFundByFolioNumberUrl, data, options)
             .map(function (res) { return res.json(); });
     };
     return MutualFundService;

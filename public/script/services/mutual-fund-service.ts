@@ -18,6 +18,7 @@ export class MutualFundService {
     private editMutualFundUrl = AppConstants.AppUrl + "admin/editMutualFund";
     private deleteMutualFundUrl = AppConstants.AppUrl + "admin/deleteMutualFund";
     private getMutualFundsListUrl = AppConstants.AppUrl + "admin/getMutualFundsList";
+    private getMutualFundByFolioNumberUrl = AppConstants.AppUrl + "admin/getMutualFundByFolioNumber";
    
 
     constructor(private http: Http){
@@ -52,6 +53,13 @@ export class MutualFundService {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
         return this.http.post(this.getMutualFundsListUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getMutualFundByFolioNumber(data: MutualFund): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.getMutualFundByFolioNumberUrl, data, options)
                         .map((res:Response) => res.json());
     }
 

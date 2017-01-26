@@ -5,13 +5,13 @@
             <form [formGroup]="vendorSearchForm" (ngSubmit)="searchVendor(vendorSearchForm.value)">
                 <div class="col-md-4 pull-right">
                     <div class="input-group">
-                    <select class="form-control" name="type" id="type" placeholder="Vendor Type" [formControl]="vendorSearchForm.controls['type']">
-                        <option value="" selected>Select Vendor Type</option>
-                        <option *ngFor="let vendor of vendorList" [value]="vendor.value">{{ vendor.name }}</option>
-                    </select>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Go!</button>
-                    </span>
+                        <select class="form-control" name="type" id="type" placeholder="Vendor Type" [formControl]="vendorSearchForm.controls['type']">
+                            <option value="" selected>Select Vendor Type</option>
+                            <option *ngFor="let vendor of vendorList" [value]="vendor.value">{{ vendor.name }}</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Go!</button>
+                        </span>
                     </div>
                 </div>
             </form>

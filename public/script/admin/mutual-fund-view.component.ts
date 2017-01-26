@@ -27,6 +27,8 @@ let route:string = AppConstants.RouteUrl;
 export class MutualFundViewComponent {
     
     mutualFundEditForm: FormGroup;
+    mutualFundSearchForm: FormGroup;
+    mutualFundSearchByFolioNumberForm: FormGroup;
     mutualFundEditSuccessMessage: boolean = false;
     mutualFundEditFailureMessage: boolean = false;
     mutualFundDeleteSuccessMessage: boolean = false;
@@ -44,8 +46,14 @@ export class MutualFundViewComponent {
     isMatureDatePickerShown: boolean = false;
     today:Date = new Date();
     types;
+    typeNames;
+    status;
+    statusNames;
     users: EndUser[];
     vendors: Vendor[];
+    imageBaseUrl:string = AppConstants.ImageUrl;
+    malePlaceholderImage: string = AppConstants.AppUrl + 'public/images/placeholder-male.jpg';
+    femalePlaceholderImage: string = AppConstants.AppUrl + 'public/images/placeholder-female.jpg';
     @ViewChild('deleteMutualFundModal') public deleteMutualFundModal:ModalDirective;
 
     constructor(private formBuilder: FormBuilder, private vendorService: VendorService, private userService: UserService, private mutualFundService: MutualFundService) {
@@ -60,8 +68,21 @@ export class MutualFundViewComponent {
             'comments': [null],
             'mature_date': [null],
             'matured_amount': [null],
+            'status': ["", Validators.required],
+        });
+        this.mutualFundSearchForm = formBuilder.group({
+            'user_id': [""],
+            'vendor_id': [""],
+            'type': [""],
+            'scheme': [null]
+        });
+        this.mutualFundSearchByFolioNumberForm = formBuilder.group({
+            'folio_number': [null]
         });
         this.types = AppConstants.MUTUAL_FUND_TYPES;
+        this.typeNames = AppConstants.MUTUAL_FUND_NAMES;
+        this.status = AppConstants.MUTUAL_FUND_STATUS;
+        this.statusNames = AppConstants.MUTUAL_FUND_STATUS_NAMES;
         this.mutualFunds = [];
         this.mutualFundModel = new MutualFund();
         this.getUsers();
@@ -120,6 +141,11 @@ export class MutualFundViewComponent {
              mutualFund.start = this.mutualFunds.length;
              mutualFund.size = AppConstants.PAGINATION_SIZE;
          }
+         for(let key in this.mutualFundModel){
+             if(this.mutualFundModel.hasOwnProperty(key) && this.mutualFundModel[key] != null){
+                mutualFund[key] = this.mutualFundModel[key];
+            }
+         }   
 
          let response: Observable<ServiceResponse>;
          response =  this.mutualFundService.getMutualFundsList(mutualFund);
@@ -141,6 +167,51 @@ export class MutualFundViewComponent {
              }
          );
      }
+
+     searchMutualFund(value: MutualFund){
+         for(let key in value){
+             if(value.hasOwnProperty(key) && value[key] != null){
+                this.mutualFundModel[key] = value[key];
+            }
+         }
+         this.mutualFunds = [];
+         this.getMutualFundsList(false);
+     }
+
+     resetMutualFundSearch(){
+         this.mutualFundModel = {};
+         this.mutualFundSearchForm.reset({
+            'user_id': "",
+            'vendor_id': "",
+            'type': ""
+         });
+         this.mutualFunds = [];
+         this.getMutualFundsList(false);
+    }
+
+    searchMutualFundByFolioNumber(value: MutualFund){
+        let response: Observable<ServiceResponse>;
+        response =  this.mutualFundService.getMutualFundByFolioNumber(value);
+        response.subscribe(
+            data => {
+                this.mutualFunds = [];
+                if(data.status){
+                    if(typeof data.result != 'string'){
+                        this.mutualFunds.push(data.result);
+                    }
+                }
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    resetMutualFundSearchByFolioNumber(){
+        this.mutualFundSearchByFolioNumberForm.reset();
+        this.mutualFunds = [];
+        this.getMutualFundsList(false);
+    }
 
     showDeleteConfirm(index:number, mutualFundId:number){
         this.mutualFundModel = {
@@ -200,6 +271,7 @@ export class MutualFundViewComponent {
             'comments': [mutualFund.comments],
             'mature_date': [mutualFund.mature_date],
             'matured_amount': [mutualFund.matured_amount],
+            'status': [mutualFund.status]
         });
 
     }
@@ -278,6 +350,7 @@ export class MutualFundViewComponent {
      handleClick(event){
          if(!(event.target.closest('datepicker') != null || event.target.closest('.btn') != null || event.target.closest('.date-picker') != null)){
              this.hideDatePicker();
+             this.hideMatureDatePicker();
          }
      }
      

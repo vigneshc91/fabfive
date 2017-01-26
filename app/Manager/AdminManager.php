@@ -459,7 +459,11 @@ class AdminManager {
 
             $folioNumber = $input['folio_number'];
 
-            $mutualFund = MutualFund::where('folio_number', $folioNumber)->first();
+            $mutualFund = MutualFund::where('folio_number', $folioNumber)
+                                        ->join('users', 'mutual_fund.user_id' , '=', 'users.id')
+                                        ->join('vendor', 'mutual_fund.vendor_id' , '=', 'vendor.id')
+                                        ->select('mutual_fund.*', 'users.first_name', 'users.last_name', 'users.email', 'users.profile_pic', 'users.pan_card', 'users.contact_number', 'users.gender', 'vendor.name as vendor_name')
+                                        ->first();
             
             return $mutualFund;
 
@@ -491,7 +495,8 @@ class AdminManager {
 
             $result = MutualFund::where($query)
                                     ->join('users', 'mutual_fund.user_id' , '=', 'users.id')
-                                    ->select('mutual_fund.*', 'users.first_name', 'users.last_name', 'users.email', 'users.profile_pic', 'users.pan_card', 'users.contact_number')
+                                    ->join('vendor', 'mutual_fund.vendor_id' , '=', 'vendor.id')
+                                    ->select('mutual_fund.*', 'users.first_name', 'users.last_name', 'users.email', 'users.profile_pic', 'users.pan_card', 'users.contact_number', 'users.gender', 'vendor.name as vendor_name')
                                     ->skip($start)->take($size)->get();
 
             return $result;

@@ -114,4 +114,25 @@ export class AppConstants {
             value: 2
         }
     ];
+
+    public static MUTUAL_FUND_STATUS = [
+        {
+            name: 'ACTIVE',
+            value: 1
+        },
+        {
+            name: 'HOLD',
+            value: 2
+        },
+        {
+            name: 'CLOSED',
+            value: 3
+        }
+    ];
+
+    public static MUTUAL_FUND_STATUS_NAMES = {
+        1: 'ACTIVE',
+        2: 'HOLD',
+        3: 'CLOSED'
+    }
 }

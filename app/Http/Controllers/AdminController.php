@@ -466,7 +466,7 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            $input = $request->only('mutual_fund_id', 'user_id', 'vendor_id', 'type', 'scheme', 'start_date', 'amount_invested', 'mature_date', 'matured_amount', 'comments');
+            $input = $request->only('mutual_fund_id', 'user_id', 'vendor_id', 'type', 'scheme', 'start_date', 'amount_invested', 'mature_date', 'matured_amount', 'comments', 'status');
             
             $editMutualFundValidation = Validator::make($input, MutualFund::$editMutualFundRule);
             if(!$editMutualFundValidation->passes()){
