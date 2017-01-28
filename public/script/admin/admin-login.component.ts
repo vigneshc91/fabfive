@@ -21,12 +21,15 @@ export class AdminLoginComponent {
     common: Common;
     adminLoginFailureMessage:boolean = false;
     message: string;
+    private routerurl:string = AppConstants.RouterUrl;
+    forgotPasswordLink: string;
 
     constructor(private router: Router, private formBuilder: FormBuilder, private loginLogoutService: LoginLogoutService) { 
         this.adminLoginForm = formBuilder.group({
             'email': [null, [ Validators.required, CustomValidator.isInvalidEmail ]],
             'password': [null, Validators.required]
         });
+        this.forgotPasswordLink = this.routerurl + "/user/forgotPassword";
         this.common = new Common();
     }
 

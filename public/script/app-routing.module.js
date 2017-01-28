@@ -29,6 +29,7 @@ var user_view_component_1 = require("./admin/user-view.component");
 var mutual_fund_dashboard_component_1 = require("./admin/mutual-fund-dashboard.component");
 var mutual_fund_create_component_1 = require("./admin/mutual-fund-create.component");
 var mutual_fund_view_component_1 = require("./admin/mutual-fund-view.component");
+var forgot_password_component_1 = require("./user/forgot-password.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
     // super admin routes
@@ -39,6 +40,7 @@ var routes = [
     { path: routeurl + '/superAdmin/view', component: super_admin_view_component_1.SuperAdminViewComponent },
     // common routes
     { path: routeurl + '/user/changePassword', component: change_password_component_1.ChangePasswordComponent },
+    { path: routeurl + '/user/forgotPassword', component: forgot_password_component_1.ForgotPasswordComponent },
     // admin routes  
     { path: routeurl + '/admin', redirectTo: routeurl + '/admin/login', pathMatch: 'full' },
     { path: routeurl + '/admin/login', component: admin_login_component_1.AdminLoginComponent },

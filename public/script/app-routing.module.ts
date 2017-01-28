@@ -20,6 +20,8 @@ import { MutualFundDashboardComponent } from './admin/mutual-fund-dashboard.comp
 import { MutualFundCreateComponent } from './admin/mutual-fund-create.component';
 import { MutualFundViewComponent } from './admin/mutual-fund-view.component';
 
+import { ForgotPasswordComponent } from './user/forgot-password.component';
+
 let routeurl:string = AppConstants.RouteUrl;
 
 const routes: Routes = [
@@ -31,6 +33,7 @@ const routes: Routes = [
   { path: routeurl + '/superAdmin/view', component: SuperAdminViewComponent },
   // common routes
   { path: routeurl + '/user/changePassword', component: ChangePasswordComponent },
+  { path: routeurl + '/user/forgotPassword', component: ForgotPasswordComponent },
   // admin routes  
   { path: routeurl + '/admin', redirectTo: routeurl + '/admin/login', pathMatch: 'full' },
   { path: routeurl + '/admin/login', component: AdminLoginComponent },

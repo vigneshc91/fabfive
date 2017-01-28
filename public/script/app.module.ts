@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './user/header.component';
 import { ChangePasswordComponent } from './user/change-password.component';
+import { ForgotPasswordComponent } from './user/forgot-password.component';
 
 // Super Admin Components
 import { SuperAdminLoginComponent } from './superAdmin/super-admin-login.component';
@@ -39,7 +40,7 @@ import { LoginLogoutService } from './services/login-logout.service';
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
-                  VendorCreateComponent, VendorViewComponent, UserDashboardComponent,
+                  VendorCreateComponent, VendorViewComponent, UserDashboardComponent, ForgotPasswordComponent,
                   UserCreateComponent, UserViewComponent, MutualFundDashboardComponent,
                   MutualFundCreateComponent, MutualFundViewComponent ],
   providers: [ LoginLogoutService ],

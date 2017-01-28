@@ -28,9 +28,13 @@ class ErrorConstants {
     const VENDOR_NOT_FOUND = "Vendor not found";
 
     const ALREADY_SUBSCRIBED = "Already Subscribed";
+    const UNSUBSCRIBE_FAILED = "Already unsubscribed or email not exist";
 
     const MUTUAL_FUND_CREATION_FAILED = "Mutual Fund creation failed";
     const MUTUAL_FUND_EDIT_FAILED = "Mutual Fund edit failed";
     const MUTUAL_FUND_DELETE_FAILED = "Mutual Fund delete failed";
     const MUTUAL_FUND_NOT_FOUND = "Mutual Fund not found";
+
+    const CONTACT_FAILED = "There is a problem sending mail, please try again later";
+    const INVALID_VERIFICATION_TOKEN = "Invalid verification token";
 }

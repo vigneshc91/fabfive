@@ -70,9 +70,9 @@ class SuperAdminController extends Controller
         try {
             
             if($this->superAdminManager->verifyAdmin($token)){
-                return json_encode("user verified");
+                return view('home.verifyAdmin')->with('message', SuccessConstants::USER_VERIFIED);
             } else {
-                return json_encode("invalid verification token");
+                return view('home.verifyAdmin')->with('message', ErrorConstants::INVALID_VERIFICATION_TOKEN);
             }
 
         } catch(Exception $e){

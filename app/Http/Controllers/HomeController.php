@@ -88,14 +88,50 @@ class HomeController extends Controller
         try {
 
             if($this->homeManager->unsubscribe($id)){
-                return "unbscribed successfully";
+                return view('home.unsubscribe')->with('message', SuccessConstants::UNSUBSCRIBED_SUCCESSFULLY);
             } else {
-                return "already unsubscribed or email not exist";
+                return view('home.unsubscribe')->with('message', ErrorConstants::UNSUBSCRIBE_FAILED);
             }
-
 
         } catch(Exception $e){
 
         }
     }
+
+    public function contactMail(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $input = $request->only('name', 'email', 'message');
+            
+            $contactValidationRule = array(
+                'name' => 'required',
+                'email' => 'required',
+                'message' => 'required',
+            );
+
+            $contactValidation = Validator::make($input, $contactValidationRule);
+            if(!$contactValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->homeManager->contact($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::CONTACT_SUCCESSFULLY;
+                return json_encode($response);
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::CONTACT_FAILED;
+                return json_encode($response);
+            }
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
 }

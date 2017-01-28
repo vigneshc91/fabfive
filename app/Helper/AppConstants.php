@@ -56,6 +56,8 @@ class AppConstants {
     const SUPER_ADMIN_LAST_NAME = "Admin";
     const SUPER_ADMIN_EMAIL = "support@fabfive.in";
     const SUPER_ADMIN_PASSWORD = "admin123";
+
+    const CONTACT_RECEIPIENT_EMAIL = "fabfiveinvestors@yahoo.com";
     
     const USER_START_VALUE = 0;
     const USER_SIZE_VALUE = 10;

@@ -180,12 +180,14 @@
                     <h2 class="fh5co-uppercase-heading-sm fh5co-no-margin-bottom">Stay With Latest Offers</h2>
                     <p>Shoot Your Mail, We Will Send Latest Updates To You</p>
                     <div class="fh5co-spacer fh5co-spacer-xxs"></div>
-                    <form method="post" action="#">
+                    <form method="post" id="subscribeForm">
+                        <p class="text-success text-center"></p>
+                        <p class="text-danger text-center"></p>
                         <div class="form-group">
-                        <label for="email" class="sr-only">Email address</label>
-                        <input type="email" class="form-control input-lg" id="email" placeholder="Email">
+                            <label for="email" class="sr-only">Email address</label>
+                            <input type="email" class="form-control input-lg" id="email" placeholder="Email" required />
                         </div>
-                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send" />
                     </form>		
                 </div>
             </div>
@@ -196,6 +198,29 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#homeMenu').addClass('active');
+        $('#subscribeForm').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'home/subscribe',
+                method: 'post',
+                dataType: 'json',
+                data: {email: $('#email').val()},
+                success: function(response){
+                    $('#subscribeForm').trigger('reset');
+                    if(response.status){
+                        $('#subscribeForm').find('.text-success').html(response.result);
+                        setTimeout(function(){
+                            $('#subscribeForm').find('.text-success').html('');
+                        }, 3000);
+                    } else {
+                        $('#subscribeForm').find('.text-danger').html(response.result);
+                        setTimeout(function(){
+                            $('#subscribeForm').find('.text-danger').html('');
+                        }, 3000);
+                    }
+                } 
+            });
+        });
     });
 </script>
 @stop

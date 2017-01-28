@@ -16,7 +16,7 @@ class VerifyCsrfToken extends BaseVerifier
         'superAdmin/createAdmin', 'superAdmin/deleteAdmin', 'superAdmin/verifyAdmin',
         'admin/createVendor', 'admin/editVendor', 'admin/deleteVendor', 'admin/getVendorById', 'admin/getVendorsList',
         'admin/createUser', 'admin/editUser', 'admin/editAddress', 'admin/deleteUser',
-        'home/subscribe', 'home/unsubscribe',
+        'home/subscribe', 'home/unsubscribe', 'home/contact',
         'admin/createMutualFund', 'admin/editMutualFund', 'admin/deleteMutualFund',
         'admin/getMutualFundById', 'admin/getMutualFundByFolioNumber', 'admin/getMutualFundsList'
     ];

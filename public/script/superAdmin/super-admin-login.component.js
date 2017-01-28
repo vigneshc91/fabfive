@@ -22,10 +22,12 @@ var SuperAdminLoginComponent = (function () {
         this.formBuilder = formBuilder;
         this.loginLogoutService = loginLogoutService;
         this.superAdminLoginFailureMessage = false;
+        this.routerurl = app_constants_1.AppConstants.RouterUrl;
         this.superAdminLoginForm = formBuilder.group({
             'email': [null, [forms_1.Validators.required, custom_validator_1.CustomValidator.isInvalidEmail]],
             'password': [null, forms_1.Validators.required]
         });
+        this.forgotPasswordLink = this.routerurl + "/user/forgotPassword";
         this.common = new common_1.Common();
     }
     SuperAdminLoginComponent.prototype.superAdminLogin = function (value) {

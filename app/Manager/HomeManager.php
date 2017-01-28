@@ -2,6 +2,8 @@
 
 namespace App\Manager;
 
+use Illuminate\Support\Facades\Mail;
+
 use App\Helper\AppConstants;
 use App\Subscription;
 
@@ -53,5 +55,29 @@ class HomeManager {
             throw $e;
         }
     }
+
+    public function contact($input)
+    {
+        try {
+
+            $data = [
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'query' => $input['message'] 
+            ];
+            $email = AppConstants::CONTACT_RECEIPIENT_EMAIL;
+
+            // Send mail to the admin
+            Mail::send('emails.contactForm', $data, function ($message) use($email) {
+                $message->subject("Query from website");
+                $message->to($email);
+            });
+
+            return true;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }    
 
 }

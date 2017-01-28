@@ -31,6 +31,8 @@ Route::post('home/subscribe', 'HomeController@subscribe');
 
 Route::get('home/unsubscribe/{id}', 'HomeController@unsubscribe');
 
+Route::post('home/contact', 'HomeController@contactMail');
+
 // Apis for the superadmin
 
 Route::post('user/login', 'UserController@login');
@@ -126,4 +128,6 @@ Route::get('mutualFund/dashboard', 'AdminController@mutualFundDashboard');
 Route::get('mutualFund/create', 'AdminController@mutualFundCreate');
 
 Route::get('mutualFund/view', 'AdminController@mutualFundView');
+
+Route::get('user/forgotPassword', 'UserController@userForgotPassword');
 

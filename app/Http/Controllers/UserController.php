@@ -148,9 +148,9 @@ class UserController extends Controller
         try{
             
             if($this->userManager->verifyResetToken($token)){
-                return json_encode("valid token");
+                return view('home.resetPassword')->with('status', true)->with('token', $token);
             } else {
-                return json_encode("invalid reset token");
+                return view('home.resetPassword')->with('status', false)->with('message', ErrorConstants::INVALID_RESET_TOKEN);
             }
 
         } catch(Exception $e){
@@ -337,4 +337,8 @@ class UserController extends Controller
         return view('user.changePassword');
     }
     
+    public function userForgotPassword()
+    {
+        return view('user.changePassword');
+    }
 }

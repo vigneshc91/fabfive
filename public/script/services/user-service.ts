@@ -9,6 +9,7 @@ import { Common } from '../helper/common';
 import { User } from '../models/user.model';
 import { EndUser } from '../models/end-user.model';
 import { Address } from '../models/address.model';
+import { ForgotPassword } from '../models/forgot-password.model';
 
 @Injectable()
 
@@ -25,6 +26,7 @@ export class UserService {
     private editEndUserUrl = AppConstants.AppUrl + "admin/editUser";
     private editUserAddressUrl = AppConstants.AppUrl + "admin/editAddress";
     private searchUserUrl = AppConstants.AppUrl + "user/searchUser";
+    private forgotPasswordUrl = AppConstants.AppUrl + "user/forgotPassword";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -146,6 +148,13 @@ export class UserService {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
         return this.http.post(this.searchUserUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    forgotPassword(data: ForgotPassword): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json' });
+        let options = new RequestOptions({ headers });
+        return this.http.post(this.forgotPasswordUrl, data, options)
                         .map((res:Response) => res.json());
     }
 }

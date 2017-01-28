@@ -22,23 +22,25 @@
     <div class="row">
         <div class="fh5co-spacer fh5co-spacer-sm"></div>	
         <div class="col-md-8">
-            <form action="#" method="post">
+            <form id="contactForm" method="post">
+                <p class="text-center text-success"></p>
+                <p class="text-center text-danger"></p>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="name" class="sr-only">Name</label>
-                        <input placeholder="Name" id="name" type="text" class="form-control input-lg">
+                        <input placeholder="Name" id="name" type="text" class="form-control input-lg" required/>
                     </div>	
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="email" class="sr-only">Email</label>
-                        <input placeholder="Email" id="email" type="text" class="form-control input-lg">
+                        <input placeholder="Email" id="email" type="email" class="form-control input-lg" required/>
                     </div>	
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="message" class="sr-only">Message</label>
-                        <textarea placeholder="Message" id="message" class="form-control input-lg" rows="3"></textarea>
+                        <textarea placeholder="Message" id="message" class="form-control input-lg" rows="3" required></textarea>
                     </div>	
                 </div>
                 <div class="col-md-12">
@@ -66,6 +68,29 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#contactMenu').addClass('active');
+        $('#contactForm').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'home/contact',
+                method: 'post',
+                dataType: 'json',
+                data: {name: $('#name').val(), email: $('#email').val(), message: $('#message').val()},
+                success: function(response){
+                    if(response.status){
+                        $('#contactForm').trigger('reset');
+                        $('#contactForm').find('.text-success').html(response.result);
+                        setTimeout(function(){
+                            $('#contactForm').find('.text-success').html('');
+                        }, 3000);
+                    } else {
+                        $('#contactForm').find('.text-danger').html(response.result);
+                        setTimeout(function(){
+                            $('#contactForm').find('.text-danger').html('');
+                        }, 3000);
+                    }
+                } 
+            });
+        });
     });
 </script>
 @stop
