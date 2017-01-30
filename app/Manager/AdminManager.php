@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use Storage;
+use Illuminate\Support\Facades\DB;
 
 use App\Helper\AppConstants;
 use App\Helper\SuccessConstants;
@@ -499,6 +500,19 @@ class AdminManager {
                                     ->select('mutual_fund.*', 'users.first_name', 'users.last_name', 'users.email', 'users.profile_pic', 'users.pan_card', 'users.contact_number', 'users.gender', 'vendor.name as vendor_name')
                                     ->skip($start)->take($size)->get();
 
+            return $result;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getVendorStat()
+    {
+        try {
+
+            // TODO: get the unique count of type in the vendor table
+            
             return $result;
 
         } catch(Exception $e){
