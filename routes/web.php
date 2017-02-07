@@ -93,6 +93,10 @@ Route::post('user/getLoggedInUser', 'UserController@getLoggedInUser');
 
 Route::post('admin/getVendorStat', 'AdminController@getVendorStat');
 
+Route::post('admin/getUserStat', 'AdminController@getUserStat');
+
+Route::post('admin/getMutualFundStat', 'AdminController@getMutualFundStat');
+
 // Serving web pages
 
 Route::get('superAdmin', 'SuperAdminController@login');

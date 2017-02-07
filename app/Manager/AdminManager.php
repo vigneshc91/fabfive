@@ -511,7 +511,44 @@ class AdminManager {
     {
         try {
 
-            // TODO: get the unique count of type in the vendor table
+            $result = DB::table('vendor')
+                            ->select('type', DB::raw('count(*) as total'))
+                            ->groupBy('type')
+                            ->get();
+            
+            return $result;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getUserStat()
+    {
+        try {
+
+            $result = DB::table('users')
+                            ->select(DB::raw('DATE_FORMAT(created_at, "%m-%Y") as date'), DB::raw('count(*) as total'))
+                            ->where('user_type', '=', AppConstants::userType['user'])
+                            ->groupBy('date')
+                            ->get();
+            
+            return $result;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getMutualFundStat()
+    {
+        try {
+
+            $result = DB::table('mutual_fund')
+                            ->join('users', 'mutual_fund.user_id', '=', 'users.id')
+                            ->select('mutual_fund.user_id', DB::raw('count(*) as total'), 'users.first_name', 'users.last_name')
+                            ->groupBy('user_id')
+                            ->get();
             
             return $result;
 
