@@ -19,6 +19,7 @@ var VendorService = (function () {
         this.getVendorsListUrl = app_constants_1.AppConstants.AppUrl + "admin/getVendorsList";
         this.deleteVendorUrl = app_constants_1.AppConstants.AppUrl + "admin/deleteVendor";
         this.editVendorUrl = app_constants_1.AppConstants.AppUrl + "admin/editVendor";
+        this.getVendorStatUrl = app_constants_1.AppConstants.AppUrl + "admin/getVendorStat";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
@@ -44,6 +45,12 @@ var VendorService = (function () {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.editVendorUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    VendorService.prototype.getVendorStat = function () {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getVendorStatUrl, '', options)
             .map(function (res) { return res.json(); });
     };
     return VendorService;

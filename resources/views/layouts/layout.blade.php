@@ -37,6 +37,7 @@
     </footer>
     <script src="{{ asset('/').('public/js/jquery-1.10.2.min.js') }}"></script>
     <script src="{{ asset('/').('public/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/').('public/js/Chart.bundle.min.js') }}"></script>
     @yield('foot')
   </body>
 </html>

@@ -17,6 +17,7 @@ export class VendorService {
     private getVendorsListUrl = AppConstants.AppUrl + "admin/getVendorsList";
     private deleteVendorUrl = AppConstants.AppUrl + "admin/deleteVendor";
     private editVendorUrl = AppConstants.AppUrl + "admin/editVendor";
+    private getVendorStatUrl = AppConstants.AppUrl + "admin/getVendorStat";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -48,6 +49,14 @@ export class VendorService {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
         return this.http.post(this.editVendorUrl, data, options)
+                        .map((res:Response) => res.json());   
+    }
+
+    getVendorStat(): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.getVendorStatUrl, '', options)
                         .map((res:Response) => res.json());   
     }
 

@@ -1,2 +1,12 @@
 <user-header></user-header>
 <h2 class="text-center text-muted">Vendor Dashboard</h2>
+<div class="container">
+    <div class="col-md-10">
+        <canvas baseChart
+                    [datasets]="vendorChartData"
+                    [labels]="vendorChartLabels"
+                    [options]="vendorChartOptions"
+                    [legend]="vendorChartLegend"
+                    [chartType]="vendorChartType"></canvas>
+    </div>
+</div>

@@ -10,18 +10,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var app_constants_1 = require("../helper/app.constants");
+var vendor_service_1 = require("../services/vendor-service");
 var route = app_constants_1.AppConstants.RouteUrl;
 var VendorDashboardComponent = (function () {
-    function VendorDashboardComponent() {
+    function VendorDashboardComponent(vendorService) {
+        var _this = this;
+        this.vendorService = vendorService;
+        this.vendorChartOptions = {
+            scaleShowVerticalLines: false,
+            responsive: true,
+        };
+        this.vendorChartLabels = [];
+        this.vendorChartType = 'bar';
+        this.vendorChartLegend = false;
+        this.vendorChartData = [
+            { data: [], label: 'Vendor' }
+        ];
+        this.vendor = app_constants_1.AppConstants.VENDOR_TYPES;
+        this.vendor.forEach(function (element) {
+            _this.vendorChartLabels.push(element.name);
+        });
+        this.getVendorStat();
     }
+    VendorDashboardComponent.prototype.getVendorStat = function () {
+        var _this = this;
+        var response;
+        response = this.vendorService.getVendorStat();
+        response.subscribe(function (data) {
+            if (data.status) {
+                var res = data.result;
+                var chartData = [];
+                for (var i = 0; i < res.length; i++) {
+                    if (res[i].total) {
+                        chartData.push(res[i].total);
+                    }
+                    else {
+                        chartData.push(0);
+                    }
+                }
+                _this.vendorChartData = [{ data: chartData, label: 'Vendor' }];
+            }
+        }, function (err) {
+            console.log(err);
+        });
+    };
     return VendorDashboardComponent;
 }());
 VendorDashboardComponent = __decorate([
     core_1.Component({
         selector: 'vendor-dashboard',
-        templateUrl: route + '/resources/views/admin/vendor-dashboard.component.html'
+        templateUrl: route + '/resources/views/admin/vendor-dashboard.component.html',
+        providers: [vendor_service_1.VendorService]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [vendor_service_1.VendorService])
 ], VendorDashboardComponent);
 exports.VendorDashboardComponent = VendorDashboardComponent;
 //# sourceMappingURL=vendor-dashboard.component.js.map

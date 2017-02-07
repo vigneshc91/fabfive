@@ -2,9 +2,12 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+
+// Third party plugins
+import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 // Common Components
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +39,7 @@ import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule, DatepickerModule ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule, DatepickerModule, ChartsModule ],
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
