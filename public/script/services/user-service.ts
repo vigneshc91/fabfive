@@ -27,6 +27,7 @@ export class UserService {
     private editUserAddressUrl = AppConstants.AppUrl + "admin/editAddress";
     private searchUserUrl = AppConstants.AppUrl + "user/searchUser";
     private forgotPasswordUrl = AppConstants.AppUrl + "user/forgotPassword";
+    private getUserStatUrl = AppConstants.AppUrl + "admin/getUserStat";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -155,6 +156,14 @@ export class UserService {
         let headers = new Headers({ 'Content-type': 'application/json' });
         let options = new RequestOptions({ headers });
         return this.http.post(this.forgotPasswordUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getUserStat(): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.getUserStatUrl, '', options)
                         .map((res:Response) => res.json());
     }
 }

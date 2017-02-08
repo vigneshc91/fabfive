@@ -19,6 +19,21 @@ var VendorDashboardComponent = (function () {
         this.vendorChartOptions = {
             scaleShowVerticalLines: false,
             responsive: true,
+            scales: {
+                xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                yAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+            }
         };
         this.vendorChartLabels = [];
         this.vendorChartType = 'bar';

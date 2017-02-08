@@ -26,6 +26,7 @@ var UserService = (function () {
         this.editUserAddressUrl = app_constants_1.AppConstants.AppUrl + "admin/editAddress";
         this.searchUserUrl = app_constants_1.AppConstants.AppUrl + "user/searchUser";
         this.forgotPasswordUrl = app_constants_1.AppConstants.AppUrl + "user/forgotPassword";
+        this.getUserStatUrl = app_constants_1.AppConstants.AppUrl + "admin/getUserStat";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
@@ -130,6 +131,12 @@ var UserService = (function () {
         var headers = new http_1.Headers({ 'Content-type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.forgotPasswordUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getUserStat = function () {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getUserStatUrl, '', options)
             .map(function (res) { return res.json(); });
     };
     return UserService;

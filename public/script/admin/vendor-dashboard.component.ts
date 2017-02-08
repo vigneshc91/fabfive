@@ -19,6 +19,21 @@ export class VendorDashboardComponent {
     vendorChartOptions:any = {
         scaleShowVerticalLines: false,
         responsive: true,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                } 
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                },
+                ticks: {
+                    min: 0
+                }
+            }]
+        }
     };
     vendorChartLabels:string[] = [];
     vendorChartType:string = 'bar';
