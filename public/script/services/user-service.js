@@ -133,10 +133,10 @@ var UserService = (function () {
         return this.http.post(this.forgotPasswordUrl, data, options)
             .map(function (res) { return res.json(); });
     };
-    UserService.prototype.getUserStat = function () {
+    UserService.prototype.getUserStat = function (data) {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.getUserStatUrl, '', options)
+        return this.http.post(this.getUserStatUrl, data, options)
             .map(function (res) { return res.json(); });
     };
     return UserService;

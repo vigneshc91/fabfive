@@ -1,5 +1,15 @@
 <user-header></user-header>
+
+<div class="col-md-2 pull-right">
+    <select class="form-control" (change)="getUserStat($event.target.value)">
+        <option *ngFor="let year of years" value="{{ year }}" [selected]="year == currentYear">{{ year }}</option>
+    </select>
+</div>
+
 <h2 class="text-center text-muted">User Dashboard</h2>
+
+<div class="clearfix"></div>
+
 <div class="container">
     <div class="col-md-offset-2 col-md-8">
         <canvas baseChart

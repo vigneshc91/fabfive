@@ -675,8 +675,7 @@ class AdminController extends Controller
                 $response->status = false;
                 $response->result = ErrorConstants::NO_PRIVILEGE;
                 return json_encode($response);
-            }
-
+            }            
             
             $response->status = true;
             $response->result = $this->adminManager->getVendorStat();
@@ -706,9 +705,17 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            
+            $input = $request->only('year');
+
+            $getVendorStatValidation = Validator::make($input, array('year'=>'required'));
+            if(!$getVendorStatValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
             $response->status = true;
-            $response->result = $this->adminManager->getUserStat();
+            $response->result = $this->adminManager->getUserStat($input);
             return json_encode($response);
 
         } catch(Exception $e){

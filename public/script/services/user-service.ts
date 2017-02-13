@@ -159,11 +159,11 @@ export class UserService {
                         .map((res:Response) => res.json());
     }
 
-    getUserStat(): Observable<ServiceResponse> {
+    getUserStat(data): Observable<ServiceResponse> {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
 
-        return this.http.post(this.getUserStatUrl, '', options)
+        return this.http.post(this.getUserStatUrl, data, options)
                         .map((res:Response) => res.json());
     }
 }

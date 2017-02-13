@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var moment = require("moment");
 var app_constants_1 = require("../helper/app.constants");
 var user_service_1 = require("../services/user-service");
 var route = app_constants_1.AppConstants.RouteUrl;
@@ -18,7 +19,7 @@ var UserDashboardComponent = (function () {
         this.userChartData = [
             { data: [], label: 'User' }
         ];
-        this.userChartLabels = [];
+        this.userChartLabels = moment.monthsShort();
         this.userChartOptions = {
             responsive: true,
             scales: {
@@ -49,25 +50,42 @@ var UserDashboardComponent = (function () {
         ];
         this.userChartLegend = false;
         this.userChartType = 'line';
+        this.currentYear = moment().format("YYYY");
+        this.years = [];
+        var year = 2016;
+        for (var i = 0; i < 5; i++) {
+            this.years.push(year);
+            year += 1;
+        }
     }
     UserDashboardComponent.prototype.ngOnInit = function () {
         this.getUserStat();
     };
-    UserDashboardComponent.prototype.getUserStat = function () {
+    UserDashboardComponent.prototype.getUserStat = function (year) {
         var _this = this;
+        var data = { year: this.currentYear };
+        if (year) {
+            data.year = year;
+        }
         var response;
-        response = this.userService.getUserStat();
+        response = this.userService.getUserStat(data);
         response.subscribe(function (data) {
             if (data.status) {
                 var res = data.result;
-                var dates_1 = [];
-                var totals_1 = [];
-                res.forEach(function (element) {
-                    dates_1.push(element.date);
-                    totals_1.push(element.total);
-                });
-                _this.userChartLabels = dates_1;
-                _this.userChartData = [{ data: totals_1, label: "User" }];
+                var totals = [];
+                var months = {};
+                for (var i = 0; i < res.length; i++) {
+                    months[parseInt(res[i].month)] = { month: parseInt(res[i].month), total: res[i].total };
+                }
+                for (var i = 1; i < _this.userChartLabels.length + 1; i++) {
+                    if (months[i] && months[i].month == i) {
+                        totals.push(months[i].total);
+                    }
+                    else {
+                        totals.push(0);
+                    }
+                }
+                _this.userChartData = [{ data: totals, label: "User" }];
             }
         });
     };

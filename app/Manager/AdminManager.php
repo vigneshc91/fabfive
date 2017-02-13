@@ -523,14 +523,17 @@ class AdminManager {
         }
     }
 
-    public function getUserStat()
+    public function getUserStat($input)
     {
         try {
 
+            $year = $input['year'];
+
             $result = DB::table('users')
-                            ->select(DB::raw('DATE_FORMAT(created_at, "%m-%Y") as date'), DB::raw('count(*) as total'))
+                            ->select(DB::raw('DATE_FORMAT(created_at, "%m") as month'), DB::raw('count(*) as total'))
                             ->where('user_type', '=', AppConstants::userType['user'])
-                            ->groupBy('date')
+                            ->whereYear('created_at', '=', $year)
+                            ->groupBy('month')
                             ->get();
             
             return $result;
