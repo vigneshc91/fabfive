@@ -1,2 +1,8 @@
 <user-header></user-header>
 <h2 class="text-center text-muted">Mutual Fund Dashboard</h2>
+<div>
+  <canvas baseChart
+          [data]="mutualFundChartData"
+          [labels]="mutualFundChartLabels"
+          [chartType]="mutualFundChartType"></canvas>
+</div>

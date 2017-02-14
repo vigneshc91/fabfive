@@ -75,11 +75,11 @@ var UserDashboardComponent = (function () {
                 var totals = [];
                 var months = {};
                 for (var i = 0; i < res.length; i++) {
-                    months[parseInt(res[i].month)] = { month: parseInt(res[i].month), total: res[i].total };
+                    months[parseInt(res[i].month)] = res[i].total;
                 }
                 for (var i = 1; i < _this.userChartLabels.length + 1; i++) {
-                    if (months[i] && months[i].month == i) {
-                        totals.push(months[i].total);
+                    if (months[i]) {
+                        totals.push(months[i]);
                     }
                     else {
                         totals.push(0);
