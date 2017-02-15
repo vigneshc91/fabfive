@@ -1,2 +1,37 @@
 <user-header></user-header>
-<h1 class="text-center text-muted">Welcome Admin</h1>
+
+<h1 class="text-center text-muted">Admin Dashboard</h1>
+
+<div class="container">
+    <div class="col-md-4 pull-right">
+        <h2 class="text-center text-danger">Mutual Funds</h2>
+        <canvas baseChart height="200"
+                [data]="mutualFundChartData"
+                [labels]="mutualFundChartLabels"
+                [chartType]="mutualFundChartType"></canvas>
+    </div>
+    
+    <div class="col-md-4">
+        <h2 class="text-center text-danger">Vendors</h2>
+        <canvas baseChart
+                    [datasets]="vendorChartData"
+                    [labels]="vendorChartLabels"
+                    [options]="vendorChartOptions"
+                    [legend]="vendorChartLegend"
+                    [chartType]="vendorChartType"></canvas>
+    </div>
+
+    <div class="col-md-4">
+        <h2 class="text-center text-danger">Users</h2>
+        <canvas baseChart
+                [datasets]="userChartData"
+                [labels]="userChartLabels"
+                [options]="userChartOptions"
+                [colors]="userChartColors"
+                [legend]="userChartLegend"
+                [chartType]="userChartType"></canvas>
+    </div>
+
+    
+
+</div>

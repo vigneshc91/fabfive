@@ -55,9 +55,13 @@ var VendorDashboardComponent = (function () {
             if (data.status) {
                 var res = data.result;
                 var chartData = [];
+                var vendors = {};
                 for (var i = 0; i < res.length; i++) {
-                    if (res[i].total) {
-                        chartData.push(res[i].total);
+                    vendors[res[i].type] = res[i].total;
+                }
+                for (var i = 1; i < _this.vendor.length + 1; i++) {
+                    if (vendors[i]) {
+                        chartData.push(vendors[i]);
                     }
                     else {
                         chartData.push(0);

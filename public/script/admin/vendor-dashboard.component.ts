@@ -60,9 +60,13 @@ export class VendorDashboardComponent {
                 if(data.status){
                     let res = data.result;
                     let chartData = [];
+                     let vendors = {};
                     for(let i=0; i<res.length; i++){
-                        if(res[i].total){
-                            chartData.push(res[i].total);
+                        vendors[res[i].type] = res[i].total;
+                    }
+                    for(let i=1; i<this.vendor.length+1; i++){
+                        if(vendors[i]){
+                            chartData.push(vendors[i]);
                         } else {
                             chartData.push(0);
                         }

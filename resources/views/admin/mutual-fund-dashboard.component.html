@@ -1,8 +1,18 @@
 <user-header></user-header>
+<div class="col-md-2 pull-right">
+    <select class="form-control" (change)="getMutualFundStat($event.target.value)">
+        <option value="">Select Status</option>
+        <option *ngFor="let status of mutualFundStatus" value="{{ status.value }}">{{ status.name }}</option>
+    </select>
+</div>
+
 <h2 class="text-center text-muted">Mutual Fund Dashboard</h2>
-<div>
-  <canvas baseChart
-          [data]="mutualFundChartData"
-          [labels]="mutualFundChartLabels"
-          [chartType]="mutualFundChartType"></canvas>
+
+<div class="container">
+  <div class="col-md-offset-2 col-md-8">
+    <canvas baseChart height="200"
+            [data]="mutualFundChartData"
+            [labels]="mutualFundChartLabels"
+            [chartType]="mutualFundChartType"></canvas>
+  </div>
 </div>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
+import { BaseChartDirective } from 'ng2-charts';
 
 import { AppConstants } from '../helper/app.constants';
 import { ServiceResponse } from '../models/service.response.model';
@@ -15,25 +16,26 @@ let route:string = AppConstants.RouteUrl;
     providers: [ MutualFundService ]
 })
 
-export class MutualFundDashboardComponent implements OnInit {
+export class MutualFundDashboardComponent {
     
 
     mutualFundChartLabels:string[] = [];
     mutualFundChartData:number[] = [];
     mutualFundChartType:string = 'pie';
+    mutualFundStatus = AppConstants.MUTUAL_FUND_STATUS;
+    @ViewChild(BaseChartDirective) private chart;
     
     constructor(private mutualFundService: MutualFundService) {
-
+        this.getMutualFundStat();
     }
 
-     ngOnInit(){
-        this.getMutualFundStat();
-     }
-
-     getMutualFundStat(){
+     getMutualFundStat(status?:number){
          let response: Observable<ServiceResponse>;
-
-         response = this.mutualFundService.getMutualFundStat();
+         let data = {};
+         if(status){
+            data['status'] = status;
+         }
+         response = this.mutualFundService.getMutualFundStat(data);
          response.subscribe(
              data => {
                 if(data.status){
@@ -44,8 +46,15 @@ export class MutualFundDashboardComponent implements OnInit {
                         labels.push(element.first_name + ' ' + element.last_name);
                         total.push(element.total);
                     });
+                    if(!res.length){
+                        labels.push("No data found");
+                        total.push("1");
+                    }
                     this.mutualFundChartLabels = labels;
                     this.mutualFundChartData = total;
+                    setTimeout(function() {
+                        this.chart.refresh();
+                    }.bind(this), 10);
                 }
              },
              err => {

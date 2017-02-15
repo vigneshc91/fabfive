@@ -543,17 +543,20 @@ class AdminManager {
         }
     }
 
-    public function getMutualFundStat()
+    public function getMutualFundStat($input)
     {
         try {
 
             $result = DB::table('mutual_fund')
                             ->join('users', 'mutual_fund.user_id', '=', 'users.id')
                             ->select('mutual_fund.user_id', DB::raw('count(*) as total'), 'users.first_name', 'users.last_name')
-                            ->groupBy('user_id')
-                            ->get();
+                            ->groupBy('user_id');
+
+            if(!empty($input['status'])){
+                $result->where('mutual_fund.status', $input['status']);
+            }
             
-            return $result;
+            return $result->get();
 
         } catch(Exception $e){
             throw $e;

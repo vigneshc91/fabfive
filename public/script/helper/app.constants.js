@@ -73,27 +73,33 @@ AppConstants.VENDOR_VALUES = {
 AppConstants.VENDOR_TYPES = [
     {
         name: 'EQUITY',
-        value: 1
+        value: 1,
+        short: 'EQ'
     },
     {
         name: 'COMMODITY',
-        value: 2
+        value: 2,
+        short: 'COM'
     },
     {
         name: "MUTUAL FUND",
-        value: 3
+        value: 3,
+        short: 'MF'
     },
     {
         name: "LIFE INSURANCE",
-        value: 4
+        value: 4,
+        short: 'LI'
     },
     {
         name: "HEALTH INSURANCE",
-        value: 5
+        value: 5,
+        short: 'HI'
     },
     {
         name: "GENERAL INSURANCE",
-        value: 6
+        value: 6,
+        short: 'GI'
     }
 ];
 AppConstants.GENDER_NAMES = {

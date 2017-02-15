@@ -64,10 +64,10 @@ export class MutualFundService {
                         .map((res:Response) => res.json());
     }
 
-    getMutualFundStat(): Observable<ServiceResponse> {
+    getMutualFundStat(data): Observable<ServiceResponse> {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
-        return this.http.post(this.getMutualFundStatUrl, '', options)
+        return this.http.post(this.getMutualFundStatUrl, data, options)
                         .map((res:Response) => res.json());
     }
 

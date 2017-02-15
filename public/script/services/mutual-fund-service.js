@@ -54,10 +54,10 @@ var MutualFundService = (function () {
         return this.http.post(this.getMutualFundByFolioNumberUrl, data, options)
             .map(function (res) { return res.json(); });
     };
-    MutualFundService.prototype.getMutualFundStat = function () {
+    MutualFundService.prototype.getMutualFundStat = function (data) {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.getMutualFundStatUrl, '', options)
+        return this.http.post(this.getMutualFundStatUrl, data, options)
             .map(function (res) { return res.json(); });
     };
     return MutualFundService;

@@ -742,9 +742,10 @@ class AdminController extends Controller
                 return json_encode($response);
             }
 
-            
+            $input = $request->only('status');
+
             $response->status = true;
-            $response->result = $this->adminManager->getMutualFundStat();
+            $response->result = $this->adminManager->getMutualFundStat($input);
             return json_encode($response);
 
         } catch(Exception $e){
