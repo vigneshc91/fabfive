@@ -33,7 +33,10 @@ export class HeaderComponent {
     private mutualFundDashboardLink:string;
     private mutualFundCreateLink:string;
     private mutualFundViewLink:string;
-
+    private subscriptionDashboardLink:string;
+    private subscriptionViewLink:string;
+    private subscriptionSendMailLink:string;
+    
     private common: Common;
 
     constructor(private router: Router, private userService: UserService) { 
@@ -86,6 +89,9 @@ export class HeaderComponent {
          this.mutualFundDashboardLink = this.routerurl + '/mutualFund/dashboard';
          this.mutualFundCreateLink = this.routerurl + '/mutualFund/create';
          this.mutualFundViewLink = this.routerurl + '/mutualFund/view';
+         this.subscriptionDashboardLink = this.routerurl + '/subscription/dashboard';
+         this.subscriptionViewLink = this.routerurl + '/subscription/view';
+         this.subscriptionSendMailLink = this.routerurl + '/subscription/sendMail';
      }
 
      superAdminLogout(){

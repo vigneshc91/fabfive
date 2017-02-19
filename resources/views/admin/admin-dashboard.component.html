@@ -32,6 +32,11 @@
                 [chartType]="userChartType"></canvas>
     </div>
 
+    <div class="col-md-4">
+        <h2 class="text-center text-danger">Subscribers</h2>
+        <canvas baseChart [datasets]="subscriptionChartData" [labels]="subscriptionChartLabels" [options]="subscriptionChartOptions"
+            [colors]="subscriptionChartColors" [legend]="subscriptionChartLegend" [chartType]="subscriptionChartType"></canvas>
+    </div>
     
 
 </div>

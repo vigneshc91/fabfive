@@ -9,18 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var moment = require("moment");
 var app_constants_1 = require("../helper/app.constants");
 var user_service_1 = require("../services/user-service");
 var route = app_constants_1.AppConstants.RouteUrl;
-var UserDashboardComponent = (function () {
-    function UserDashboardComponent(userService) {
+var SubscriptionDashboardComponent = (function () {
+    function SubscriptionDashboardComponent(formBuilder, userService) {
+        var _this = this;
+        this.formBuilder = formBuilder;
         this.userService = userService;
-        this.userChartData = [
+        this.subscriptionChartData = [
             { data: [], label: 'User' }
         ];
-        this.userChartLabels = moment.monthsShort();
-        this.userChartOptions = {
+        this.subscriptionChartLabels = moment.monthsShort();
+        this.subscriptionChartOptions = {
             responsive: true,
             scales: {
                 xAxes: [{
@@ -38,7 +41,7 @@ var UserDashboardComponent = (function () {
                     }]
             }
         };
-        this.userChartColors = [
+        this.subscriptionChartColors = [
             {
                 backgroundColor: '#fff',
                 borderColor: 'rgba(148,159,177,1)',
@@ -48,27 +51,30 @@ var UserDashboardComponent = (function () {
                 pointHoverBorderColor: 'rgba(148,159,177,0.8)'
             }
         ];
-        this.userChartLegend = false;
-        this.userChartType = 'line';
+        this.subscriptionChartLegend = false;
+        this.subscriptionChartType = 'line';
         this.currentYear = moment().format("YYYY");
         this.years = [];
+        this.subscriptionStatus = app_constants_1.AppConstants.SUBSCRIPTION_STATUS;
         var year = app_constants_1.AppConstants.STATISTICS_START_YEAR;
         for (var i = 0; i < app_constants_1.AppConstants.STATISTICS_YEAR_COUNT; i++) {
             this.years.push(year);
             year += 1;
         }
+        this.subscriptionForm = formBuilder.group({
+            'status': [""],
+            'year': [this.currentYear]
+        });
+        this.subscriptionForm.valueChanges.subscribe(function (data) {
+            _this.getSubscriptionStat();
+        });
+        this.getSubscriptionStat();
     }
-    UserDashboardComponent.prototype.ngOnInit = function () {
-        this.getUserStat();
-    };
-    UserDashboardComponent.prototype.getUserStat = function (year) {
+    SubscriptionDashboardComponent.prototype.getSubscriptionStat = function () {
         var _this = this;
-        var data = { year: this.currentYear };
-        if (year) {
-            data.year = year;
-        }
+        var data = this.subscriptionForm.value;
         var response;
-        response = this.userService.getUserStat(data);
+        response = this.userService.getSubscriptionStat(data);
         response.subscribe(function (data) {
             if (data.status) {
                 var res = data.result;
@@ -77,7 +83,7 @@ var UserDashboardComponent = (function () {
                 for (var i = 0; i < res.length; i++) {
                     months[parseInt(res[i].month)] = res[i].total;
                 }
-                for (var i = 1; i < _this.userChartLabels.length + 1; i++) {
+                for (var i = 1; i < _this.subscriptionChartLabels.length + 1; i++) {
                     if (months[i]) {
                         totals.push(months[i]);
                     }
@@ -85,19 +91,19 @@ var UserDashboardComponent = (function () {
                         totals.push(0);
                     }
                 }
-                _this.userChartData = [{ data: totals, label: "User" }];
+                _this.subscriptionChartData = [{ data: totals, label: "Subscribers" }];
             }
         });
     };
-    return UserDashboardComponent;
+    return SubscriptionDashboardComponent;
 }());
-UserDashboardComponent = __decorate([
+SubscriptionDashboardComponent = __decorate([
     core_1.Component({
-        selector: 'user-dashboard',
-        templateUrl: route + '/resources/views/admin/user-dashboard.component.html',
+        selector: 'subscription-dashboard',
+        templateUrl: route + '/resources/views/admin/subscription-dashboard.component.html',
         providers: [user_service_1.UserService]
     }),
-    __metadata("design:paramtypes", [user_service_1.UserService])
-], UserDashboardComponent);
-exports.UserDashboardComponent = UserDashboardComponent;
-//# sourceMappingURL=user-dashboard.component.js.map
+    __metadata("design:paramtypes", [forms_1.FormBuilder, user_service_1.UserService])
+], SubscriptionDashboardComponent);
+exports.SubscriptionDashboardComponent = SubscriptionDashboardComponent;
+//# sourceMappingURL=subscription-dashboard.component.js.map

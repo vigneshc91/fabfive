@@ -38,6 +38,9 @@ var user_view_component_1 = require("./admin/user-view.component");
 var mutual_fund_dashboard_component_1 = require("./admin/mutual-fund-dashboard.component");
 var mutual_fund_create_component_1 = require("./admin/mutual-fund-create.component");
 var mutual_fund_view_component_1 = require("./admin/mutual-fund-view.component");
+var subscription_dashboard_component_1 = require("./admin/subscription-dashboard.component");
+var subscription_view_component_1 = require("./admin/subscription-view.component");
+var subscription_send_email_component_1 = require("./admin/subscription-send-email.component");
 // Services
 var login_logout_service_1 = require("./services/login-logout.service");
 var AppModule = (function () {
@@ -53,7 +56,8 @@ AppModule = __decorate([
             admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent, vendor_dashboard_component_1.VendorDashboardComponent,
             vendor_create_component_1.VendorCreateComponent, vendor_view_component_1.VendorViewComponent, user_dashboard_component_1.UserDashboardComponent, forgot_password_component_1.ForgotPasswordComponent,
             user_create_component_1.UserCreateComponent, user_view_component_1.UserViewComponent, mutual_fund_dashboard_component_1.MutualFundDashboardComponent,
-            mutual_fund_create_component_1.MutualFundCreateComponent, mutual_fund_view_component_1.MutualFundViewComponent],
+            mutual_fund_create_component_1.MutualFundCreateComponent, mutual_fund_view_component_1.MutualFundViewComponent,
+            subscription_dashboard_component_1.SubscriptionDashboardComponent, subscription_view_component_1.SubscriptionViewComponent, subscription_send_email_component_1.SubscriptionSendEmailComponent],
         providers: [login_logout_service_1.LoginLogoutService],
         bootstrap: [app_component_1.AppComponent]
     }),

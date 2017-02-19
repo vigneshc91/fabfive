@@ -1,0 +1,24 @@
+<user-header></user-header>
+
+<div class="col-md-4 pull-right">
+    <form [formGroup]="subscriptionForm" class="form-inline">
+        <select class="form-control" [formControl]="subscriptionForm.controls['year']">
+        <option *ngFor="let year of years" value="{{ year }}" [selected]="year == currentYear">{{ year }}</option>
+    </select>
+        <select class="form-control" [formControl]="subscriptionForm.controls['status']">
+        <option value="">All</option>
+        <option *ngFor="let status of subscriptionStatus" value="{{ status.value }}">{{ status.name }}</option>
+    </select>
+    </form>
+</div>
+
+<h1 class="text-center text-muted">Subscription Dashboard</h1>
+
+<div class="clearfix"></div>
+
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+        <canvas baseChart [datasets]="subscriptionChartData" [labels]="subscriptionChartLabels" [options]="subscriptionChartOptions"
+            [colors]="subscriptionChartColors" [legend]="subscriptionChartLegend" [chartType]="subscriptionChartType"></canvas>
+    </div>
+</div>

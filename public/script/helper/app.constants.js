@@ -149,5 +149,21 @@ AppConstants.MUTUAL_FUND_STATUS_NAMES = {
     2: 'HOLD',
     3: 'CLOSED'
 };
+AppConstants.SUBSCRIPTION_STATUS = [
+    {
+        name: 'SUBSCRIBED',
+        value: 1
+    },
+    {
+        name: 'UNSUBSCRIBED',
+        value: 2
+    }
+];
+AppConstants.SUBSCRIPTION_STATUS_NAMES = {
+    1: 'SUBSCRIBED',
+    2: 'UNSUBSCRIBED'
+};
+AppConstants.STATISTICS_START_YEAR = 2016;
+AppConstants.STATISTICS_YEAR_COUNT = 5;
 exports.AppConstants = AppConstants;
 //# sourceMappingURL=app.constants.js.map

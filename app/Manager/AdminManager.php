@@ -4,6 +4,7 @@ namespace App\Manager;
 
 use Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 use App\Helper\AppConstants;
 use App\Helper\SuccessConstants;
@@ -12,6 +13,7 @@ use App\Vendor;
 use App\User;
 use App\Address;
 use App\MutualFund;
+use App\Subscription;
 
 class AdminManager {
     
@@ -557,6 +559,82 @@ class AdminManager {
             }
             
             return $result->get();
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getSubscribersList($input)
+    {
+        try {
+            
+            $start = $input['start'];
+            $size = $input['size'];
+
+            $query = array();
+
+            if(!empty($input['status'])){
+                array_push($query, ['status', '=', $input['status']]);
+            }
+
+            $subscription = Subscription::where($query)
+                                            ->skip($start)->take($size)
+                                            ->get();
+
+            return $subscription;
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function getSubscribersStat($input)
+    {
+        try {
+
+            $year = $input['year'];
+            
+            $result = DB::table('subscription')
+                            ->select(DB::raw('DATE_FORMAT(created_at, "%m") as month'), DB::raw('count(*) as total'))
+                            ->whereYear('created_at', '=', $year)
+                            ->groupBy('month');
+
+            if(!empty($input['status'])){
+                $result->where('status', $input['status']);
+            }
+            
+            return $result->get();
+
+        } catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function sendMailToSubscribers($input)
+    {
+        try {
+
+            $subject = $input['subject'];
+            $content = $input['content'];
+
+            $result = DB::table('subscription')
+                            ->select('email')
+                            ->where('status', '=', AppConstants::subscriptionType['unsubscribed'])
+                            ->get();
+            
+            $data = [
+                'subject' => $subject,
+                'content' => $content
+            ];
+            foreach ($result as $email) {
+                $mail = $email->email;
+                Mail::send('emails.subscribers', $data, function($message) use ($mail, $subject){    
+                    $message->to($mail)->subject($subject);    
+                });
+            }
+
+            return true;
 
         } catch(Exception $e){
             throw $e;

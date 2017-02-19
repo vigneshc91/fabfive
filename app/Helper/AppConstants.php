@@ -70,4 +70,7 @@ class AppConstants {
 
     const MUTUAL_FUND_START_VALUE = 0;
     const MUTUAL_FUND_SIZE_VALUE = 10;
+
+    const SUBSCRIPTION_START_VALUE = 0;
+    const SUBSCRIPTION_SIZE_VALUE = 10;
 }

@@ -10,6 +10,7 @@ import { User } from '../models/user.model';
 import { EndUser } from '../models/end-user.model';
 import { Address } from '../models/address.model';
 import { ForgotPassword } from '../models/forgot-password.model';
+import { Subscription } from '../models/subscription.model';
 
 @Injectable()
 
@@ -28,6 +29,9 @@ export class UserService {
     private searchUserUrl = AppConstants.AppUrl + "user/searchUser";
     private forgotPasswordUrl = AppConstants.AppUrl + "user/forgotPassword";
     private getUserStatUrl = AppConstants.AppUrl + "admin/getUserStat";
+    private getSubscriptionsListUrl = AppConstants.AppUrl + "admin/getSubscribersList";
+    private getSubscribersStatUrl = AppConstants.AppUrl + "admin/getSubscribersStat";
+    private sendMailToSubscribersUrl = AppConstants.AppUrl + "admin/sendMailToSubscribers";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -164,6 +168,30 @@ export class UserService {
         let options = new RequestOptions({ headers });
 
         return this.http.post(this.getUserStatUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getSubscriptionsList(data: Subscription): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.getSubscriptionsListUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getSubscriptionStat(data): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.getSubscribersStatUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    sendMailToSubscribers(data): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+
+        return this.http.post(this.sendMailToSubscribersUrl, data, options)
                         .map((res:Response) => res.json());
     }
 }

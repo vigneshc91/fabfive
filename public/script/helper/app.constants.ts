@@ -141,4 +141,25 @@ export class AppConstants {
         2: 'HOLD',
         3: 'CLOSED'
     }
+
+    public static SUBSCRIPTION_STATUS = [
+        {
+            name: 'SUBSCRIBED',
+            value: 1
+        },
+        {
+            name: 'UNSUBSCRIBED',
+            value: 2
+        }
+    ];
+
+    public static SUBSCRIPTION_STATUS_NAMES = {
+        1: 'SUBSCRIBED',
+        2: 'UNSUBSCRIBED'
+    }
+
+    public static STATISTICS_START_YEAR = 2016;
+
+    public static STATISTICS_YEAR_COUNT = 5;
+
 }

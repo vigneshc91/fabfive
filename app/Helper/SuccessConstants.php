@@ -31,4 +31,6 @@ class SuccessConstants {
 
     const CONTACT_SUCCESSFULLY = "Thanks for your mail, we will get back to you shortly";
     const USER_VERIFIED = "User verified";
+
+    const EMAIL_SENT_SUCCESSFULLY = "Email Sent Successfully";
 }

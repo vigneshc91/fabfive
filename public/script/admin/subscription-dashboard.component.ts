@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import * as moment from 'moment';
+import { BaseChartDirective } from 'ng2-charts';
 
 import { AppConstants } from '../helper/app.constants';
 import { ServiceResponse } from '../models/service.response.model';
@@ -11,17 +12,17 @@ import { UserService } from '../services/user-service';
 let route:string = AppConstants.RouteUrl;
 
 @Component({
-    selector: 'user-dashboard',
-    templateUrl: route + '/resources/views/admin/user-dashboard.component.html',
+    selector: 'subscription-dashboard',
+    templateUrl: route + '/resources/views/admin/subscription-dashboard.component.html',
     providers: [ UserService ]
 })
 
-export class UserDashboardComponent implements OnInit {
-    userChartData:Array<any> = [
+export class SubscriptionDashboardComponent {
+    subscriptionChartData:Array<any> = [
         {data: [], label: 'User'}
     ];
-    userChartLabels:Array<any> = moment.monthsShort();
-    userChartOptions:any = {
+    subscriptionChartLabels:Array<any> = moment.monthsShort();
+    subscriptionChartOptions:any = {
         responsive: true,
         scales: {
             xAxes: [{
@@ -39,7 +40,7 @@ export class UserDashboardComponent implements OnInit {
             }]
         }
     };
-    userChartColors:Array<any> = [
+    subscriptionChartColors:Array<any> = [
         {
             backgroundColor: '#fff',
             borderColor: 'rgba(148,159,177,1)',
@@ -49,30 +50,33 @@ export class UserDashboardComponent implements OnInit {
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         }
     ];
-    userChartLegend:boolean = false;
-    userChartType:string = 'line';
+    subscriptionChartLegend:boolean = false;
+    subscriptionChartType:string = 'line';
     currentYear = moment().format("YYYY");
     years = [];
+    subscriptionForm: FormGroup;
+    subscriptionStatus = AppConstants.SUBSCRIPTION_STATUS;
 
-    constructor(private userService: UserService) {
+    constructor(private formBuilder: FormBuilder, private userService: UserService) {
         let year = AppConstants.STATISTICS_START_YEAR;
         for(let i=0; i<AppConstants.STATISTICS_YEAR_COUNT; i++){
             this.years.push(year);
             year += 1;
         }
+        this.subscriptionForm = formBuilder.group({
+            'status': [ "" ],
+            'year': [ this.currentYear ]
+        });
+        this.subscriptionForm.valueChanges.subscribe(data => {
+            this.getSubscriptionStat();
+        });
+        this.getSubscriptionStat();
     }
 
-    ngOnInit(){
-        this.getUserStat();
-    }
-
-    getUserStat(year?: string){
-        let data =  {year: this.currentYear};
-        if(year){
-            data.year = year;
-        }
+    getSubscriptionStat(){
+        let data = this.subscriptionForm.value;
         let response: Observable<ServiceResponse>;
-        response = this.userService.getUserStat(data);
+        response = this.userService.getSubscriptionStat(data);
 
         response.subscribe(
             data => {
@@ -83,14 +87,14 @@ export class UserDashboardComponent implements OnInit {
                     for(let i=0; i<res.length; i++){
                         months[parseInt(res[i].month)] = res[i].total;
                     }
-                    for(let i=1; i<this.userChartLabels.length+1; i++){
+                    for(let i=1; i<this.subscriptionChartLabels.length+1; i++){
                         if(months[i]){
                             totals.push(months[i]);
                         } else {
                             totals.push(0);
                         }
                     }
-                    this.userChartData = [{data: totals, label: "User"}];
+                    this.subscriptionChartData = [{data: totals, label: "Subscribers"}];
                 }
             }
         );

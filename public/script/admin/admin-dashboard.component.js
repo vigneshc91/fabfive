@@ -89,12 +89,48 @@ var AdminDashboardComponent = (function () {
         this.mutualFundChartData = [];
         this.mutualFundChartType = 'pie';
         this.mutualFundStatus = app_constants_1.AppConstants.MUTUAL_FUND_STATUS;
+        // Subscribers chart
+        this.subscriptionChartData = [
+            { data: [], label: 'User' }
+        ];
+        this.subscriptionChartLabels = moment.monthsShort();
+        this.subscriptionChartOptions = {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                yAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+            }
+        };
+        this.subscriptionChartColors = [
+            {
+                backgroundColor: '#fff',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }
+        ];
+        this.subscriptionChartLegend = false;
+        this.subscriptionChartType = 'line';
         this.vendor.forEach(function (element) {
             _this.vendorChartLabels.push(element.short);
         });
         this.getVendorStat();
         this.getUserStat();
         this.getMutualFundStat();
+        this.getSubscriptionStat();
     }
     AdminDashboardComponent.prototype.getVendorStat = function () {
         var _this = this;
@@ -172,6 +208,31 @@ var AdminDashboardComponent = (function () {
                 }.bind(_this), 10);
             }
         }, function (err) {
+        });
+    };
+    AdminDashboardComponent.prototype.getSubscriptionStat = function () {
+        var _this = this;
+        var data = { year: moment().format("YYYY") };
+        var response;
+        response = this.userService.getSubscriptionStat(data);
+        response.subscribe(function (data) {
+            if (data.status) {
+                var res = data.result;
+                var totals = [];
+                var months = {};
+                for (var i = 0; i < res.length; i++) {
+                    months[parseInt(res[i].month)] = res[i].total;
+                }
+                for (var i = 1; i < _this.subscriptionChartLabels.length + 1; i++) {
+                    if (months[i]) {
+                        totals.push(months[i]);
+                    }
+                    else {
+                        totals.push(0);
+                    }
+                }
+                _this.subscriptionChartData = [{ data: totals, label: "Subscribers" }];
+            }
         });
     };
     return AdminDashboardComponent;

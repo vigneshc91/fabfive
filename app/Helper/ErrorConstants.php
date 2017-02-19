@@ -37,4 +37,6 @@ class ErrorConstants {
 
     const CONTACT_FAILED = "There is a problem sending mail, please try again later";
     const INVALID_VERIFICATION_TOKEN = "Invalid verification token";
+
+    const EMAIL_SENDING_FAILED = "Email Sending Failed";
 }

@@ -19,6 +19,9 @@ import { UserViewComponent } from './admin/user-view.component';
 import { MutualFundDashboardComponent } from './admin/mutual-fund-dashboard.component';
 import { MutualFundCreateComponent } from './admin/mutual-fund-create.component';
 import { MutualFundViewComponent } from './admin/mutual-fund-view.component';
+import { SubscriptionDashboardComponent } from './admin/subscription-dashboard.component';
+import { SubscriptionViewComponent } from './admin/subscription-view.component';
+import { SubscriptionSendEmailComponent } from './admin/subscription-send-email.component';
 
 import { ForgotPasswordComponent } from './user/forgot-password.component';
 
@@ -47,6 +50,9 @@ const routes: Routes = [
   { path: routeurl + '/mutualFund/dashboard', component: MutualFundDashboardComponent },
   { path: routeurl + '/mutualFund/create', component: MutualFundCreateComponent },
   { path: routeurl + '/mutualFund/view', component: MutualFundViewComponent },
+  { path: routeurl + '/subscription/dashboard', component: SubscriptionDashboardComponent },
+  { path: routeurl + '/subscription/view', component: SubscriptionViewComponent },
+  { path: routeurl + '/subscription/sendMail', component: SubscriptionSendEmailComponent },
 ];
 
 @NgModule({

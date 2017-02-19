@@ -97,6 +97,12 @@ Route::post('admin/getUserStat', 'AdminController@getUserStat');
 
 Route::post('admin/getMutualFundStat', 'AdminController@getMutualFundStat');
 
+Route::post('admin/getSubscribersList', 'AdminController@getSubscribersList');
+
+Route::post('admin/getSubscribersStat', 'AdminController@getSubscribersStat');
+
+Route::post('admin/sendMailToSubscribers', 'AdminController@sendMailToSubscribers');
+
 // Serving web pages
 
 Route::get('superAdmin', 'SuperAdminController@login');
@@ -136,4 +142,10 @@ Route::get('mutualFund/create', 'AdminController@mutualFundCreate');
 Route::get('mutualFund/view', 'AdminController@mutualFundView');
 
 Route::get('user/forgotPassword', 'UserController@userForgotPassword');
+
+Route::get('subscription/dashboard', 'AdminController@subscriptionDashboard');
+
+Route::get('subscription/view', 'AdminController@subscriptionView');
+
+Route::get('subscription/sendMail', 'AdminController@subscriptionSendMail');
 

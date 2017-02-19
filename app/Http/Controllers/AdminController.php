@@ -755,6 +755,122 @@ class AdminController extends Controller
         }
     }
 
+    public function getSubscribersList(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('status', 'start', 'size');
+
+            if(empty($input['start'])){
+                $input['start'] = AppConstants::SUBSCRIPTION_START_VALUE;
+            }
+            if(empty($input['size'])){
+                $input['size'] = AppConstants::SUBSCRIPTION_SIZE_VALUE;
+            }
+
+            $response->status = true;
+            $response->result = $this->adminManager->getSubscribersList($input);
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function getSubscribersStat(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('year', 'status');
+
+            $getSubscribersStatValidation = Validator::make($input, array('year'=>'required'));
+            if(!$getSubscribersStatValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            $response->status = true;
+            $response->result = $this->adminManager->getSubscribersStat($input);
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
+    public function sendMailToSubscribers(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try {
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['admin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $input = $request->only('subject', 'content');
+
+            $sendMailToSubscribersValidation = Validator::make($input, array('subject'=>'required', 'content'=>'required'));
+            if(!$sendMailToSubscribersValidation->passes()){
+                $response->status = false;
+                $response->result = ErrorConstants::REQUIRED_FIELDS_EMPTY;
+                return json_encode($response);
+            }
+
+            if($this->adminManager->sendMailToSubscribers($input)){
+                $response->status = true;
+                $response->result = SuccessConstants::EMAIL_SENT_SUCCESSFULLY;
+            } else {
+                $response->status = false;
+                $response->result = ErrorConstants::EMAIL_SENDING_FAILED;
+            }
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
 
     public function login(){
         return view('admin.login');
@@ -797,6 +913,18 @@ class AdminController extends Controller
     }
 
     public function mutualFundView(){
+        return view('admin.dashboard');
+    }
+
+    public function subscriptionDashboard(){
+        return view('admin.dashboard');
+    }
+
+    public function subscriptionView(){
+        return view('admin.dashboard');
+    }
+
+    public function subscriptionSendMail(){
         return view('admin.dashboard');
     }
 }

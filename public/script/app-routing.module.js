@@ -29,6 +29,9 @@ var user_view_component_1 = require("./admin/user-view.component");
 var mutual_fund_dashboard_component_1 = require("./admin/mutual-fund-dashboard.component");
 var mutual_fund_create_component_1 = require("./admin/mutual-fund-create.component");
 var mutual_fund_view_component_1 = require("./admin/mutual-fund-view.component");
+var subscription_dashboard_component_1 = require("./admin/subscription-dashboard.component");
+var subscription_view_component_1 = require("./admin/subscription-view.component");
+var subscription_send_email_component_1 = require("./admin/subscription-send-email.component");
 var forgot_password_component_1 = require("./user/forgot-password.component");
 var routeurl = app_constants_1.AppConstants.RouteUrl;
 var routes = [
@@ -54,6 +57,9 @@ var routes = [
     { path: routeurl + '/mutualFund/dashboard', component: mutual_fund_dashboard_component_1.MutualFundDashboardComponent },
     { path: routeurl + '/mutualFund/create', component: mutual_fund_create_component_1.MutualFundCreateComponent },
     { path: routeurl + '/mutualFund/view', component: mutual_fund_view_component_1.MutualFundViewComponent },
+    { path: routeurl + '/subscription/dashboard', component: subscription_dashboard_component_1.SubscriptionDashboardComponent },
+    { path: routeurl + '/subscription/view', component: subscription_view_component_1.SubscriptionViewComponent },
+    { path: routeurl + '/subscription/sendMail', component: subscription_send_email_component_1.SubscriptionSendEmailComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

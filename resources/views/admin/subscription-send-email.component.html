@@ -1,0 +1,31 @@
+<user-header></user-header>
+
+
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+    <div class="panel panel-default login-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center text-default">Send Mail To Subscribers</h3>
+        </div>
+        <div class="panel-body">
+            <form [formGroup]="sendMailForm" class="col-md-offset-2 col-md-8" (ngSubmit)="sendMailToSubscribers(sendMailForm.value)">
+                <p class="text-center text-danger" *ngIf="failed">{{ message }}</p>
+                <p class="text-center text-success" *ngIf="success">{{ message }}</p>
+                <div class="form-group" [ngClass]="{'has-error':!sendMailForm.controls['subject'].valid && sendMailForm.controls['subject'].touched}">
+                    <label for="username">Subject</label>
+                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject" [formControl]="sendMailForm.controls['subject']"
+                    />
+                    <small *ngIf="sendMailForm.controls['subject'].hasError('required') && sendMailForm.controls['subject'].touched" class="text-danger">Subject Required</small>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!sendMailForm.controls['content'].valid && sendMailForm.controls['content'].touched}">
+                    <label for="content">Content</label>
+                    <textarea name="content" class="form-control" id="content" placeholder="Content" [formControl]="sendMailForm.controls['content']"></textarea>
+                    <small *ngIf="sendMailForm.controls['content'].hasError('required') && sendMailForm.controls['content'].touched" class="text-danger">Content Required</small>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-default" [disabled]="!sendMailForm.valid || isSubmitted">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

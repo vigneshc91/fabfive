@@ -27,6 +27,9 @@ var UserService = (function () {
         this.searchUserUrl = app_constants_1.AppConstants.AppUrl + "user/searchUser";
         this.forgotPasswordUrl = app_constants_1.AppConstants.AppUrl + "user/forgotPassword";
         this.getUserStatUrl = app_constants_1.AppConstants.AppUrl + "admin/getUserStat";
+        this.getSubscriptionsListUrl = app_constants_1.AppConstants.AppUrl + "admin/getSubscribersList";
+        this.getSubscribersStatUrl = app_constants_1.AppConstants.AppUrl + "admin/getSubscribersStat";
+        this.sendMailToSubscribersUrl = app_constants_1.AppConstants.AppUrl + "admin/sendMailToSubscribers";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
@@ -137,6 +140,24 @@ var UserService = (function () {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.getUserStatUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getSubscriptionsList = function (data) {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getSubscriptionsListUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getSubscriptionStat = function (data) {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getSubscribersStatUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.sendMailToSubscribers = function (data) {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.sendMailToSubscribersUrl, data, options)
             .map(function (res) { return res.json(); });
     };
     return UserService;

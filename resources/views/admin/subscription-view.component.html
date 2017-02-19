@@ -1,0 +1,29 @@
+<user-header></user-header>
+
+<div class="col-md-2 pull-right">
+    <select class="form-control" (change)="getSubscriptionsListByStatus($event.target.value)">
+        <option value="">All</option>
+        <option *ngFor="let status of subscriptionStatus" value="{{ status.value }}">{{ status.name }}</option>
+    </select>
+</div>
+
+<h1 class="text-center text-muted">Subscription view</h1>
+
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+        <table class="table table-hover">
+            <tr *ngFor="let subscription of subscriptions">
+                <td>{{ subscription.email }}</td>
+                <td>{{ subscriptionStatusNames[subscription.status] }}</td>
+            </tr>
+            <tr *ngIf="!hasMoreSubscriptions">
+                <td colspan="2">
+                    <p class="text-center text-uppercase text-muted">Thats All Folks</p>
+                </td>
+            </tr>
+        </table>
+        <div *ngIf="hasMoreSubscriptions" class="text-center">
+            <button type="button" class="btn btn-sm btn-danger" (click)="getSubscriptionsList(1)">Load More</button>
+        </div>
+    </div>
+</div>
