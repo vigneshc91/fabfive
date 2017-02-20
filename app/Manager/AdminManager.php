@@ -620,7 +620,7 @@ class AdminManager {
 
             $result = DB::table('subscription')
                             ->select('email')
-                            ->where('status', '=', AppConstants::subscriptionType['unsubscribed'])
+                            ->where('status', '=', AppConstants::subscriptionType['subscribed'])
                             ->get();
             
             $data = [
