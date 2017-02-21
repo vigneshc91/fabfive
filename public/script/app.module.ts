@@ -42,7 +42,7 @@ import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule, AppRoutingModule, DatepickerModule, ChartsModule ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule.forRoot(), AppRoutingModule, DatepickerModule.forRoot(), ChartsModule ],
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 
