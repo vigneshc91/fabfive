@@ -16,6 +16,7 @@ var app_component_1 = require("./app.component");
 // Third party plugins
 var ng2_bootstrap_1 = require("ng2-bootstrap/ng2-bootstrap");
 var ng2_charts_1 = require("ng2-charts");
+var ng2_ckeditor_1 = require("ng2-ckeditor");
 // Common Components
 var app_routing_module_1 = require("./app-routing.module");
 var header_component_1 = require("./user/header.component");
@@ -50,7 +51,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, ng2_bootstrap_1.ModalModule.forRoot(), app_routing_module_1.AppRoutingModule, ng2_bootstrap_1.DatepickerModule.forRoot(), ng2_charts_1.ChartsModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, ng2_bootstrap_1.ModalModule.forRoot(), app_routing_module_1.AppRoutingModule, ng2_bootstrap_1.DatepickerModule.forRoot(), ng2_charts_1.ChartsModule, ng2_ckeditor_1.CKEditorModule],
         declarations: [app_component_1.AppComponent, super_admin_login_component_1.SuperAdminLoginComponent, header_component_1.HeaderComponent, super_admin_dashboard_component_1.SuperAdminDashboardComponent,
             super_admin_create_component_1.SuperAdminCreateComponent, super_admin_view_component_1.SuperAdminViewComponent, change_password_component_1.ChangePasswordComponent,
             admin_login_component_1.AdminLoginComponent, admin_dashboard_component_1.AdminDashboardComponent, vendor_dashboard_component_1.VendorDashboardComponent,

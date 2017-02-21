@@ -93,5 +93,24 @@ class SuperAdminManager {
         }
         
     }
+
+    public function getStatForSuperAdmin()
+    {
+        try{
+
+            $admin = User::where('user_type', AppConstants::userType['admin'])->count();
+            $user = User::where('user_type', AppConstants::userType['user'])->count();
+            $result = array(
+                'admin' => $admin,
+                'user' => $user
+            );
+
+            return $result; 
+
+        } catch(Exception $e){
+            throw $e;
+        }
+        
+    }
     
 }

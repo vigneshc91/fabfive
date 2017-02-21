@@ -57,6 +57,8 @@ Route::post('superAdmin/createAdmin', 'SuperAdminController@createAdmin');
 
 Route::post('superAdmin/deleteAdmin', 'SuperAdminController@deleteAdmin');
 
+Route::post('superAdmin/getStatForSuperAdmin', 'SuperAdminController@getStatForSuperAdmin');
+
 Route::get('superAdmin/verifyAdmin/{token}', 'SuperAdminController@verifyAdmin');
 
 Route::post('admin/createVendor', 'AdminController@createVendor');

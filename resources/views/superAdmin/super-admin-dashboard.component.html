@@ -1,2 +1,14 @@
 <user-header></user-header>
-<h1>Welcom Super Admin</h1>
+
+<h2 class="text-center text-muted">Super Admin Dashboard</h2>
+
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+        <canvas baseChart
+                    [datasets]="superAdminChartData"
+                    [labels]="superAdminChartLabels"
+                    [options]="superAdminChartOptions"
+                    [legend]="superAdminChartLegend"
+                    [chartType]="superAdminChartType"></canvas>
+    </div>
+</div>

@@ -32,7 +32,7 @@
                         <table cellpadding="0" cellspacing="0" border="0"  width="100%">
                             <tr>
                                 <td style="padding:10px 15px; background-color:#fff; font-size:14px; ">
-                                    {{ $content }}
+                                    {!! $content !!}
                                 </td>
                             </tr>
                         </table>

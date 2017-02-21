@@ -123,6 +123,35 @@ class SuperAdminController extends Controller
         }
     }
 
+    public function getStatForSuperAdmin(Request $request)
+    {
+        $response = new ServiceResponse(); 
+        try{
+
+            $user = $this->sessionManager->getLoggedInUser();
+            if($user == null){
+                $response->status = false;
+                $response->result = ErrorConstants::USER_NOT_LOGGED_IN;
+                return json_encode($response);
+            }
+            if($user->user_type != AppConstants::userType['superAdmin']){
+                $response->status = false;
+                $response->result = ErrorConstants::NO_PRIVILEGE;
+                return json_encode($response);
+            }
+
+            $response->status = true;
+            $response->result = $this->superAdminManager->getStatForSuperAdmin();
+            
+            return json_encode($response);
+
+        } catch(Exception $e){
+            $response->status = false;
+            $response->result = $e;
+            return json_encode($response);
+        }
+    }
+
     public function login(){
         return view('superAdmin.login');
     }

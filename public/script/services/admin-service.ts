@@ -16,6 +16,7 @@ export class AdminService {
     private common:Common;
     private createAdminUrl = AppConstants.AppUrl + "superAdmin/createAdmin";
     private deleteAdminUrl = AppConstants.AppUrl + "superAdmin/deleteAdmin";
+    private getStatForSuperAdminUrl = AppConstants.AppUrl + "superAdmin/getStatForSuperAdmin";
 
     constructor(private http: Http){
         this.common = new Common();
@@ -34,6 +35,14 @@ export class AdminService {
         let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         let options = new RequestOptions({ headers });
         return this.http.post(this.deleteAdminUrl, data, options)
+                        .map((res:Response) => res.json());
+    }
+
+    getStatForSuperAdmin(): Observable<ServiceResponse> {
+        let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        let options = new RequestOptions({ headers });
+        
+        return this.http.post(this.getStatForSuperAdminUrl, '', options)
                         .map((res:Response) => res.json());
     }
 

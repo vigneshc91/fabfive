@@ -30,7 +30,7 @@ export class SubscriptionSendEmailComponent {
     constructor(private formBuilder: FormBuilder, private userService: UserService) {
         this.sendMailForm = formBuilder.group({
             'subject': [ null, Validators.required ],
-            'content': [ null, Validators.required ]
+            'content': [ '', Validators.required ]
         });
     }
 

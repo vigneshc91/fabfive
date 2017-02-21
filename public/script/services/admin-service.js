@@ -17,6 +17,7 @@ var AdminService = (function () {
         this.http = http;
         this.createAdminUrl = app_constants_1.AppConstants.AppUrl + "superAdmin/createAdmin";
         this.deleteAdminUrl = app_constants_1.AppConstants.AppUrl + "superAdmin/deleteAdmin";
+        this.getStatForSuperAdminUrl = app_constants_1.AppConstants.AppUrl + "superAdmin/getStatForSuperAdmin";
         this.common = new common_1.Common();
         this.token = this.common.authToken;
     }
@@ -31,6 +32,12 @@ var AdminService = (function () {
         var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.deleteAdminUrl, data, options)
+            .map(function (res) { return res.json(); });
+    };
+    AdminService.prototype.getStatForSuperAdmin = function () {
+        var headers = new http_1.Headers({ 'Content-type': 'application/json', 'Authorization': 'Bearer ' + this.token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.getStatForSuperAdminUrl, '', options)
             .map(function (res) { return res.json(); });
     };
     return AdminService;

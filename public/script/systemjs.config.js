@@ -33,7 +33,8 @@
       // bootstrap libraries
       'moment': 'npm:moment/moment.js',
       'ng2-bootstrap/ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-      'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.min.js'
+      'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.min.js',
+      "ng2-ckeditor": "npm:ng2-ckeditor"
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -50,6 +51,10 @@
       },
       'ng2-charts': {
         defaultExtension: 'js'
+      },
+      "ng2-ckeditor": {
+        main: "./lib/index.js",
+        defaultExtension: "js",
       }
     }
   });

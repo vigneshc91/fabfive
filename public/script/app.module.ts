@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 // Third party plugins
 import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 // Common Components
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +43,7 @@ import { LoginLogoutService } from './services/login-logout.service';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule.forRoot(), AppRoutingModule, DatepickerModule.forRoot(), ChartsModule ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, ModalModule.forRoot(), AppRoutingModule, DatepickerModule.forRoot(), ChartsModule, CKEditorModule ],
   declarations: [ AppComponent, SuperAdminLoginComponent, HeaderComponent, SuperAdminDashboardComponent, 
                   SuperAdminCreateComponent, SuperAdminViewComponent, ChangePasswordComponent,
                   AdminLoginComponent, AdminDashboardComponent, VendorDashboardComponent, 

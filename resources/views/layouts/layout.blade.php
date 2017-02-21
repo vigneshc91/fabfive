@@ -15,6 +15,7 @@
     <script src="{{ asset('/').('node_modules/systemjs/dist/system.src.js') }}"></script>
     <!-- 2. Configure SystemJS -->
     <script src="{{ asset('/').('public/script/systemjs.config.js') }}"></script>
+    <script src="{{ asset('/').('public/js/ckeditor/ckeditor.js') }}"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>

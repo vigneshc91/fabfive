@@ -22,7 +22,7 @@ var SubscriptionSendEmailComponent = (function () {
         this.isSubmitted = false;
         this.sendMailForm = formBuilder.group({
             'subject': [null, forms_1.Validators.required],
-            'content': [null, forms_1.Validators.required]
+            'content': ['', forms_1.Validators.required]
         });
     }
     SubscriptionSendEmailComponent.prototype.sendMailToSubscribers = function (value) {
