@@ -50,7 +50,8 @@ class AppConstants {
         'closed' => 3
     );
 
-    const APP_URL = "http://localhost/fabfive/";
+    // const APP_URL = "http://localhost/fabfive/";
+    const APP_URL = "http://fabfive.in/";
 
     const SUPER_ADMIN_FIRST_NAME = "Super";
     const SUPER_ADMIN_LAST_NAME = "Admin";
