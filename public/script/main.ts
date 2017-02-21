@@ -4,5 +4,5 @@ import { AppModule } from './app.module';
 
 const platform = platformBrowserDynamic();
 
-// enableProdMode();
+enableProdMode();
 platform.bootstrapModule(AppModule);
