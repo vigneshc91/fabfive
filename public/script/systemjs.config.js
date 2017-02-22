@@ -30,9 +30,14 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-      // bootstrap libraries
+      'text': 'plugin-text.js',
+      //shims
+      'core-js-shim':'npm:core-js/client/shim.min.js',
+      'zone':'npm:zone.js/dist/zone.js',
+      'reflect':'npm:reflect-metadata/Reflect.js',
+      // External libraries
       'moment': 'npm:moment/moment.js',
-      'ng2-bootstrap/ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
+      'ng2-bootstrap/ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js',
       'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.min.js',
       "ng2-ckeditor": "npm:ng2-ckeditor"
     },
