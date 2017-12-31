@@ -6,11 +6,11 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@yield('title') - FabFive</title>
+	<title>@yield('title') - e2isolutions</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="FabFive Investors" />
-  	<meta name="keywords" content="FabFive Investors, FabFive, Investments" />
-  	<meta name="author" content="FabFive" />
+	<meta name="description" content="e2isolutions" />
+  	<meta name="keywords" content="e2isolutions, Investments" />
+  	<meta name="author" content="e2isolutions" />
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -51,7 +51,7 @@
 			<header id="fh5co-header-section" role="header" class="" >
 				<div class="container">
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="{{ url('/') }}">FabFive</a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="{{ url('/') }}">e2isolutions</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
@@ -85,7 +85,7 @@
 							<li><a href="#"><i class="ti-github"></i></a></li>
 							<li><a href="#"><i class="ti-linkedin"></i></a></li>
 						</ul>
-						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; 2016 <a href="#">FabFive</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; 2016 <a href="#">e2isolutions</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
 					</div>
 				</footer>
 			</div>

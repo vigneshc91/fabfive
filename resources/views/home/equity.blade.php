@@ -8,7 +8,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="fh5co-hero-wrap">
                     <div class="fh5co-hero-intro">
-                        <h2>FabFive Investors<span></span></h2>
+                        <h2>e2isolutions<span></span></h2>
                         <h1>Equity</h1>
                     </div>
                 </div>

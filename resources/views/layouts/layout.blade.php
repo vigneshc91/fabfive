@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>@yield('title') - FabFive</title>
+    <title>@yield('title') - e2isolutions</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('/').('public/images/favicon.ico') }}">
@@ -33,14 +33,14 @@
                 <li><a href="#"><i class="ti-github"></i></a></li>
                 <li><a href="#"><i class="ti-linkedin"></i></a></li>
             </ul>
-            <p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; {{ Date('Y') }} <a href="#">FabFive</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
+            <p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; {{ Date('Y') }} <a href="#">e2isolutions</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
         </div>
     </footer>
     <script src="{{ asset('/').('public/js/jquery-1.10.2.min.js') }}"></script>
     <script src="{{ asset('/').('public/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/').('public/js/Chart.bundle.min.js') }}"></script>
-    <!--<script src="{{ asset('/').('dist/fabfive.vendor.bundle.js') }}"></script>
-    <script src="{{ asset('/').('dist/fabfive.main.bundle.js') }}"></script>-->
+    <!--<script src="{{ asset('/').('dist/e2isolutions.vendor.bundle.js') }}"></script>
+    <script src="{{ asset('/').('dist/e2isolutions.main.bundle.js') }}"></script>-->
     @yield('foot')
   </body>
 </html>
