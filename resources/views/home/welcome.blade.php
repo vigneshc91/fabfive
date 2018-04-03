@@ -173,6 +173,40 @@
             </div>
         </div>
     </section>
+    <div class="fh5co-spacer fh5co-spacer-sm"></div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="text-info">Our Partners</h1>
+                    <div class="owl-carousel owl-theme owl-carousel-fullwidth">
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/Axis_Mutual_Fund.png') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/DSP_Mutual_Fund.png') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/HDFC_Mutual_Fund.png') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" style="height:150px" src="{{ asset('/').('public/images/Birla_Mutual_Fund.jpg') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/LIC.png') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/SBI-Life-Insurance-Logo.jpg') }}" alt="Images">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="{{ asset('/').('public/images/Royal-Sundaram.jpg') }}" alt="Images">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="fh5co-spacer fh5co-spacer-lg"></div>
     <section id="fh5co-newsletter">
         <div class="container">
             <div class="row">
@@ -221,6 +255,33 @@
                 } 
             });
         });
+
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:20,
+            nav:true,
+            autoplay:true,
+            autoplayTimeout:1000,
+            autoplayHoverPause:true,
+            lazyLoad: true,
+		    responsiveClass: true,
+            navText: [
+		      "<i class='ti-arrow-left owl-direction'></i>",
+		      "<i class='ti-arrow-right owl-direction'></i>"
+            ],
+		    smartSpeed: 500,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:4
+                }
+            }
+        })
     });
 </script>
 @stop

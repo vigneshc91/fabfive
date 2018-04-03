@@ -9,7 +9,7 @@
 	<title>@yield('title') - e2isolutions</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="e2isolutions" />
-  	<meta name="keywords" content="e2isolutions, Investments" />
+  	<meta name="keywords" content="e2isolutions, Investments, mutual fund, insurance, pension scheme" />
   	<meta name="author" content="e2isolutions" />
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -85,7 +85,7 @@
 							<li><a href="#"><i class="ti-github"></i></a></li>
 							<li><a href="#"><i class="ti-linkedin"></i></a></li>
 						</ul>
-						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; 2016 <a href="#">e2isolutions</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; {{ date('Y') }} <a href="#">e2isolutions</a>. All rights reserved. Crafted with love <em>by</em> <a href="javascript:void(0)">Xtreme Programmers</a></small></p>
 					</div>
 				</footer>
 			</div>
